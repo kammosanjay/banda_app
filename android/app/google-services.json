@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "303180080421",
+    "project_id": "banda-uni-app",
+    "storage_bucket": "banda-uni-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303180080421:android:9acf7a03beae2d0752a6cc",
+        "android_client_info": {
+          "package_name": "com.baanda.mobapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIDuRkGDt3ubSX1VNw2QVT1ow1coZ8AnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
