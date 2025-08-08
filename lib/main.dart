@@ -7,6 +7,17 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
+import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
+import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
+import 'package:baanda_mobile_app/Views/screenListView/administration.dart';
+import 'package:baanda_mobile_app/Views/screenListView/admissionFee.dart';
+import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
+import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
+import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
+import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
+import 'package:baanda_mobile_app/Views/screenListView/information.dart';
+import 'package:baanda_mobile_app/Views/screenListView/research.dart';
+import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
 import 'package:baanda_mobile_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +101,7 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       locale: langProvider.selectectLocale,
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/': (context) => const LoginPage(),
         '/home': (context) => const MyHome(),
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
@@ -106,6 +117,18 @@ class MyApp extends StatelessWidget {
         '/IQA': (context) => AcademicIQAScreen(),
         '/library': (context) => AcademicLibraryScreen(),
         '/acadCollaborations': (context) => AcademicCollaborationScreen(),
+        //
+        'Announcements': (context) => NotificationScreen(),
+        'Academic': (context) => AcademicScreen(),
+        'Administration': (context) => AdministrationScreen(),
+        'Admissions & Fee': (context) => Admissionfee(),
+        'Research': (context) => Research(),
+        'Student Career': (context) => StudentCareer(),
+        'Alumni': (context) => Alumni(),
+        'Information Corner': (context) => Information(),
+        'Emergency Contact': (context) => Emergency(),
+        'Gallery': (context) => Gallery(),
+        'About HEI': (context) => AboutHei(),
       },
     );
   }
