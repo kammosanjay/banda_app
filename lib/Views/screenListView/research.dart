@@ -36,6 +36,12 @@ class _ResearchState extends State<Research> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  final List<IconData> researchIcons = [
+  Icons.science,         // Research And Development Cell
+  Icons.lightbulb,       // Incubation Centre / Start-ups / Entrepreneurship Cell
+  Icons.business,        // Central facilities
+];
+
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -189,16 +195,19 @@ class _ResearchState extends State<Research> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        researchItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(researchIcons[index]),
+                        Text(
+                          researchItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

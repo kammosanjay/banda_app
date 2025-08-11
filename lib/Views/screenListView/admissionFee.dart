@@ -39,6 +39,13 @@ final List<String> imageList = [
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  final List<IconData> admissionIcons = [
+  Icons.menu_book,       // Prospectus
+  Icons.rule,            // Admission Process And Guidelines
+  Icons.payment,         // Fee Submission
+  Icons.attach_money,    // Fee Refund Policy
+];
+
   @override
   Widget build(BuildContext context) {
      final appLoc = AppLocalizations.of(context)!;
@@ -195,16 +202,19 @@ final List<String> imageList = [
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        feeItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(admissionIcons[index]),
+                        Text(
+                          feeItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

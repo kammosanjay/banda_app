@@ -27,16 +27,16 @@ class _LoginPageState extends State<LoginPage> {
     final appLoc = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.yellow.shade100,
-            Colors.green.shade100,
-            Colors.blue.shade100,
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          // center: Alignment.center,
-        ),
+          gradient: LinearGradient(
+            colors: [
+              Colors.yellow.shade100,
+              Colors.green.shade100,
+              Colors.blue.shade100,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            // center: Alignment.center,
+          ),
       ),
       child: Scaffold(
         // backgroundColor: Colors.grey.shade100,
@@ -86,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
                       appLoc.welcome,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: AppColor.headingColor(context),
+                        color: AppColor.textColor(context),
                       ),
                     ),
                   ),
@@ -102,7 +102,9 @@ class _LoginPageState extends State<LoginPage> {
                   CustomWidgets.customTextFeild(
                     context: context,
                     label: 'Phone/Email',
-                    fontwgt: FontWeight.normal,
+                    hintfontSize: 14,
+                    hintfontWeight: FontWeight.normal,
+                    fontwgt: FontWeight.bold,
                     headingcolor: AppColor.textColor(context),
                     hint: 'Phone/Email',
 
@@ -132,10 +134,12 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                     ),
 
-                    fontwgt: FontWeight.normal,
+                    fontwgt: FontWeight.bold,
 
                     headingcolor: AppColor.headingColor(context),
                     hint: 'Password',
+                    hintfontSize: 14,
+                    hintfontWeight: FontWeight.normal,
                     hintColor: AppColor.textColor(context),
                     controller: passController,
                     isObstructed: isShown,
@@ -176,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
-                    btnColor: Colors.indigoAccent,
+                    btnColor: Colors.yellow.shade100,
                   ),
                   SizedBox(height: 30),
                   InkWell(

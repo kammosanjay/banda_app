@@ -50,6 +50,19 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  final List<IconData> officerIcons = [
+  Icons.account_circle,       // Chancellor
+  Icons.assignment_ind,       // Registrar
+  Icons.person,               // Vice Chancellor
+  Icons.account_balance_wallet,// Finance Officer
+  Icons.fact_check,           // Controller Of Examination
+  Icons.shield,               // Chief Vigilance Officer
+  Icons.gavel,                // Ombudsperson
+  Icons.groups,               // Executive Council
+  Icons.report_problem,       // Internal Complaint Committee
+  Icons.school,               // Academic Leadership
+];
+
 
   @override
   Widget build(BuildContext context) {
@@ -206,16 +219,19 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        adminItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(officerIcons[index]),
+                        Text(
+                          adminItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

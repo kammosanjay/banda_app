@@ -15,6 +15,8 @@ import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
 import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
 import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
 import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
+import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
+
 import 'package:baanda_mobile_app/Views/screenListView/information.dart';
 import 'package:baanda_mobile_app/Views/screenListView/research.dart';
 import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
@@ -119,7 +121,9 @@ class MyApp extends StatelessWidget {
         '/acadCollaborations': (context) => AcademicCollaborationScreen(),
         //
         'Announcements': (context) => NotificationScreen(),
+
         'Academic': (context) => AcademicScreen(),
+        'Id Card': (context) => Idcard(),
         'Administration': (context) => AdministrationScreen(),
         'Admissions & Fee': (context) => Admissionfee(),
         'Research': (context) => Research(),

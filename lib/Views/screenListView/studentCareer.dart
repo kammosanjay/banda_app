@@ -44,6 +44,20 @@ class _StudentCareerState extends State<StudentCareer> {
     '/equal-opportunity-cell',
     '/disadvantaged-groups-cell',
   ];
+  final List<IconData> studentIcons = [
+  Icons.sports_soccer,       // Sports facilities
+  Icons.military_tech,       // NCC
+  Icons.volunteer_activism,  // NSS
+  Icons.bed,                 // Hostel
+  Icons.work,                // Placement Cell
+  Icons.forum,               // Student Grievance Redressal Committee
+  Icons.local_hospital,      // Health Facilities
+  Icons.report_problem,      // Internal Complaint Committee
+  Icons.no_accounts,         // Anti-Ragging Cell
+  Icons.diversity_3,         // Equal Opportunity Cell
+  Icons.groups_2,            // Socio-Economically Disadvantaged Groups Cell
+];
+
   final List<String> imageList = [
     "assets/svgImages/menu.svg",
     "assets/svgImages/customer-service.svg",
@@ -206,16 +220,19 @@ class _StudentCareerState extends State<StudentCareer> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        studentItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(studentIcons[index]),
+                        Text(
+                          studentItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

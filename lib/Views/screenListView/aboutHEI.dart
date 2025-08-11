@@ -29,6 +29,19 @@ class _AboutHeiState extends State<AboutHei> {
     'Sponsoring Body',
   ];
   //
+  final List<IconData> aboutIcons = [
+    Icons.account_balance, // About University
+    Icons.menu_book, // Act-and-Statutes
+    Icons.trending_up, // Institutional Development Plan
+    Icons.apartment, // Affiliated University / College
+    Icons.star_rate, // Accreditation/ Ranking Status
+    Icons.verified, // Recognition / Approval
+    Icons.insert_drive_file, // Annual Reports
+    Icons.calculate, // Accounting
+    Icons.groups, // Sponsoring Body
+  ];
+
+  //
   final List<String> aboutRoutes = [
     '/about-university',
     '/act-and-statutes',
@@ -174,6 +187,8 @@ class _AboutHeiState extends State<AboutHei> {
         ],
       ),
 
+      
+      
       body: ListView(
         children: [
           SizedBox(height: 2),
@@ -202,16 +217,20 @@ class _AboutHeiState extends State<AboutHei> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        aboutItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(aboutIcons[index]),
+                        Text(
+                          aboutItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

@@ -37,8 +37,19 @@ class _AcademicScreenState extends State<AcademicScreen> {
     '/library',
     '/acadCollaborations',
   ];
+
   //
- 
+  final List<IconData> menuIcons = [
+    Icons.school, // Academic Programs
+    Icons.event, // Academic Calendar
+    Icons.assignment, // Academics Examinations
+    Icons.account_balance, // Colleges
+    Icons.fact_check, // List of UGC-recognized ODL
+    Icons.verified_user, // Internal Quality Assurance Cell (IQAC)
+    Icons.local_library, // Library
+    Icons.handshake, // Academic Collaborations
+  ];
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     final isTheme = Theme.of(context).brightness;
@@ -57,7 +68,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
             );
           },
         ),
-        
+
         centerTitle: true,
         actions: [
           Padding(
@@ -146,8 +157,12 @@ class _AcademicScreenState extends State<AcademicScreen> {
               childAspectRatio: 1, // adjust for text layout
             ),
             itemBuilder: (context, index) {
+              final isSelected = selectedIndex == index;
               return GestureDetector(
                 onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
                   final route = menuRoutes[index];
                   context.read<RouteProvider>().navigateTo(route, context);
                 },
@@ -155,20 +170,26 @@ class _AcademicScreenState extends State<AcademicScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  color: AppColor.primaryColor(context),
+                  color: isSelected
+                      ? Colors.deepPurple.shade100
+                      : Color(0xFFeffdff),
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        menuItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(menuIcons[index],color: Colors.black),
+                        Text(
+                          menuItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

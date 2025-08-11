@@ -28,6 +28,18 @@ class _InformationState extends State<Information> {
     'Study in India',
     'Admission Procedure And Facilities',
   ];
+  final List<IconData> infoIcons = [
+  Icons.policy,              // RTI
+  Icons.campaign,            // Circulars And Notices
+  Icons.announcement,        // Announcements
+  Icons.article,             // Newsletters
+  Icons.emoji_events,        // Recent Events & Achievements
+  Icons.work_outline,        // Job openings
+  Icons.list_alt,            // Reservation Roster
+  Icons.public,              // Study in India
+  Icons.school,              // Admission Procedure And Facilities
+];
+
   //
   final List<String> miscRoutes = [
     '/rti',
@@ -201,16 +213,19 @@ class _InformationState extends State<Information> {
                   elevation: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        miscItems[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(infoIcons[index]),
+                        Text(
+                          miscItems[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

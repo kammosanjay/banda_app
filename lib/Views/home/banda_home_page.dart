@@ -8,6 +8,8 @@ import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
 import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
 import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
 import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
+import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
+
 import 'package:baanda_mobile_app/Views/screenListView/information.dart';
 import 'package:baanda_mobile_app/Views/screenListView/research.dart';
 import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
@@ -29,6 +31,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
 
   List<String> drawerMenuItems = [
     'Announcements',
+    'Id Card',
     'Academic',
     'Administration',
     'Admissions & Fee',
@@ -43,6 +46,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
 
   final List<Widget> contentViews = [
     NotificationScreen(),
+    Idcard(),
     AcademicScreen(),
     AdministrationScreen(),
     Admissionfee(),
@@ -55,7 +59,9 @@ class _BandaHomePageState extends State<BandaHomePage> {
     AboutHei(),
   ];
   List<IconData> drawerMenuIcons = [
-    Icons.announcement, // Announcements
+    Icons.announcement,
+    Icons.perm_identity,
+     // Announcements
     Icons.school, // Academic
     Icons.account_balance, // Administration
     Icons.payment, // Admissions & Fee
@@ -93,13 +99,13 @@ class _BandaHomePageState extends State<BandaHomePage> {
                 crossAxisCount: 3,
               ),
               itemBuilder: (context, index) {
-                final isSelected = selectedIndex == index;
+                var isSelected = selectedIndex == index;
                 return GestureDetector(
                   onTap: () {
                     setState(() {
                       selectedIndex = index;
                     });
-                    final route = drawerMenuItems[index];
+                    var route = drawerMenuItems[index];
                     context.read<RouteProvider>().navigateTo(route, context);
                   },
                   child: Card(
@@ -110,13 +116,13 @@ class _BandaHomePageState extends State<BandaHomePage> {
                       borderRadius: BorderRadius.circular(5),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding:  EdgeInsets.all(5.0),
                       child: SizedBox(
                         height: 60,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(drawerMenuIcons[index]),
+                            Icon(drawerMenuIcons[index], color: Colors.black),
                             Text(
                               drawerMenuItems[index],
                               textAlign: TextAlign.center,

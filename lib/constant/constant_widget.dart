@@ -33,7 +33,9 @@ class CustomWidgets {
     bool isReadyOnly = false,
     String label = "",
     var fontSize,
-    var fontwgt,
+    FontWeight? fontwgt,
+    double? hintfontSize,
+    FontWeight? hintfontWeight,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,8 +97,8 @@ class CustomWidgets {
               hintText: hint,
               hintStyle: TextStyle(
                 color: hintColor ?? Colors.white,
-                fontSize: fontSize ?? 16,
-                fontWeight: fontwgt ?? FontWeight.w600,
+                fontSize: hintfontSize ?? 16,
+                fontWeight: hintfontWeight ?? FontWeight.w600,
               ),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
@@ -242,7 +244,7 @@ class CustomWidgets {
           style: GoogleFonts.poppins(
             fontSize: fontSize ?? 12,
             fontWeight: fontWeight ?? FontWeight.w600,
-            color: AppColor.primaryColor(context), // Text color
+            color: AppColor.textColor(context), // Text color
           ),
         ),
       ),

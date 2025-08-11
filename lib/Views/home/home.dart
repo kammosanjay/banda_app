@@ -52,7 +52,7 @@ class _MyHomeState extends State<MyHome> {
 
   Future<void> aboutUs() async {
     if (!await launchUrl(
-      Uri.parse("https://www.softgentech.com/aboutus/"),
+      Uri.parse("https://buat.edu.in/about-university/"),
       mode: LaunchMode.inAppWebView,
     )) {
       throw Exception('Could not launch URL');
@@ -61,7 +61,7 @@ class _MyHomeState extends State<MyHome> {
 
   Future<void> privacyPolicy() async {
     if (!await launchUrl(
-      Uri.parse("https://www.softgentech.com/aboutus/"),
+      Uri.parse("https://buat.edu.in/#"),
       mode: LaunchMode.inAppWebView,
     )) {
       throw Exception('Could not launch URL');
@@ -70,7 +70,7 @@ class _MyHomeState extends State<MyHome> {
 
   Future<void> termsAndcdtn() async {
     if (!await launchUrl(
-      Uri.parse("https://www.softgentech.com/aboutus/"),
+      Uri.parse("https://buat.edu.in/#"),
       mode: LaunchMode.inAppWebView,
     )) {
       throw Exception('Could not launch URL');
@@ -79,7 +79,7 @@ class _MyHomeState extends State<MyHome> {
 
   Future<void> contactUs() async {
     if (!await launchUrl(
-      Uri.parse("https://www.softgentech.com/contact-us/"),
+      Uri.parse("https://buat.edu.in/contact-us/"),
       mode: LaunchMode.inAppWebView,
     )) {
       throw Exception('Could not launch URL');
