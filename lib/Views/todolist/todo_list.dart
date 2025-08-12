@@ -293,7 +293,7 @@ class _TodoListPageState extends State<TodoListPage> {
     return GestureDetector(
       // onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        // backgroundColor: Colors.grey.shade100,
+        backgroundColor: Color(0xFFe7f3ff),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             // bottomSheet(context);

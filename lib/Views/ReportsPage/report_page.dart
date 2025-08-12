@@ -26,6 +26,7 @@ class _ReportPageState extends State<ReportPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe7f3ff),
       body: Column(
         children: [
           Expanded(

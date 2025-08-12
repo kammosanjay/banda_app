@@ -61,7 +61,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
   List<IconData> drawerMenuIcons = [
     Icons.announcement,
     Icons.perm_identity,
-     // Announcements
+    // Announcements
     Icons.school, // Academic
     Icons.account_balance, // Administration
     Icons.payment, // Admissions & Fee
@@ -88,71 +88,70 @@ class _BandaHomePageState extends State<BandaHomePage> {
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
-      body: Row(
-        children: [
-          /// LEFT MENU
-          Expanded(
-            child: GridView.builder(
-              itemCount: drawerMenuItems.length,
-
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-              ),
-              itemBuilder: (context, index) {
-                var isSelected = selectedIndex == index;
-                return GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                    var route = drawerMenuItems[index];
-                    context.read<RouteProvider>().navigateTo(route, context);
-                  },
-                  child: Card(
-                    color: isSelected
-                        ? Colors.deepPurple.shade100
-                        : Color(0xFFeffdff),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    child: Padding(
-                      padding:  EdgeInsets.all(5.0),
-                      child: SizedBox(
-                        height: 60,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(drawerMenuIcons[index], color: Colors.black),
-                            Text(
-                              drawerMenuItems[index],
-                              textAlign: TextAlign.center,
-                              maxLines: 2,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w500,
-                                color: isSelected
-                                    ? Colors.deepPurple
-                                    : Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+      backgroundColor: Color(0xFFe7f3ff),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: GridView.builder(
+            itemCount: drawerMenuItems.length,
+        
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              crossAxisCount: 3,
+            ),
+            itemBuilder: (context, index) {
+              var isSelected = selectedIndex == index;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                  var route = drawerMenuItems[index];
+                  context.read<RouteProvider>().navigateTo(route, context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.indigo.shade100),
+                    borderRadius: BorderRadius.circular(16),
+                    color: Color(0xFFc0e6de),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.yellow.shade100,
+                        Colors.green.shade100,
+                        Colors.blue.shade100,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      // center: Alignment.center,
                     ),
                   ),
-                );
-              },
-            ),
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(drawerMenuIcons[index], color: Colors.black),
+                        Text(
+                          drawerMenuItems[index],
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: isSelected ? Colors.deepPurple : Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-
-          // / RIGHT VIEW
-          // Expanded(
-          //   child: AnimatedSwitcher(
-          //     duration: Duration(milliseconds: 300),
-          //     child: contentViews[selectedIndex],
-          //   ),
-          // ),
-        ],
+        ),
       ),
     );
   }

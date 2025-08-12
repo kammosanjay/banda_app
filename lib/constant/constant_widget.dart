@@ -25,6 +25,7 @@ class CustomWidgets {
     double? height,
     TextInputType? keyboardtype,
     Function? onTap,
+    Function? onChanges,
     var validate,
     bool isObstructed = false,
     Color? iconColor,
@@ -81,6 +82,11 @@ class CustomWidgets {
             onTap: () {
               if (onTap != null) {
                 onTap();
+              }
+            },
+            onChanged: (value) {
+              if (onChanges != null) {
+                onChanges(value); // Call the function with the text value
               }
             },
             obscureText: isObstructed,

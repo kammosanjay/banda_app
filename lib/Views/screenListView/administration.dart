@@ -51,23 +51,23 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
     "assets/svgImages/policy.svg",
   ];
   final List<IconData> officerIcons = [
-  Icons.account_circle,       // Chancellor
-  Icons.assignment_ind,       // Registrar
-  Icons.person,               // Vice Chancellor
-  Icons.account_balance_wallet,// Finance Officer
-  Icons.fact_check,           // Controller Of Examination
-  Icons.shield,               // Chief Vigilance Officer
-  Icons.gavel,                // Ombudsperson
-  Icons.groups,               // Executive Council
-  Icons.report_problem,       // Internal Complaint Committee
-  Icons.school,               // Academic Leadership
-];
-
+    Icons.account_circle, // Chancellor
+    Icons.assignment_ind, // Registrar
+    Icons.person, // Vice Chancellor
+    Icons.account_balance_wallet, // Finance Officer
+    Icons.fact_check, // Controller Of Examination
+    Icons.shield, // Chief Vigilance Officer
+    Icons.gavel, // Ombudsperson
+    Icons.groups, // Executive Council
+    Icons.report_problem, // Internal Complaint Committee
+    Icons.school, // Academic Leadership
+  ];
 
   @override
   Widget build(BuildContext context) {
-     final appLoc = AppLocalizations.of(context)!;
+    final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
+      backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -186,24 +186,23 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
               ),
             ),
           ),
-          
         ],
       ),
 
-     
-      body: ListView(
-        children: [
-          SizedBox(height: 2),
-          GridView.builder(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: GridView.builder(
             shrinkWrap: true,
             physics:
                 NeverScrollableScrollPhysics(), // allow embedding in scroll view
             itemCount: adminItems.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // ✅ 3 items in one row
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 1, // adjust for text layout
+              mainAxisSpacing: 8,
+              crossAxisSpacing: 8,
+              crossAxisCount: 3, // adjust for text layout
             ),
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -211,15 +210,26 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
                   final route = adminRoutes[index];
                   context.read<RouteProvider>().navigateTo(route, context);
                 },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.indigo.shade100),
+                    borderRadius: BorderRadius.circular(16),
+                    color: Color(0xFFc0e6de),
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.yellow.shade100,
+                        Colors.green.shade100,
+                        Colors.blue.shade100,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      // center: Alignment.center,
+                    ),
                   ),
-                  color: AppColor.primaryColor(context),
-                  elevation: 2,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(officerIcons[index]),
                         Text(
@@ -238,7 +248,7 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
               );
             },
           ),
-        ],
+        ),
       ),
     );
   }

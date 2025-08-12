@@ -7,6 +7,7 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
+import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
 import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
 import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
 import 'package:baanda_mobile_app/Views/screenListView/administration.dart';
@@ -46,12 +47,17 @@ import 'package:baanda_mobile_app/Views/language/language.dart';
 
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:sqflite/sqlite_api.dart';
+
+
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
+  
+  await FirebaseMsg().initFCM();
 
   runApp(
     MultiProvider(
@@ -64,7 +70,7 @@ void main() async {
         ChangeNotifierProvider<TodoProvider>(create: (_) => TodoProvider()),
         ChangeNotifierProvider<ReportProvider>(create: (_) => ReportProvider()),
       ],
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }

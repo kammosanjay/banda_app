@@ -12,7 +12,7 @@ class Idcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold(
+    return Scaffold( backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -100,7 +100,7 @@ class Idcard extends StatelessWidget {
         ],
       ),
 
-      backgroundColor: Colors.grey[200],
+ 
       body: Center(
         child: Container(
           margin: EdgeInsets.all(20),

@@ -4,6 +4,7 @@ import 'package:baanda_mobile_app/Views/home/home_providers.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,13 +27,27 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
     'Postgraduate Diploma',
     'Doctoral Programmes',
   ];
+
+  List<String> courseList = [
+    "Economics",
+    'Informatics',
+    'siesmographic',
+    'pyrologic',
+    'mechanics',
+  ];
+  List<String> searchedList=[];
   //
+  TextEditingController searchContrll = TextEditingController();
+  String? searchedText;
 
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
+      backgroundColor: Color(0xFFe7f3ff),
+
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
@@ -119,49 +134,100 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
         ],
       ),
 
-      body: ListView(
+      body: Column(
         children: [
-          SizedBox(height: 2),
-          GridView.builder(
-            shrinkWrap: true,
-            physics:
-                NeverScrollableScrollPhysics(), // allow embedding in scroll view
-            itemCount: acadlist.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, // ✅ 3 items in one row
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 1, // adjust for text layout
-            ),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  // final route = menuRoutes[index];
-                  // context.read<RouteProvider>().navigateTo(route, context);
-                },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  color: AppColor.primaryColor(context),
-                  elevation: 2,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: Text(
-                        acadlist[index],
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black87,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics:
+                  NeverScrollableScrollPhysics(), // allow embedding in scroll view
+              itemCount: acadlist.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                crossAxisCount: 4,
+              ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    // final route = menuRoutes[index];
+                    // context.read<RouteProvider>().navigateTo(route, context);
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.indigo.shade100,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      color: Color(0xFFc0e6de),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.yellow.shade100,
+                          Colors.green.shade100,
+                          Colors.blue.shade100,
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        // center: Alignment.center,
+                      ),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Center(
+                        child: Text(
+                          acadlist[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomWidgets.customTextFeild(
+              context: context,
+              label: 'Search Courses',
+              hintfontSize: 14,
+              hintfontWeight: FontWeight.normal,
+              fontwgt: FontWeight.bold,
+              headingcolor: AppColor.textColor(context),
+              hint: 'Search Courses here...',
+              onChanges: (value) {
+                print("User typed: $value");
+              },
+              hintColor: Theme.of(context).colorScheme.secondary,
+              controller: searchContrll,
+              keyboardtype: TextInputType.emailAddress,
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+
+              scrollDirection: Axis.vertical,
+
+              itemCount: courseList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  leading: Text('${index + 1}'),
+                  title: Text(courseList[index]),
+                  trailing: TextButton(
+                    onPressed: () {},
+                    child: Text('view${index + 1}'),
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),
