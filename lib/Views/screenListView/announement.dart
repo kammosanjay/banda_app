@@ -28,7 +28,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( backgroundColor: Color(0xFFe7f3ff),
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -147,11 +148,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ),
             ),
           ),
-          
         ],
       ),
 
-     
       body: Column(
         children: [
           Padding(
@@ -160,6 +159,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             CustomWidgets.customDropdownField(
               context: context,
               label: 'Notifications',
+              
               fontSize: 12,
               hint: 'Select',
 
@@ -183,7 +183,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               itemBuilder: (BuildContext context, int index) {
                 return ListTile(
                   leading: Icon(Icons.circle, size: 10, color: Colors.red),
-                  title: Text('this is ${index + 1} Title'),
+                  title: Text('this is ${index + 1} Title',style: Theme.of(context).textTheme.bodyMedium,),
                 );
               },
             ),

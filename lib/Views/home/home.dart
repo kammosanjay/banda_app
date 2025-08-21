@@ -102,12 +102,10 @@ class _MyHomeState extends State<MyHome> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
-        backgroundColor: AppColor.primaryColor(context),
+        backgroundColor: Colors.yellow.shade100,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColor.headingColor(
-          context,
-        ), // This shows all 5 items
-        unselectedItemColor: AppColor.textColor(context),
+        selectedItemColor: Colors.grey, // This shows all 5 items
+        unselectedItemColor:Colors.grey,
         selectedFontSize: 12,
         unselectedFontSize: 10,
         selectedLabelStyle: GoogleFonts.poppins(
@@ -129,7 +127,7 @@ class _MyHomeState extends State<MyHome> {
               'assets/svgImages/thinperson.svg',
               height: 25,
               width: 25,
-              color: AppColor.headingColor(context),
+              color: Colors.black45,
             ),
       
             label: 'Home',
@@ -139,7 +137,7 @@ class _MyHomeState extends State<MyHome> {
               'assets/svgImages/trackthin.svg',
               height: 25,
               width: 25,
-              color: AppColor.headingColor(context),
+              color: Colors.black45,
             ),
             label: 'Messages',
           ),
@@ -148,7 +146,7 @@ class _MyHomeState extends State<MyHome> {
               'assets/svgImages/todothin.svg',
               height: 25,
               width: 25,
-              color: AppColor.headingColor(context),
+              color: Colors.black45,
             ),
             label: 'Contact',
           ),
@@ -157,7 +155,7 @@ class _MyHomeState extends State<MyHome> {
               'assets/svgImages/reportthin.svg',
               height: 25,
               width: 25,
-              color: AppColor.headingColor(context),
+              color: Colors.black45,
             ),
             label: 'Profile',
           ),
@@ -667,7 +665,7 @@ class _MyHomeState extends State<MyHome> {
       ),
 
       appBar: AppBar(
-        // flexibleSpace: Container(
+        // flexibleSpace: Container(s
         //   decoration: BoxDecoration(
         //     gradient: LinearGradient(
         //       colors: [
@@ -681,7 +679,7 @@ class _MyHomeState extends State<MyHome> {
         //     ),
         //   ),
         // ),
-        // backgroundColor: AppColor.primaryColor(context),
+        // backgroundColor:Colors.grey.shade100,
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(

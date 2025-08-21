@@ -19,6 +19,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class BandaHomePage extends StatefulWidget {
@@ -88,7 +89,8 @@ class _BandaHomePageState extends State<BandaHomePage> {
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: Color(0xFFe7f3ff),
+      // backgroundColor: Color(0xFFe7f3ff),
+      backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
@@ -96,7 +98,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
           width: double.infinity,
           child: GridView.builder(
             itemCount: drawerMenuItems.length,
-        
+
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
@@ -114,34 +116,34 @@ class _BandaHomePageState extends State<BandaHomePage> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.indigo.shade100),
+                    border: Border.all(width: 1, color: Colors.grey.shade400),
                     borderRadius: BorderRadius.circular(16),
-                    color: Color(0xFFc0e6de),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.yellow.shade100,
-                        Colors.green.shade100,
-                        Colors.blue.shade100,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      // center: Alignment.center,
-                    ),
+                    color: Colors.white
+                    // gradient: LinearGradient(
+                    //   colors: [
+                    //     Colors.yellow.shade100,
+                    //     Colors.green.shade100,
+                    //     Colors.blue.shade100,
+                    //   ],
+                    //   begin: Alignment.topLeft,
+                    //   end: Alignment.bottomRight,
+                    //   // center: Alignment.center,
+                    // ),
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(5.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(drawerMenuIcons[index], color: Colors.black),
+                        Icon(drawerMenuIcons[index], color: Colors.grey.shade900),
                         Text(
                           drawerMenuItems[index],
                           textAlign: TextAlign.center,
                           maxLines: 2,
-                          style: TextStyle(
+                          style: GoogleFonts.openSans(
                             fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: isSelected ? Colors.deepPurple : Colors.black,
+                            fontWeight: FontWeight.w400,
+                            color: isSelected ? Colors.deepPurple : Colors.grey.shade900,
                           ),
                         ),
                       ],

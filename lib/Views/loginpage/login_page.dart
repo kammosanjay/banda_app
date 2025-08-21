@@ -27,20 +27,20 @@ class _LoginPageState extends State<LoginPage> {
     final appLoc = AppLocalizations.of(context)!;
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.yellow.shade100,
-              Colors.green.shade100,
-              Colors.blue.shade100,
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            // center: Alignment.center,
-          ),
+        // gradient: LinearGradient(
+        //   colors: [
+        //     Colors.yellow.shade100,
+        //     Colors.green.shade100,
+        //     Colors.blue.shade100,
+        //   ],
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   // center: Alignment.center,
+        // ),
       ),
       child: Scaffold(
         // backgroundColor: Colors.grey.shade100,
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.white,
         resizeToAvoidBottomInset: true,
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100),
                   child: Image.asset(
-                    'assets/images/bandaLogo.png',
+                    'assets/images/banda.png',
                     height: 150,
                     fit: BoxFit.contain,
                   ),
@@ -136,11 +136,11 @@ class _LoginPageState extends State<LoginPage> {
 
                     fontwgt: FontWeight.bold,
 
-                    headingcolor: AppColor.headingColor(context),
+                    headingcolor: AppColor.textColor(context),
                     hint: 'Password',
                     hintfontSize: 14,
                     hintfontWeight: FontWeight.normal,
-                    hintColor: AppColor.textColor(context),
+                    hintColor:Theme.of(context).colorScheme.secondary,
                     controller: passController,
                     isObstructed: isShown,
                     icon: Icon(Icons.lock),
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
-                    btnColor: Colors.yellow.shade100,
+                    btnColor: Color(0xFF00FDFD),
                   ),
                   SizedBox(height: 30),
                   InkWell(

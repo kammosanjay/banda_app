@@ -6,6 +6,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AdministrationScreen extends StatefulWidget {
@@ -67,7 +68,7 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
-      backgroundColor: Color(0xFFe7f3ff),
+      // backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -212,19 +213,9 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.indigo.shade100),
+                    border: Border.all(width: 1, color: Colors.grey.shade400),
                     borderRadius: BorderRadius.circular(16),
-                    color: Color(0xFFc0e6de),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.yellow.shade100,
-                        Colors.green.shade100,
-                        Colors.blue.shade100,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      // center: Alignment.center,
-                    ),
+                    color: Colors.white,
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
@@ -235,10 +226,10 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
                         Text(
                           adminItems[index],
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color:  Colors.grey.shade900,
                           ),
                         ),
                       ],

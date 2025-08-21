@@ -34,7 +34,7 @@ class _AlumniState extends State<Alumni> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( backgroundColor: Color(0xFFe7f3ff),
+    return Scaffold( 
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -169,20 +169,14 @@ class _AlumniState extends State<Alumni> {
             child: Center(
               child: Text(
                 "Alumni",
-                style: GoogleFonts.poppins(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.headlineSmall
               ),
             ),
           ),
           SizedBox(height: 20),
           Text(
             "Alumni Association with Details",
-            style: GoogleFonts.poppins(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
+            style:  Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(height: 20),
           Expanded(
@@ -222,7 +216,7 @@ class _AlumniState extends State<Alumni> {
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         alumniList[index],
-                        style: GoogleFonts.poppins(fontSize: 14),
+                        style:  Theme.of(context).textTheme.bodyMedium,
                       ),
                       // trailing:
                       // Row(mainAxisAlignment: MainAxisAlignment.end,

@@ -6,6 +6,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Admissionfee extends StatefulWidget {
@@ -18,20 +19,20 @@ class Admissionfee extends StatefulWidget {
 class _AdmissionfeeState extends State<Admissionfee> {
   //
   final List<String> feeItems = [
-  'Prospectus',
-  'Admission Process And Guidelines',
-  'Fee Submission',
-  'Fee Refund Policy',
-];
-//
-final List<String> feeRoutes = [
-  '/prospectus',
-  '/admission-guidelines',
-  '/fee-submission',
-  '/fee-refund-policy',
-];
+    'Prospectus',
+    'Admission Process And Guidelines',
+    'Fee Submission',
+    'Fee Refund Policy',
+  ];
+  //
+  final List<String> feeRoutes = [
+    '/prospectus',
+    '/admission-guidelines',
+    '/fee-submission',
+    '/fee-refund-policy',
+  ];
 
-final List<String> imageList = [
+  final List<String> imageList = [
     "assets/svgImages/menu.svg",
     "assets/svgImages/customer-service.svg",
     "assets/svgImages/leave.svg",
@@ -40,18 +41,18 @@ final List<String> imageList = [
     "assets/svgImages/policy.svg",
   ];
   final List<IconData> admissionIcons = [
-  Icons.menu_book,       // Prospectus
-  Icons.rule,            // Admission Process And Guidelines
-  Icons.payment,         // Fee Submission
-  Icons.attach_money,    // Fee Refund Policy
-];
+    Icons.menu_book, // Prospectus
+    Icons.rule, // Admission Process And Guidelines
+    Icons.payment, // Fee Submission
+    Icons.attach_money, // Fee Refund Policy
+  ];
 
   @override
   Widget build(BuildContext context) {
-     final appLoc = AppLocalizations.of(context)!;
+    final appLoc = AppLocalizations.of(context)!;
 
-    return  Scaffold(
-       backgroundColor: Color(0xFFe7f3ff),
+    return Scaffold(
+      //  backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -170,74 +171,64 @@ final List<String> imageList = [
               ),
             ),
           ),
-          
         ],
       ),
 
-     
-      body:
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox( height: double.infinity,
-            width: double.infinity,
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics:
-                    NeverScrollableScrollPhysics(), // allow embedding in scroll view
-                itemCount: feeItems.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // ✅ 3 items in one row
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1, // adjust for text layout
-                ),
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      final route = feeRoutes[index];
-                      context.read<RouteProvider>().navigateTo(route, context);
-                    },
-                    child: Container( decoration: BoxDecoration(
-                        border: Border.all(width: 1, color: Colors.indigo.shade100),
-                        borderRadius: BorderRadius.circular(16),
-                        color: Color(0xFFc0e6de),
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.yellow.shade100,
-                            Colors.green.shade100,
-                            Colors.blue.shade100,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          // center: Alignment.center,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(admissionIcons[index]),
-                            Text(
-                              feeItems[index],
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics:
+                NeverScrollableScrollPhysics(), // allow embedding in scroll view
+            itemCount: feeItems.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // ✅ 3 items in one row
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 1, // adjust for text layout
             ),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  final route = feeRoutes[index];
+                  context.read<RouteProvider>().navigateTo(route, context);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          admissionIcons[index],
+                          color: Colors.grey.shade900,
+                        ),
+                        Text(
+                          feeItems[index],
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey.shade900,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
-        
-      
-
+        ),
+      ),
     );
   }
 }

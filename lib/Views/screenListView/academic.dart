@@ -6,6 +6,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class AcademicScreen extends StatefulWidget {
@@ -55,7 +56,6 @@ class _AcademicScreenState extends State<AcademicScreen> {
     final isTheme = Theme.of(context).brightness;
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
-       backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -170,33 +170,35 @@ class _AcademicScreenState extends State<AcademicScreen> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.indigo.shade100),
+                    border: Border.all(width: 1, color: Colors.grey.shade400),
                     borderRadius: BorderRadius.circular(16),
-                    color: Color(0xFFc0e6de),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.yellow.shade100,
-                        Colors.green.shade100,
-                        Colors.blue.shade100,
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      // center: Alignment.center,
-                    ),
+                    color: Colors.white,
+                    // gradient: LinearGradient(
+                    //   colors: [
+                    //     Colors.yellow.shade100,
+                    //     Colors.green.shade100,
+                    //     Colors.blue.shade100,
+                    //   ],
+                    //   begin: Alignment.topLeft,
+                    //   end: Alignment.bottomRight,
+                    //   // center: Alignment.center,
+                    // ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(menuIcons[index], color: Colors.black),
+                        Icon(menuIcons[index], color: Colors.grey.shade900),
                         Text(
                           menuItems[index],
                           textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black87,
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: isSelected
+                                ? Colors.deepPurple
+                                : Colors.grey.shade900,
                           ),
                         ),
                       ],
