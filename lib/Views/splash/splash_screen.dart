@@ -22,9 +22,10 @@ class _SplashScreenState extends State<SplashScreen> {
   int? initialPage;
   @override
   void initState() {
-    _pageController = PageController(initialPage: 0);
-    initialPage = _pageController.initialPage;
-    super.initState();
+    // _pageController = PageController(initialPage: 0);
+    // initialPage = _pageController.initialPage;
+    // super.initState();
+    context.read<SplashProvider>().initializeApp(context);
   }
 
   // @override
@@ -53,70 +54,78 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [AppColor.primaryColor(context), Colors.yellow],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      body: SizedBox(
+        width: double.infinity,
+        height: double.infinity,
+        child: Stack(
+          children: [
+            Image.asset('assets/images/splash_wheat.png', fit: BoxFit.cover),
+            Center(
+              child: Image.asset(
+                'assets/images/bandabg.png',
+                height: 200,
+                width: 200,
+              ),
+            ),
+          ],
         ),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: GFIntroScreen(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          // color: Colors.amber,
-          // borderRadius: BorderRadius.circular(40),
-          // border: Border.all(color: Colors.grey),
-          slides: slides(),
-          pageController: _pageController,
-          introScreenBottomNavigationBar: GFIntroScreenBottomNavigationBar(
-            pageController: _pageController,
-            pageCount: slideList!.length,
-            currentIndex: initialPage!,
-            backButtonText: 'Previous',
-            forwardButton: const Icon(Icons.arrow_forward, color: Colors.white),
-            backButton: const Icon(Icons.arrow_back, color: Colors.white),
 
-            forwardButtonText: 'Next',
-            skipButtonText: 'Skip',
-            skipButtonTextStyle: TextStyle(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? Colors.white
-                  : Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
-            doneButtonText: 'Done',
-            onDoneTap: () {
-              context.read<SplashProvider>().initializeApp(context);
-            },
-            onSkipTap: () {
-              context.read<SplashProvider>().initializeApp(context);
-            },
-            doneButton: const Icon(Icons.check, color: Colors.white),
-            navigationBarHeight: 55,
-            navigationBarWidth: double.infinity,
-            navigationBarShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            navigationBarColor: AppColor.primaryColor(context),
-            showDivider: true,
-            dotHeight: 10,
-            dotWidth: 10,
-            dotShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(100),
-            ),
-            // inActiveColor: Colors.grey[200],
-            activeColor: GFColors.SUCCESS,
-            inactiveColor: GFColors.WHITE,
-            dotMargin: EdgeInsets.symmetric(horizontal: 6),
-            showPagination: true,
-          ),
-          currentIndex: initialPage!,
-          pageCount: _pageController.initialPage,
-        ),
-      ),
+      // GFIntroScreen(
+      //   height: MediaQuery.of(context).size.height,
+      //   width: MediaQuery.of(context).size.width,
+      //   // color: Colors.amber,
+      //   // borderRadius: BorderRadius.circular(40),
+      //   // border: Border.all(color: Colors.grey),
+      //   slides: slides(),
+      //   pageController: _pageController,
+      //   introScreenBottomNavigationBar: GFIntroScreenBottomNavigationBar(
+      //     pageController: _pageController,
+      //     pageCount: slideList!.length,
+      //     currentIndex: initialPage!,
+      //     backButtonText: 'Previous',
+      //     forwardButton: const Icon(Icons.arrow_forward, color: Colors.white),
+      //     backButton: const Icon(Icons.arrow_back, color: Colors.white),
+
+      //     forwardButtonText: 'Next',
+      //     skipButtonText: 'Skip',
+      //     skipButtonTextStyle: TextStyle(
+      //       color: Theme.of(context).brightness == Brightness.dark
+      //           ? Colors.white
+      //           : Colors.black,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //     doneButtonText: 'Done',
+      //     onDoneTap: () {
+      //       context.read<SplashProvider>().initializeApp(context);
+      //     },
+      //     onSkipTap: () {
+      //       context.read<SplashProvider>().initializeApp(context);
+      //     },
+      //     doneButton: const Icon(Icons.check, color: Colors.white),
+      //     navigationBarHeight: 55,
+      //     navigationBarWidth: double.infinity,
+      //     navigationBarShape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //     ),
+      //     navigationBarColor: AppColor.primaryColor(context),
+      //     showDivider: true,
+      //     dotHeight: 10,
+      //     dotWidth: 10,
+      //     dotShape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(100),
+      //     ),
+      //     // inActiveColor: Colors.grey[200],
+      //     activeColor: GFColors.SUCCESS,
+      //     inactiveColor: GFColors.WHITE,
+      //     dotMargin: EdgeInsets.symmetric(horizontal: 6),
+      //     showPagination: true,
+      //   ),
+      //   currentIndex: initialPage!,
+      //   pageCount: _pageController.initialPage,
+      // ),
     );
   }
 

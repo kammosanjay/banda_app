@@ -139,7 +139,7 @@ class ThemeProvider extends ChangeNotifier {
         fontWeight: FontWeight.w600,
       ),
     ),
-    scaffoldBackgroundColor: Colors.grey.shade100,
+    scaffoldBackgroundColor: Color(0xFFE8E9F4),
     textTheme: TextTheme(
       bodySmall: GoogleFonts.poppins(color: Colors.grey.shade900),
       bodyMedium: GoogleFonts.poppins(color: Colors.grey.shade900),

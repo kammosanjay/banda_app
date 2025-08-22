@@ -50,70 +50,66 @@ class CustomWidgets {
           ),
         ),
         SizedBox(height: 10),
-        Card(
-          color: Colors.white,
-          margin: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          elevation: elevation ?? 0,
-          child: TextFormField(
-            buildCounter:
-                (
-                  context, {
-                  required currentLength,
-                  required isFocused,
-                  required maxLength,
-                }) {
-                  return null;
-                },
-            focusNode: focusNode,
-            readOnly: isReadyOnly,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            keyboardType: keyboardtype,
-            validator: validate,
+        TextFormField(
+          buildCounter:
+              (
+                context, {
+                required currentLength,
+                required isFocused,
+                required maxLength,
+              }) {
+                return null;
+              },
+          focusNode: focusNode,
+          readOnly: isReadyOnly,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          keyboardType: keyboardtype,
+          validator: validate,
 
-            maxLength: maxLength,
-            maxLines: maxLines ?? 1,
-            controller: controller ?? TextEditingController(),
-            textAlignVertical: TextAlignVertical.center,
-            textInputAction: action,
+          maxLength: maxLength,
+          maxLines: maxLines ?? 1,
+          controller: controller ?? TextEditingController(),
+          textAlignVertical: TextAlignVertical.center,
+          textInputAction: action,
 
-            onTap: () {
-              if (onTap != null) {
-                onTap();
-              }
-            },
-            onChanged: (value) {
-              if (onChanges != null) {
-                onChanges(value); // Call the function with the text value
-              }
-            },
-            obscureText: isObstructed,
-            decoration: InputDecoration(
-              suffixIcon: suffIcons,
-              fillColor: isReadyOnly
-                  ? Colors.grey.shade400
-                  : fillcolor ?? Colors.white,
-              filled: true,
+          onTap: () {
+            if (onTap != null) {
+              onTap();
+            }
+          },
+          onChanged: (value) {
+            if (onChanges != null) {
+              onChanges(value); // Call the function with the text value
+            }
+          },
+          obscureText: isObstructed,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 20,
+              horizontal: 12,
+            ),
+            suffixIcon: suffIcons,
+            fillColor: isReadyOnly
+                ? Colors.grey.shade400
+                : fillcolor ?? Colors.white,
+            filled: true,
 
-              prefixIcon: icon,
-              prefixIconColor: iconColor,
+            prefixIcon: icon,
+            prefixIconColor: iconColor,
 
-              hintText: hint,
-              hintStyle: TextStyle(
-                color: hintColor ?? Colors.white,
-                fontSize: hintfontSize ?? 16,
-                fontWeight: hintfontWeight ?? FontWeight.w600,
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey, width: 2),
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
+            hintText: hint,
+            hintStyle: TextStyle(
+              color: hintColor ?? Colors.white,
+              fontSize: hintfontSize ?? 16,
+              fontWeight: hintfontWeight ?? FontWeight.w600,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.transparent),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 2),
+              borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
           ),
         ),

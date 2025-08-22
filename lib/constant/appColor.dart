@@ -23,7 +23,7 @@ class AppColor {
       Theme.of(context).scaffoldBackgroundColor;
 
   static Color textColor(BuildContext context) =>
-      Theme.of(context).textTheme.bodyMedium?.color ?? Colors.black;
+      Theme.of(context).textTheme.bodyMedium?.color ?? Color(0xFF333333);
 
   static Color errorColor(BuildContext context) =>
       Theme.of(context).colorScheme.error;

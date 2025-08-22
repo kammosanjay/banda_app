@@ -35,14 +35,14 @@ class _SignupPageState extends State<SignupPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'assets/images/bandaLogo.png',
+                  'assets/images/bandabg.png',
                   height: 150,
                   fit: BoxFit.contain,
                 ),
               ),
             ),
 
-            SizedBox(height: 40),
+            // SizedBox(height: 40),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -83,30 +83,40 @@ class _SignupPageState extends State<SignupPage> {
                   context: context,
                   label: 'Full Name',
                   fontwgt: FontWeight.normal,
-                  headingcolor: AppColor.headingColor(context),
+                  headingcolor: AppColor.textColor(context),
                   hint: 'Full Name',
-
-                  hintColor: AppColor.textColor(context),
+                  hintfontSize: 14,
+                  hintColor: Theme.of(context).colorScheme.secondary,
                   controller: fullNameController,
                   keyboardtype: TextInputType.emailAddress,
-                  icon: Icon(Icons.email),
+                  icon: Image(
+                    image: AssetImage('assets/images/person.png'),
+                    height: 14,
+                    width: 18,
+                  ),
                 ),
                 SizedBox(height: 20),
                 CustomWidgets.customTextFeild(
                   context: context,
-                  label: 'Phone/Email',
+                  hintfontSize: 14,
+                  label: 'Email',
                   fontwgt: FontWeight.normal,
-                  headingcolor: AppColor.headingColor(context),
-                  hint: 'Phone/Email',
+                  headingcolor: AppColor.textColor(context),
+                  hint: 'Email',
 
-                  hintColor: AppColor.textColor(context),
+                  hintColor: Theme.of(context).colorScheme.secondary,
                   controller: phoneEmaiController,
                   keyboardtype: TextInputType.emailAddress,
-                  icon: Icon(Icons.email),
+                  icon: Image(
+                    image: AssetImage('assets/images/email.png'),
+                    height: 14,
+                    width: 18,
+                  ),
                 ),
                 SizedBox(height: 20),
                 CustomWidgets.customTextFeild(
                   context: context,
+                  hintfontSize: 14,
                   label: 'Password',
                   suffIcons: InkWell(
                     onTap: () {
@@ -127,23 +137,27 @@ class _SignupPageState extends State<SignupPage> {
 
                   fontwgt: FontWeight.normal,
 
-                  headingcolor: AppColor.headingColor(context),
+                  headingcolor: AppColor.textColor(context),
                   hint: 'Password',
-                  hintColor: AppColor.textColor(context),
+                  hintColor: Theme.of(context).colorScheme.secondary,
                   controller: passController,
                   isObstructed: isShown,
-                  icon: Icon(Icons.lock),
+                  icon: Image(
+                    image: AssetImage('assets/images/pass.png'),
+                    height: 14,
+                    width: 18,
+                  ),
                 ),
 
                 SizedBox(height: 30),
                 CustomWidgets.customButton(
                   context: context,
-                  height: 55,
+                  height: 60,
                   buttonName: 'Sign Up',
                   onPressed: () {},
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
-                  btnColor: Colors.indigoAccent,
+                  btnColor: Colors.amber,
                 ),
                 SizedBox(height: 30),
                 InkWell(
@@ -162,9 +176,9 @@ class _SignupPageState extends State<SignupPage> {
                       ),
                       children: <TextSpan>[
                         TextSpan(
-                          text: ' Sign In',
+                          text: ' Login',
                           style: TextStyle(
-                            color: AppColor.headingColor(context),
+                            color: AppColor.errorColor(context),
                             fontWeight: FontWeight.bold,
                           ),
                         ),

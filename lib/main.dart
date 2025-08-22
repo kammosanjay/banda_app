@@ -109,7 +109,7 @@ class MyApp extends StatelessWidget {
       themeMode: themeProvider.themeMode,
       locale: langProvider.selectectLocale,
       routes: {
-        '/': (context) => const LoginPage(),
+        '/': (context) => const SplashScreen(),
         '/home': (context) => const MyHome(),
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
