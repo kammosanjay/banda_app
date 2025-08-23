@@ -6,6 +6,7 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/colleges.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
+import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
 import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
@@ -111,6 +112,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const MyHome(),
+        '/otpPage': (context) => const OtpPage(),
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
         '/loginpage': (context) => LoginPage(),

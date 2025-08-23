@@ -1,9 +1,11 @@
+import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:baanda_mobile_app/Views/loginpage/login_page.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPage extends StatefulWidget {
   const ForgotPage({super.key});
@@ -33,7 +35,7 @@ class _ForgotPageState extends State<ForgotPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(100),
                 child: Image.asset(
-                  'assets/images/bandaLogo.png',
+                  'assets/images/bandabg.png',
                   height: 150,
                   fit: BoxFit.contain,
                 ),
@@ -56,7 +58,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 // ),
                 //   ],
                 // ),
-                SizedBox(height: 20),
+                // SizedBox(height: 20),
                 FittedBox(
                   child: Text(
                     appLoc.welcome,
@@ -77,89 +79,98 @@ class _ForgotPageState extends State<ForgotPage> {
                 SizedBox(height: 40),
                 CustomWidgets.customTextFeild(
                   context: context,
-                  label: 'New Password',
-                  fontwgt: FontWeight.normal,
+                  label: 'Email',
+                  hintfontSize: 14,
+                  fontwgt: FontWeight.bold,
                   headingcolor: AppColor.textColor(context),
-                  hint: 'New Password',
+                  hint: 'Enter Your Email',
                   // isObstructed: isShown,
-                  hintColor: AppColor.textColor(context),
+                  hintColor: Theme.of(context).colorScheme.secondary,
                   controller: oldPassController,
                   keyboardtype: TextInputType.emailAddress,
-                  icon: Icon(Icons.email),
+                  icon: Image(
+                    image: AssetImage('assets/images/email.png'),
+                    height: 14,
+                    width: 18,
+                    color: AppColor.textColor(context),
+                  ),
+                  
                 ),
                 SizedBox(height: 20),
-                CustomWidgets.customTextFeild(
-                  context: context,
-                  label: 'Confirm Password',
-                  suffIcons: InkWell(
-                    onTap: () {
-                      setState(() {
-                        isShown = !isShown;
-                      });
-                    },
-                    child: isShown
-                        ? Icon(
-                            Icons.remove_red_eye,
-                            color: AppColor.textColor(context),
-                          )
-                        : Icon(
-                            Icons.remove_red_eye_outlined,
-                            color: AppColor.textColor(context),
-                          ),
-                  ),
 
-                  fontwgt: FontWeight.normal,
+                // CustomWidgets.customTextFeild(
+                //   context: context,
+                //   label: 'Confirm Password',
+                //   suffIcons: InkWell(
+                //     onTap: () {
+                //       setState(() {
+                //         isShown = !isShown;
+                //       });
+                //     },
+                //     child: isShown
+                //         ? Icon(
+                //             Icons.remove_red_eye,
+                //             color: AppColor.textColor(context),
+                //           )
+                //         : Icon(
+                //             Icons.remove_red_eye_outlined,
+                //             color: AppColor.textColor(context),
+                //           ),
+                //   ),
 
-                  headingcolor: AppColor.textColor(context),
-                  hint: 'Confirm Password',
-                  hintColor: AppColor.textColor(context),
-                  controller: newPassController,
-                  isObstructed: isShown,
-                  icon: Icon(Icons.lock),
-                ),
+                //   fontwgt: FontWeight.normal,
 
+                //   headingcolor: AppColor.textColor(context),
+                //   hint: 'Confirm Password',
+                //   hintColor: AppColor.textColor(context),
+                //   controller: newPassController,
+                //   isObstructed: isShown,
+                //   icon: Icon(Icons.lock),
+                // ),
                 SizedBox(height: 30),
                 CustomWidgets.customButton(
                   context: context,
-                  height: 55,
+                  height: 60,
                   buttonName: 'Submit',
-                  onPressed: () {},
+                  onPressed: () {
+                    context.read<RouteProvider>().navigateTo('/otpPage', context);
+                  },
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
-                  btnColor: Colors.indigoAccent,
+                  btnColor: Colors.amber,
                 ),
                 SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    // context.read<RouteProvider>().navigateTo(
-                    //   '/signup',
-                    //   context,
-                    // );
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: "If password remember ! ",
-                      style: TextStyle(
-                        color: AppColor.textColor(context),
-                        fontSize: 16,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Sign In',
-                          style: TextStyle(
-                            color: AppColor.textColor(context),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: ' 👋', style: TextStyle(fontSize: 18)),
-                      ],
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     // context.read<RouteProvider>().navigateTo(
+                //     //   '/signup',
+                //     //   context,
+                //     // );
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => LoginPage()),
+                //     );
+                //   },
+                //   child: RichText(
+                //     text: TextSpan(
+                //       text: "If password remember ! ",
+                //       style: TextStyle(
+                //         color: AppColor.textColor(context),
+                //         fontSize: 16,
+                //       ),
+                //       children: <TextSpan>[
+                //         TextSpan(
+                //           text: 'Sign In',
+                //           style: TextStyle(
+                //             color: AppColor.textColor(context),
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //         TextSpan(text: ' 👋', style: TextStyle(fontSize: 18)),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],

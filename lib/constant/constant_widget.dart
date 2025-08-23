@@ -85,7 +85,7 @@ class CustomWidgets {
           obscureText: isObstructed,
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 20,
+              vertical: 19,
               horizontal: 12,
             ),
             suffixIcon: suffIcons,
@@ -246,7 +246,7 @@ class CustomWidgets {
           style: GoogleFonts.poppins(
             fontSize: fontSize ?? 12,
             fontWeight: fontWeight ?? FontWeight.w600,
-            color: AppColor.textColor(context), // Text color
+            color: Colors.white, // Text color
           ),
         ),
       ),

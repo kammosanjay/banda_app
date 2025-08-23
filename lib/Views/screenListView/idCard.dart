@@ -4,6 +4,7 @@ import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Idcard extends StatelessWidget {
@@ -12,7 +13,7 @@ class Idcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -100,100 +101,132 @@ class Idcard extends StatelessWidget {
         ],
       ),
 
- 
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.all(20),
-          height: MediaQuery.of(context).size.height*0.8,
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.yellow.shade100,
-                Colors.green.shade100,
-                Colors.blue.shade100,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              // center: Alignment.center,
-            ),
-            borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5,
-                offset: Offset(0, 3),
-              ),
-            ],
+      body: Container(
+        margin: EdgeInsets.all(20),
+        height: MediaQuery.of(context).size.height * 0.7,
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: BoxBorder.all(
+            color: Colors.grey.shade400,
+            strokeAlign: BorderSide.strokeAlignInside,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: AppColor.primaryColor(context),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text(
-                  "Banda University of Agriculture & Technology",
-                  style: TextStyle(
-                    color: AppColor.textColor(context),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                  textAlign: TextAlign.center,
+          // gradient: LinearGradient(
+          //   colors: [
+          //     Colors.yellow.shade100,
+          //     Colors.green.shade100,
+          //     Colors.blue.shade100,
+          //   ],
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          //   // center: Alignment.center,
+          // ),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Stack(
+          children: [
+            // Background
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Opacity(
+                opacity: 0.06,
+                child: Image.asset(
+                  'assets/images/bandabg.png',
+                  height: 300,
+                  fit: BoxFit.contain,
                 ),
               ),
-              const SizedBox(height: 12),
+            ),
 
-              // Photo + QR Row
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ClipRRect(
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.amber,
+                      strokeAlign: BorderSide.strokeAlignInside,
+                    ),
+                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(6),
-                    child: Container(
+                  ),
+                  child: Text(
+                    "Banda University of Agriculture & Technology",
+                    style: TextStyle(
+                      color: AppColor.textColor(context),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                // Photo + QR Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Container(
+                        width: 150,
+                        height: 150,
+                        color: Colors.grey.shade50,
+                        child: Image.asset(
+                          'assets/images/bandabg.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    Container(
                       width: 150,
                       height: 150,
-                      color: Colors.grey[300],
+                      color: Colors.grey.shade50, // Replace with QR image
                       child: Icon(
-                        Icons.person,
-                        size: 50,
-                        color: Colors.grey[700],
+                        Icons.qr_code,
+                        size: 150,
+                        color: Colors.grey.shade500,
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 5),
+
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    width: 150,
+                    child: const Center(
+                      child: Text(
+                        "Name",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  Container(
-                    width: 150,
-                    height: 150,
-                    color: Colors.grey[300], // Replace with QR image
-                    child: Icon(Icons.qr_code, size: 50, color: Colors.black),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
-
-              // Name
-              FittedBox(
-                child: const Text(
-                  "Name",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-              ),
 
-              // Details
-              _buildDetail("Department:", "Department of Chemistry"),
-              _buildDetail("Program:", "M.Sc. in Chemistry"),
-              _buildDetail("Enroll. No:", "465731"),
-              _buildDetail("Campus:", "Main Campus"),
-              _buildDetail("Admission Year:", "2023"),
-              _buildDetail("Phone:", "6388701319"),
-              _buildDetail("Email:", "gargim191@gmail.com"),
-            ],
-          ),
+                const SizedBox(height: 60),
+
+                // Details
+                _buildDetail("Department", "Department of Chemistry"),
+                _buildDetail("Program", "M.Sc. in Chemistry"),
+                _buildDetail("Enroll. No", "465731"),
+                _buildDetail("Campus", "Main Campus"),
+                _buildDetail("Admission Year", "2023"),
+                _buildDetail("Phone", "6388701319"),
+                _buildDetail("Email", "gargim191@gmail.com"),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -201,24 +234,33 @@ class Idcard extends StatelessWidget {
 
   Widget _buildDetail(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: "$label ",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
+      padding: EdgeInsets.symmetric(vertical: 2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 150,
+            child: Text(
+              "$label ",
+              style: GoogleFonts.poppins(
+                fontWeight: FontWeight.w600,
                 color: Colors.black,
                 fontSize: 16,
               ),
             ),
-            TextSpan(
-              text: value,
-              style: const TextStyle(color: Colors.black87, fontSize: 15),
+          ),
+          Text(" :  "),
+          Container(
+            width: 150,
+            child: Text(
+              value,
+              style: GoogleFonts.poppins(
+                color: Colors.grey.shade600,
+                fontSize: 15,
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
