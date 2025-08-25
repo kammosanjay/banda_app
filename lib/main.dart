@@ -9,6 +9,7 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
 import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
+import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
 import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
 import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
 import 'package:baanda_mobile_app/Views/screenListView/administration.dart';
@@ -59,6 +60,7 @@ void main() async {
   await GetStorage.init();
   
   await FirebaseMsg().initFCM();
+  
 
   runApp(
     MultiProvider(
@@ -70,6 +72,7 @@ void main() async {
         ChangeNotifierProvider<RouteProvider>(create: (_) => RouteProvider()),
         ChangeNotifierProvider<TodoProvider>(create: (_) => TodoProvider()),
         ChangeNotifierProvider<ReportProvider>(create: (_) => ReportProvider()),
+        ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
       ],
       child: MyApp(),
     ),

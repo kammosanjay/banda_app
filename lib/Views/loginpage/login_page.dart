@@ -1,6 +1,9 @@
+import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
+import 'package:baanda_mobile_app/Views/loginpage/loginmodal.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_toastr/flutter_toastr.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/Forgot/forgot_page.dart';
@@ -8,10 +11,12 @@ import 'package:baanda_mobile_app/Views/signUpPage/signup_page.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/utils/custom_widgets.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+  
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -26,8 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return 
-    Scaffold(
+    return Scaffold(
       // backgroundColor: Colors.grey.shade100,
       // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
@@ -112,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                         context: context,
                         label: 'Email',
                         hintfontSize: 14,
-                        
+
                         hintfontWeight: FontWeight.normal,
                         fontwgt: FontWeight.bold,
                         headingcolor: AppColor.textColor(context),
@@ -190,7 +194,11 @@ class _LoginPageState extends State<LoginPage> {
                                     width: 24, // exact size of checkbox
                                     height: 24,
                                     child: Checkbox(
-                                      value: isChecked,
+                                      value:
+                                          context
+                                              .watch<LoginProvider>()
+                                              .isRememberMeChecked ??
+                                          false,
                                       side: BorderSide(
                                         color: AppColor.textColor(context),
                                       ),
@@ -199,10 +207,9 @@ class _LoginPageState extends State<LoginPage> {
                                       materialTapTargetSize: MaterialTapTargetSize
                                           .shrinkWrap, // removes extra tap padding
                                       onChanged: (value) {
-                                        setState(() {
-                                          isChecked =
-                                              value ?? false; // toggle state
-                                        });
+                                        context
+                                            .read<LoginProvider>()
+                                            .setRememberMe(value);
                                       },
                                     ),
                                   ),
@@ -258,10 +265,76 @@ class _LoginPageState extends State<LoginPage> {
                         height: 60,
                         buttonName: 'Login',
                         onPressed: () {
-                          context.read<RouteProvider>().navigateTo(
-                            '/home',
-                            context,
-                          );
+                          final loginProvider = context.read<LoginProvider>();
+                          final email = phoneEmaiController.text.trim();
+                          final password = passController.text.trim();
+
+                          // Check empty fields
+                          if (email.isEmpty || password.isEmpty) {
+                            FlutterToastr.show(
+                              "Please enter both email and password",
+                              context,
+                              duration: FlutterToastr.lengthShort,
+                              position: FlutterToastr.bottom,
+                              backgroundColor: Colors.red,
+                              textStyle: const TextStyle(color: Colors.white),
+                            );
+                            return;
+                          }
+                          
+                          // First-time login (no saved credentials)
+                          if (!loginProvider.isLoggedIn()) {
+                            loginProvider.login(
+                              Loginmodal(email: email, password: password),
+                            );
+
+                            FlutterToastr.show(
+                              "Login Successful (First time)",
+                              context,
+                              duration: FlutterToastr.lengthShort,
+                              position: FlutterToastr.bottom,
+                              backgroundColor: Colors.green,
+                              textStyle: const TextStyle(color: Colors.white),
+                            );
+
+                            context.read<RouteProvider>().navigateTo(
+                              '/home',
+                              context,
+                            );
+                          } else {
+                            // Returning login → validate
+                            if (loginProvider.validateLogin(email, password)) {
+                              FlutterToastr.show(
+                                "Login Successful",
+                                context,
+                                duration: FlutterToastr.lengthShort,
+                                position: FlutterToastr.bottom,
+                                backgroundColor: Colors.green,
+                                textStyle: const TextStyle(color: Colors.white),
+                              );
+
+                              context.read<RouteProvider>().navigateTo(
+                                '/home',
+                                context,
+                              );
+                            } else {
+                              FlutterToastr.show(
+                                "Invalid email or password",
+                                context,
+                                duration: FlutterToastr.lengthShort,
+                                position: FlutterToastr.bottom,
+                                backgroundColor: Colors.red,
+                                textStyle: const TextStyle(color: Colors.white),
+                              );
+                            }
+                          }
+                          if (context
+                                  .read<LoginProvider>()
+                                  .isRememberMeChecked ==
+                              false) {
+                            passController.clear();
+                            phoneEmaiController.clear();
+                          }
                         },
                         fontWeight: FontWeight.w600,
                         fontSize: 18,
@@ -315,8 +388,5 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
-  
-  
-  
   }
 }
