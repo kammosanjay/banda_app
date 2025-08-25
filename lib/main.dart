@@ -7,6 +7,8 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
 import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
+import 'package:baanda_mobile_app/Views/ProfilePage/profile_provider.dart';
+import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
 import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
@@ -50,15 +52,11 @@ import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-
-
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GetStorage.init();
-  
+
   await FirebaseMsg().initFCM();
   
 
@@ -73,6 +71,9 @@ void main() async {
         ChangeNotifierProvider<TodoProvider>(create: (_) => TodoProvider()),
         ChangeNotifierProvider<ReportProvider>(create: (_) => ReportProvider()),
         ChangeNotifierProvider<LoginProvider>(create: (_) => LoginProvider()),
+        ChangeNotifierProvider<ProfileProvider>(
+          create: (_) => ProfileProvider(),
+        ),
       ],
       child: MyApp(),
     ),
@@ -119,6 +120,8 @@ class MyApp extends StatelessWidget {
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
         '/loginpage': (context) => LoginPage(),
+        '/profilepage': (context) => Profilepage(),
+
         '/forgotpage': (context) => ForgotPage(),
         '/signUpPage': (context) => SignupPage(),
         '/bandaHomePage': (context) => BandaHomePage(),

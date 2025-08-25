@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/getwidget.dart';
@@ -33,7 +34,7 @@ class _MyHomeState extends State<MyHome> {
     BandaHomePage(),
     TodoListPage(),
     ReportPage(),
-    Center(child: Container(color: Color(0xFFe7f3ff))),
+    Profilepage(),
   ];
 
   @override
@@ -105,7 +106,7 @@ class _MyHomeState extends State<MyHome> {
         backgroundColor: Colors.yellow.shade100,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.grey, // This shows all 5 items
-        unselectedItemColor:Colors.grey,
+        unselectedItemColor: Colors.grey,
         selectedFontSize: 12,
         unselectedFontSize: 10,
         selectedLabelStyle: GoogleFonts.poppins(
@@ -122,14 +123,14 @@ class _MyHomeState extends State<MyHome> {
         items: [
           BottomNavigationBarItem(
             tooltip: "Home",
-      
+
             icon: SvgPicture.asset(
               'assets/svgImages/thinperson.svg',
               height: 25,
               width: 25,
               color: Colors.black45,
             ),
-      
+
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -799,8 +800,6 @@ class _MyHomeState extends State<MyHome> {
         ],
       ),
 
-      
-      
       body: _pages[_selectedIndex],
     );
   }
