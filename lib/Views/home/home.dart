@@ -367,111 +367,111 @@ class _MyHomeState extends State<MyHome> {
                         //     );
                         //   },
                         // ),
-                        ListTile(
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Theme Mode',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              Image.asset(
-                                "assets/images/night.png",
-                                scale: 1,
-                                height: 25,
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
+                        // ListTile(
+                        //   title: Row(
+                        //     mainAxisSize: MainAxisSize.min,
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Text(
+                        //         'Theme Mode',
+                        //         style: Theme.of(context).textTheme.titleMedium,
+                        //       ),
+                        //       Image.asset(
+                        //         "assets/images/night.png",
+                        //         scale: 1,
+                        //         height: 25,
+                        //         color: AppColor.headingColor(context),
+                        //       ),
+                        //     ],
+                        //   ),
 
-                          style: ListTileStyle.list,
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) {
-                                final currentMode = themeProvider.themeMode;
+                        //   style: ListTileStyle.list,
+                        //   tileColor: AppColor.backgroundColor(context),
+                        //   shape: RoundedRectangleBorder(
+                        //     borderRadius: BorderRadius.circular(5),
+                        //   ),
+                        //   onTap: () {
+                        //     showDialog(
+                        //       context: context,
+                        //       builder: (context) {
+                        //         final currentMode = themeProvider.themeMode;
 
-                                return AlertDialog(
-                                  title: Text(
-                                    'Select Theme',
-                                    style: Theme.of(
-                                      context,
-                                    ).textTheme.bodyMedium,
-                                  ),
-                                  content: SizedBox(
-                                    height: 200,
-                                    width: 200,
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        RadioListTile<ThemeMode>(
-                                          title: Text(
-                                            'Light',
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.bodyMedium,
-                                          ),
-                                          value: ThemeMode.light,
-                                          groupValue: currentMode,
-                                          onChanged: (value) {
-                                            print("selectedTheme is :$value");
-                                            if (value != null) {
-                                              themeProvider.setThemeMode(value);
-                                              Navigator.pop(context);
-                                            }
-                                          },
-                                        ),
-                                        RadioListTile<ThemeMode>(
-                                          title: Text(
-                                            'Dark',
-                                            style: Theme.of(
-                                              context,
-                                            ).textTheme.bodyMedium,
-                                          ),
-                                          value: ThemeMode.dark,
-                                          groupValue: currentMode,
-                                          onChanged: (value) {
-                                            if (value != null) {
-                                              print("selectedTheme is :$value");
-                                              themeProvider.setThemeMode(value);
-                                              Navigator.pop(context);
-                                            }
-                                          },
-                                        ),
-                                        // RadioListTile<ThemeMode>(
-                                        //   title: Text(
-                                        //     'System Default',
-                                        //     style: themeProvider
-                                        //         .themeData
-                                        //         .textTheme
-                                        //         .bodyMedium!
-                                        //         .copyWith(
-                                        //           color: AppColor.textColor,
-                                        //         ),
-                                        //   ),
-                                        //   value: ThemeMode.system,
-                                        //   groupValue: currentMode,
-                                        //   onChanged: (value) {
-                                        //     print("selectedTheme is :$value");
-                                        //     if (value != null) {
-                                        //       themeProvider.setThemeMode(value);
-                                        //       Navigator.pop(context);
-                                        //     }
-                                        //   },
-                                        // ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          },
-                        ),
+                        //         return AlertDialog(
+                        //           title: Text(
+                        //             'Select Theme',
+                        //             style: Theme.of(
+                        //               context,
+                        //             ).textTheme.bodyMedium,
+                        //           ),
+                        //           content: SizedBox(
+                        //             height: 200,
+                        //             width: 200,
+                        //             child: Column(
+                        //               mainAxisSize: MainAxisSize.min,
+                        //               children: [
+                        //                 RadioListTile<ThemeMode>(
+                        //                   title: Text(
+                        //                     'Light',
+                        //                     style: Theme.of(
+                        //                       context,
+                        //                     ).textTheme.bodyMedium,
+                        //                   ),
+                        //                   value: ThemeMode.light,
+                        //                   groupValue: currentMode,
+                        //                   onChanged: (value) {
+                        //                     print("selectedTheme is :$value");
+                        //                     if (value != null) {
+                        //                       themeProvider.setThemeMode(value);
+                        //                       Navigator.pop(context);
+                        //                     }
+                        //                   },
+                        //                 ),
+                        //                 RadioListTile<ThemeMode>(
+                        //                   title: Text(
+                        //                     'Dark',
+                        //                     style: Theme.of(
+                        //                       context,
+                        //                     ).textTheme.bodyMedium,
+                        //                   ),
+                        //                   value: ThemeMode.dark,
+                        //                   groupValue: currentMode,
+                        //                   onChanged: (value) {
+                        //                     if (value != null) {
+                        //                       print("selectedTheme is :$value");
+                        //                       themeProvider.setThemeMode(value);
+                        //                       Navigator.pop(context);
+                        //                     }
+                        //                   },
+                        //                 ),
+                        //                 // RadioListTile<ThemeMode>(
+                        //                 //   title: Text(
+                        //                 //     'System Default',
+                        //                 //     style: themeProvider
+                        //                 //         .themeData
+                        //                 //         .textTheme
+                        //                 //         .bodyMedium!
+                        //                 //         .copyWith(
+                        //                 //           color: AppColor.textColor,
+                        //                 //         ),
+                        //                 //   ),
+                        //                 //   value: ThemeMode.system,
+                        //                 //   groupValue: currentMode,
+                        //                 //   onChanged: (value) {
+                        //                 //     print("selectedTheme is :$value");
+                        //                 //     if (value != null) {
+                        //                 //       themeProvider.setThemeMode(value);
+                        //                 //       Navigator.pop(context);
+                        //                 //     }
+                        //                 //   },
+                        //                 // ),
+                        //               ],
+                        //             ),
+                        //           ),
+                        //         );
+                        //       },
+                        //     );
+                        //   },
+                        // ),
 
                         ListTile(
                           // title: Text(appLoc.contact_us),

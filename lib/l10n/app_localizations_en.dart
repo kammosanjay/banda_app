@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hello => 'Hello there!';
 
   @override
-  String get welcome => 'Banda University of Agriculture and Technology, Banda';
+  String get welcome => 'Banda University of Agriculture & Technology';
 
   @override
   String get logout => 'Logout';

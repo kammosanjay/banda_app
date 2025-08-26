@@ -6,6 +6,8 @@ import 'package:baanda_mobile_app/Views/AcademicSubSections/colleges.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
+import 'package:baanda_mobile_app/Views/Changepassword/change_passSCreen.dart';
+import 'package:baanda_mobile_app/Views/OTP/forgot_pass_reset.dart';
 import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profile_provider.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
@@ -113,6 +115,7 @@ class MyApp extends StatelessWidget {
       darkTheme: themeProvider.darkTheme,
       themeMode: themeProvider.themeMode,
       locale: langProvider.selectectLocale,
+      // home:ChangePassscreen() ,
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const MyHome(),
@@ -123,6 +126,7 @@ class MyApp extends StatelessWidget {
         '/profilepage': (context) => Profilepage(),
 
         '/forgotpage': (context) => ForgotPage(),
+        '/forgotpagetwo': (context) => ForgotPassReset(),
         '/signUpPage': (context) => SignupPage(),
         '/bandaHomePage': (context) => BandaHomePage(),
         '/acadProgram': (context) => AcademicProgramScreen(),

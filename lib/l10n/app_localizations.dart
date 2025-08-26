@@ -120,7 +120,7 @@ abstract class AppLocalizations {
   /// No description provided for @welcome.
   ///
   /// In en, this message translates to:
-  /// **'Banda University of Agriculture and Technology, Banda'**
+  /// **'Banda University of Agriculture & Technology'**
   String get welcome;
 
   /// No description provided for @logout.

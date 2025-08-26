@@ -41,9 +41,20 @@ class _ForgotPageState extends State<ForgotPage> {
                 ),
               ),
             ),
-            SizedBox(height: 40),
+            Center(
+              child: Text(
+                'Forgot Password',
+                style: GoogleFonts.poppins(
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.textColor(context),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 10),
             Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Row(
                 //   children: [
@@ -61,25 +72,27 @@ class _ForgotPageState extends State<ForgotPage> {
                 // SizedBox(height: 20),
                 FittedBox(
                   child: Text(
-                    appLoc.welcome,
+                    '''Enter your email to Receive an email to
+                Reset your password''',
                     style: GoogleFonts.poppins(
                       fontSize: 14,
+                      fontWeight: FontWeight.w600,
                       color: AppColor.headingColor(context),
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
-                Text(
-                  'Accredated "A" by NAAC',
-                  style: GoogleFonts.poppins(
-                    fontSize: 12,
-                    color: AppColor.textColor(context),
-                  ),
-                ),
-                SizedBox(height: 40),
+
+                // Text(
+                //   'Accredated "A" by NAAC',
+                //   style: GoogleFonts.poppins(
+                //     fontSize: 12,
+                //     color: AppColor.textColor(context),
+                //   ),
+                // ),
+                SizedBox(height: 30),
                 CustomWidgets.customTextFeild(
                   context: context,
-                  label: 'Email',
+                  label: 'Email Your Email',
                   hintfontSize: 14,
                   fontwgt: FontWeight.bold,
                   headingcolor: AppColor.textColor(context),
@@ -94,7 +107,6 @@ class _ForgotPageState extends State<ForgotPage> {
                     width: 18,
                     color: AppColor.textColor(context),
                   ),
-                  
                 ),
                 SizedBox(height: 20),
 
@@ -133,7 +145,11 @@ class _ForgotPageState extends State<ForgotPage> {
                   height: 60,
                   buttonName: 'Submit',
                   onPressed: () {
-                    context.read<RouteProvider>().navigateTo('/otpPage', context);
+                    context.read<RouteProvider>().navigateTo(
+                      '/otpPage',
+                      context,
+                      arguments: 'forgot',
+                    );
                   },
                   fontWeight: FontWeight.w600,
                   fontSize: 18,

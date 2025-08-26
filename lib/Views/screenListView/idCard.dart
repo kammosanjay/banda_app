@@ -105,24 +105,16 @@ class Idcard extends StatelessWidget {
         margin: EdgeInsets.all(20),
         height: MediaQuery.of(context).size.height * 0.7,
         width: double.infinity,
-        padding: const EdgeInsets.all(12),
+        // padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
           border: BoxBorder.all(
-            color: Colors.grey.shade400,
-            strokeAlign: BorderSide.strokeAlignInside,
+            width: 1,
+            color: Colors.amber,
+            
           ),
-          // gradient: LinearGradient(
-          //   colors: [
-          //     Colors.yellow.shade100,
-          //     Colors.green.shade100,
-          //     Colors.blue.shade100,
-          //   ],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          //   // center: Alignment.center,
-          // ),
-          borderRadius: BorderRadius.circular(12),
+          
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Stack(
           children: [
@@ -140,19 +132,22 @@ class Idcard extends StatelessWidget {
             ),
 
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header
                 Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(8),
+                  // width: double.infinity,
+                  padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(
                       color: Colors.amber,
                       strokeAlign: BorderSide.strokeAlignInside,
                     ),
                     color: Colors.amber,
-                    borderRadius: BorderRadius.circular(6),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
                   ),
                   child: Text(
                     "Banda University of Agriculture & Technology",
@@ -224,6 +219,18 @@ class Idcard extends StatelessWidget {
                 _buildDetail("Admission Year", "2023"),
                 _buildDetail("Phone", "6388701319"),
                 _buildDetail("Email", "gargim191@gmail.com"),
+                Spacer(),
+                Container(
+                  height: 20,
+                  
+                  decoration: BoxDecoration(
+                    color: Colors.amber,
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],

@@ -246,7 +246,7 @@ class CustomWidgets {
           style: GoogleFonts.poppins(
             fontSize: fontSize ?? 12,
             fontWeight: fontWeight ?? FontWeight.w600,
-            color: Colors.white, // Text color
+            color: Color(0xFFF333333), // Text color
           ),
         ),
       ),

@@ -54,21 +54,21 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Text(
-                'Welcome',
+                'Welcome Back',
                 style: GoogleFonts.poppins(
                   fontSize: 32,
                   fontWeight: FontWeight.w600,
                   color: AppColor.textColor(context),
                 ),
               ),
-              Text(
-                'to',
-                style: GoogleFonts.poppins(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: AppColor.textColor(context),
-                ),
-              ),
+              // Text(
+              //   'to',
+              //   style: GoogleFonts.poppins(
+              //     fontSize: 14,
+              //     fontWeight: FontWeight.w600,
+              //     color: AppColor.textColor(context),
+              //   ),
+              // ),
 
               // SizedBox(height: 40
               Column(
@@ -97,18 +97,19 @@ class _LoginPageState extends State<LoginPage> {
                       appLoc.welcome,
                       style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: AppColor.textColor(context),
+                        fontWeight: FontWeight.w600,
+                        color: AppColor.headingColor(context),
                       ),
                     ),
                   ),
                   SizedBox(height: 5),
-                  Text(
-                    'Accredated "A" by NAAC',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      color: AppColor.textColor(context),
-                    ),
-                  ),
+                  // Text(S
+                  //   'Accredated "A" by NAAC',
+                  //   style: GoogleFonts.poppins(
+                  //     fontSize: 12,
+                  //     color: AppColor.textColor(context),
+                  //   ),
+                  // ),
                   SizedBox(height: 53),
                   Column(
                     children: [
@@ -118,7 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                         hintfontSize: 14,
 
                         hintfontWeight: FontWeight.normal,
-                        fontwgt: FontWeight.bold,
+                        fontwgt: FontWeight.w600,
                         headingcolor: AppColor.textColor(context),
                         hint: 'Email',
 
@@ -154,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                         ),
 
-                        fontwgt: FontWeight.bold,
+                        fontwgt: FontWeight.w600,
 
                         headingcolor: AppColor.textColor(context),
                         hint: 'Password',

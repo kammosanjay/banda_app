@@ -1,26 +1,24 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:baanda_mobile_app/Views/loginpage/login_page.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:provider/provider.dart';
 
-class SignupPage extends StatefulWidget {
-  const SignupPage({super.key});
+class ForgotPassReset extends StatefulWidget {
+  const ForgotPassReset({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  State<ForgotPassReset> createState() => _ForgotPassResetState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _ForgotPassResetState extends State<ForgotPassReset> {
   bool isShown = true;
-  TextEditingController passController = TextEditingController();
-  TextEditingController phoneEmaiController = TextEditingController();
-  TextEditingController fullNameController = TextEditingController();
-
+  TextEditingController oldPassController = TextEditingController();
+  TextEditingController newPassController = TextEditingController();
+  TextEditingController confirmPassController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -30,7 +28,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
-          // mainAxisAlignment: MainAxisAlignment.center,s
+          // mainAxisAlignment: MainAxisAlignment.center,
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
@@ -43,18 +41,17 @@ class _SignupPageState extends State<SignupPage> {
                 ),
               ),
             ),
+            SizedBox(height: 10),
             Center(
               child: Text(
-                'Welcome To',
+                'Reset Password',
                 style: GoogleFonts.poppins(
-                  fontSize: 32,
+                  fontSize: 30,
                   fontWeight: FontWeight.w600,
                   color: AppColor.textColor(context),
                 ),
               ),
             ),
-
-         
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -62,76 +59,51 @@ class _SignupPageState extends State<SignupPage> {
                 //   children: [
                 //     Icon(Icons.track_changes),
                 //     SizedBox(width: 8),
-                //     Text(
-                //       'EATA',
-                //       style: GoogleFonts.poppins(
-                //         fontSize: 12,
-                //         color: AppColor.textColor(context),
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                SizedBox(height: 10),
-                FittedBox(
-                  child: Text(
-                    appLoc.welcome,
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.headingColor(context),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 40),
-
                 // Text(
-                //   'Accredated "A" by NAAC',
+                //   'EATA',
                 //   style: GoogleFonts.poppins(
                 //     fontSize: 12,
                 //     color: AppColor.textColor(context),
                 //   ),
                 // ),
-                // SizedBox(height: 40),
-                CustomWidgets.customTextFeild(
-                  context: context,
-                  label: 'Full Name',
-                  fontwgt: FontWeight.w600,
-                  headingcolor: AppColor.textColor(context),
-                  hint: 'Full Name',
-                  hintfontSize: 14,
-                  hintColor: Theme.of(context).colorScheme.secondary,
-                  controller: fullNameController,
-                  keyboardtype: TextInputType.emailAddress,
-                  icon: Image(
-                    image: AssetImage('assets/images/person.png'),
-                    height: 14,
-                    width: 18,
+                //   ],
+                // ),
+                // SizedBox(height: 20),
+                FittedBox(
+                  child: Text(
+                    "Recover access to your account safely",
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey.shade600,
+                    ),
                   ),
                 ),
-                SizedBox(height: 20),
+
+                SizedBox(height: 40),
                 CustomWidgets.customTextFeild(
                   context: context,
+                  label: 'New Password',
                   hintfontSize: 14,
-                  label: 'Email',
                   fontwgt: FontWeight.w600,
                   headingcolor: AppColor.textColor(context),
-                  hint: 'Email',
-
+                  hint: 'Enter New Password',
+                  // isObstructed: isShown,
                   hintColor: Theme.of(context).colorScheme.secondary,
-                  controller: phoneEmaiController,
+                  controller: oldPassController,
                   keyboardtype: TextInputType.emailAddress,
                   icon: Image(
                     image: AssetImage('assets/images/email.png'),
                     height: 14,
                     width: 18,
+                    color: AppColor.textColor(context),
                   ),
                 ),
                 SizedBox(height: 20),
+
                 CustomWidgets.customTextFeild(
                   context: context,
-
-                  hintfontSize: 14,
-                  label: 'Password',
+                  label: 'Confirm Password',
                   suffIcons: InkWell(
                     onTap: () {
                       setState(() {
@@ -152,62 +124,56 @@ class _SignupPageState extends State<SignupPage> {
                   fontwgt: FontWeight.w600,
 
                   headingcolor: AppColor.textColor(context),
-                  hint: 'Password',
-                  hintColor: Theme.of(context).colorScheme.secondary,
-                  controller: passController,
+                  hint: 'Confirm Password',
+                  hintColor: AppColor.textColor(context),
+                  controller: newPassController,
                   isObstructed: isShown,
-                  icon: Image(
-                    image: AssetImage('assets/images/pass.png'),
-                    height: 14,
-                    width: 18,
-                  ),
+                  icon: Icon(Icons.lock),
                 ),
-
                 SizedBox(height: 30),
                 CustomWidgets.customButton(
                   context: context,
                   height: 60,
-                  buttonName: 'Register',
+                  buttonName: 'Submit',
                   onPressed: () {
-                    context.read<RouteProvider>().navigateTo(
-                      '/otpPage',
-                      context,
-                      arguments:'signup',
-                      
-                    );
+                    context.read<RouteProvider>().navigateTo('/loginpage', context);
                   },
                   fontWeight: FontWeight.w600,
                   fontSize: 18,
                   btnColor: Colors.amber,
                 ),
                 SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LoginPage()),
-                    );
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: "Already have an Account !",
-                      style: TextStyle(
-                        color: AppColor.textColor(context),
-                        fontSize: 16,
-                      ),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: ' Login',
-                          style: TextStyle(
-                            color: AppColor.errorColor(context),
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        TextSpan(text: ' 👋', style: TextStyle(fontSize: 18)),
-                      ],
-                    ),
-                  ),
-                ),
+                // InkWell(
+                //   onTap: () {
+                //     // context.read<RouteProvider>().navigateTo(
+                //     //   '/signup',
+                //     //   context,
+                //     // );
+                //     Navigator.push(
+                //       context,
+                //       MaterialPageRoute(builder: (context) => LoginPage()),
+                //     );
+                //   },
+                //   child: RichText(
+                //     text: TextSpan(
+                //       text: "If password remember ! ",
+                //       style: TextStyle(
+                //         color: AppColor.textColor(context),
+                //         fontSize: 16,
+                //       ),
+                //       children: <TextSpan>[
+                //         TextSpan(
+                //           text: 'Sign In',
+                //           style: TextStyle(
+                //             color: AppColor.textColor(context),
+                //             fontWeight: FontWeight.bold,
+                //           ),
+                //         ),
+                //         TextSpan(text: ' 👋', style: TextStyle(fontSize: 18)),
+                //       ],
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ],

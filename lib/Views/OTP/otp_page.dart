@@ -8,7 +8,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 class OtpPage extends StatefulWidget {
-  const OtpPage({super.key});
+  final String? arguments;
+  const OtpPage({super.key, this.arguments});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -18,6 +19,9 @@ class _OtpPageState extends State<OtpPage> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+    final from = ModalRoute.of(context)!.settings.arguments as String;
+    print("testing==>${from}");
+
     return Scaffold(
       // backgroundColor: Colors.grey.shade100,
       // backgroundColor: Colors.white,
@@ -39,7 +43,8 @@ class _OtpPageState extends State<OtpPage> {
                     fit: BoxFit.contain,
                   ),
                 ),
-              ),   SizedBox(height: 50),
+              ),
+              SizedBox(height: 50),
               Text(
                 'OTP Verification',
                 style: GoogleFonts.poppins(
@@ -77,9 +82,8 @@ class _OtpPageState extends State<OtpPage> {
                 blinkWhenObscuring: true,
                 enablePinAutofill: true,
                 pinTheme: PinTheme(
-                  
                   shape: PinCodeFieldShape.box,
-                 
+
                   borderRadius: BorderRadius.circular(9),
                   fieldHeight: 50,
                   fieldWidth: 50,
@@ -107,12 +111,17 @@ class _OtpPageState extends State<OtpPage> {
                 height: 60,
                 buttonName: 'Verify OTP',
                 onPressed: () {
-                  context.read<RouteProvider>().navigateTo('/home', context);
+                  if (from== 'signup') {
+                    context.read<RouteProvider>().navigateTo('/home', context);
+                  }else{
+                    context.read<RouteProvider>().navigateTo('/forgotpagetwo', context);
+                  }
                 },
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
                 btnColor: Colors.amber,
-              ),SizedBox(height: 20),
+              ),
+              SizedBox(height: 20),
               InkWell(
                 onTap: () {
                   // context.read<RouteProvider>().navigateTo(
