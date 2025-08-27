@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:baanda_mobile_app/Views/home/home_providers.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
@@ -5,6 +8,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class Idcard extends StatelessWidget {
@@ -13,6 +17,8 @@ class Idcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+
+    final imagepicked = context.watch<HomeProviders>().image?.path;
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
@@ -108,27 +114,29 @@ class Idcard extends StatelessWidget {
         // padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: BoxBorder.all(
-            width: 1,
-            color: Colors.amber,
-            
-          ),
-          
+          border: BoxBorder.all(width: 1, color: Colors.amber),
+
           borderRadius: BorderRadius.circular(15),
         ),
         child: Stack(
           children: [
             // Background
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Opacity(
-                opacity: 0.06,
-                child: Image.asset(
-                  'assets/images/bandabg.png',
-                  height: 300,
-                  fit: BoxFit.contain,
-                ),
-              ),
+            Consumer<HomeProviders>(
+              builder: (context, value, child) {
+                return Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Opacity(
+                    opacity: 0.06,
+                    child: imagepicked != null
+                        ? Image.file(File(imagepicked))
+                        : Image.asset(
+                            'assets/images/bandabg.png',
+                            height: 300,
+                            fit: BoxFit.contain,
+                          ),
+                  ),
+                );
+              },
             ),
 
             Column(
@@ -222,7 +230,7 @@ class Idcard extends StatelessWidget {
                 Spacer(),
                 Container(
                   height: 20,
-                  
+
                   decoration: BoxDecoration(
                     color: Colors.amber,
                     borderRadius: BorderRadius.only(

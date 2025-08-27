@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:baanda_mobile_app/Views/home/home_providers.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Profilepage extends StatefulWidget {
   const Profilepage({super.key});
@@ -79,23 +83,6 @@ class _ProfilepageState extends State<Profilepage> {
       }).toList(),
     );
   }
-  FilePickerResult? _filePickerResult;
-
-  _pickedImg(){
-    FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: false,
-    ).then((result) {
-      if (result != null && result.files.isNotEmpty) {
-        final file = result.files.first;
-        print('Selected file: ${file.name}, size: ${file.size} bytes');
-      } else {
-        print('No file selected.');
-      }
-    }).catchError((error) {
-      print('Error picking file: $error');
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +90,7 @@ class _ProfilepageState extends State<Profilepage> {
       backgroundColor: Colors.grey.shade100,
 
       body: Center(
-        child: ListView(
+        child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           // padding: EdgeInsets.zero,
           children: [
@@ -121,15 +108,32 @@ class _ProfilepageState extends State<Profilepage> {
 
                   child: Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.grey.shade100,
-                        radius: 80,
-
-                        child: Icon(
-                          Icons.person_2_outlined,
-                          size: 100,
-                          color: Colors.grey,
-                        ),
+                      Consumer(
+                        builder: (ctx, value, child) {
+                          final imagePath = ctx
+                              .watch<HomeProviders>()
+                              .image
+                              ?.path;
+                          return imagePath != null
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(80),
+                                  child: Image.file(
+                                    File(imagePath),
+                                    fit: BoxFit.cover,
+                                    height: 140,
+                                    width: 140,
+                                  ),
+                                )
+                              : CircleAvatar(
+                                  backgroundColor: Colors.grey.shade200,
+                                  radius: 80,
+                                  child: Icon(
+                                    Icons.person,
+                                    size: 50,
+                                    color: Colors.grey,
+                                  ),
+                                );
+                        },
                       ),
                       SizedBox(width: 10),
                       Padding(
@@ -182,7 +186,9 @@ class _ProfilepageState extends State<Profilepage> {
                   left: 0,
                   right: 100,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<HomeProviders>().pickImage();
+                    },
                     child: Icon(
                       Icons.camera_alt_outlined,
                       size: 30,
@@ -195,14 +201,15 @@ class _ProfilepageState extends State<Profilepage> {
 
             SizedBox(height: 20),
             userProfile(
-              Map<String, dynamic>.from(usersInfo)
-                ..removeWhere((key, value) =>
+              Map<String, dynamic>.from(usersInfo)..removeWhere(
+                (key, value) =>
                     key == "Name" ||
                     key == "Email" ||
                     key == "Phone" ||
-                    key == "Address"),
+                    key == "Address",
+              ),
             ),
-           
+            Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

@@ -103,9 +103,11 @@ class _MyHomeState extends State<MyHome> {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
-        backgroundColor: Colors.yellow.shade100,
+        backgroundColor: Colors.amber,
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.grey, // This shows all 5 items
+        selectedItemColor: _selectedIndex.isFinite
+            ? Colors.white
+            : Colors.black, // This shows all 5 items
         unselectedItemColor: Colors.grey,
         selectedFontSize: 12,
         unselectedFontSize: 10,
@@ -125,38 +127,38 @@ class _MyHomeState extends State<MyHome> {
             tooltip: "Home",
 
             icon: SvgPicture.asset(
-              'assets/svgImages/thinperson.svg',
-              height: 25,
-              width: 25,
-              color: Colors.black45,
+              'assets/svgImages/home.svg',
+              height: 20,
+              width: 20,
+              color: _selectedIndex == 0 ? Colors.white : Colors.black45,
             ),
 
             label: 'Home',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/svgImages/trackthin.svg',
-              height: 25,
-              width: 25,
-              color: Colors.black45,
+              'assets/svgImages/inbox.svg',
+              height: 20,
+              width: 20,
+              color: _selectedIndex == 1 ? Colors.white : Colors.black45,
             ),
-            label: 'Messages',
+            label: 'Inbox',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/svgImages/todothin.svg',
-              height: 25,
-              width: 25,
-              color: Colors.black45,
+              'assets/svgImages/library.svg',
+              height: 20,
+              width: 20,
+              color: _selectedIndex == 2 ? Colors.white : Colors.black45,
             ),
-            label: 'Contact',
+            label: 'Library',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/svgImages/reportthin.svg',
-              height: 25,
-              width: 25,
-              color: Colors.black45,
+              'assets/svgImages/profile.svg',
+              height: 20,
+              width: 20,
+              color: _selectedIndex == 3 ? Colors.white : Colors.black45,
             ),
             label: 'Profile',
           ),
@@ -472,7 +474,6 @@ class _MyHomeState extends State<MyHome> {
                         //     );
                         //   },
                         // ),
-
                         ListTile(
                           // title: Text(appLoc.contact_us),
                           title: Row(
@@ -665,139 +666,142 @@ class _MyHomeState extends State<MyHome> {
         // ),
       ),
 
-      appBar: AppBar(
-        // flexibleSpace: Container(s
-        //   decoration: BoxDecoration(
-        //     gradient: LinearGradient(
-        //       colors: [
-        //         Colors.yellow.shade100,
-        //         Colors.green.shade100,
-        //         Colors.blue.shade100,
-        //       ],
-        //       begin: Alignment.topLeft,
-        //       end: Alignment.bottomRight,
-        //       // center: Alignment.center,
-        //     ),
-        //   ),
-        // ),
-        // backgroundColor:Colors.grey.shade100,
-        title: Consumer<ThemeProvider>(
-          builder: (context, themeProvider, child) {
-            return Text(
-              appLoc.welcome,
-              // style: GoogleFonts.poppins(
-              //   textStyle: Theme.of(context).textTheme.bodyLarge,
-
-              // ),
-            );
-          },
-        ),
-        leading: Builder(
-          builder: (context) {
-            return GestureDetector(
-              onTap: () {
-                Scaffold.of(context).openDrawer();
-              },
-              child: Container(
-                margin: const EdgeInsets.only(top: 10),
-
-                child: GFCarousel(
-                  autoPlay: true,
-
-                  autoPlayInterval: Duration(seconds: 2),
-                  // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-                  items: imageList.map((url) {
-                    return ClipRRect(
-                      child: SvgPicture.asset(
-                        url,
-                        fit: BoxFit.contain,
-                        height: 20,
-                        width: 20,
-                        color: AppColor.headingColor(context),
-                      ),
-                    );
-                  }).toList(),
-                  onPageChanged: (index) {
-                    // setState(() {
-                    //   index;
-                    // });
-                  },
-                ),
-              ),
-            );
-          },
-        ),
-        centerTitle: true,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 10.0),
-            child: GestureDetector(
-              onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      backgroundColor: AppColor.primaryColor(context),
-                      title: const Text("Language"),
-                      content: DropdownButton<String>(
-                        alignment: Alignment(0, 10),
-                        autofocus: true,
-                        dropdownColor: AppColor.primaryColor(context),
-                        icon: Icon(Icons.language_outlined),
-                        menuWidth: 110.0,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                        value: context
-                            .watch<Language>()
-                            .selectectLocale
-                            .languageCode,
-                        items: Language.languages
-                            .map(
-                              (e) => DropdownMenuItem<String>(
-                                value: e['locale'],
-                                child: Text(e['name']),
-                              ),
-                            )
-                            .toList(),
-                        onChanged: (value) {
-                          if (value != null) {
-                            context.read<Language>().changeLanguage(value);
-                            print(value);
-                            Navigator.pop(context);
-                          }
-                        },
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context),
-                          child: const Text("Close"),
+      appBar: PreferredSize(
+        preferredSize: Size.square(50),
+        child: AppBar(
+          // flexibleSpace: Container(s
+          //   decoration: BoxDecoration(
+          //     gradient: LinearGradient(
+          //       colors: [
+          //         Colors.yellow.shade100,
+          //         Colors.green.shade100,
+          //         Colors.blue.shade100,
+          //       ],
+          //       begin: Alignment.topLeft,
+          //       end: Alignment.bottomRight,
+          //       // center: Alignment.center,
+          //     ),
+          //   ),
+          // ),
+          // backgroundColor:Colors.grey.shade100,
+          title: Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) {
+              return Text(
+                appLoc.welcome,
+                // style: GoogleFonts.poppins(
+                //   textStyle: Theme.of(context).textTheme.bodyLarge,
+        
+                // ),
+              );
+            },
+          ),
+          leading: Builder(
+            builder: (context) {
+              return GestureDetector(
+                onTap: () {
+                  Scaffold.of(context).openDrawer();
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(top: 10),
+        
+                  child: GFCarousel(
+                    autoPlay: true,
+        
+                    autoPlayInterval: Duration(seconds: 2),
+                    // autoPlayAnimationDuration: Duration(milliseconds: 1600),
+                    items: imageList.map((url) {
+                      return ClipRRect(
+                        child: SvgPicture.asset(
+                          url,
+                          fit: BoxFit.contain,
+                          height: 20,
+                          width: 20,
+                          color: AppColor.headingColor(context),
                         ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  // color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.shade100,
-                      blurRadius: 10,
-                      // spreadRadius: 5,
-                      offset: Offset(10, 5),
-                    ),
-                  ],
+                      );
+                    }).toList(),
+                    onPageChanged: (index) {
+                      // setState(() {
+                      //   index;
+                      // });
+                    },
+                  ),
                 ),
-                child: SvgPicture.asset(
-                  'assets/svgImages/lang.svg',
-                  height: 20,
-                  width: 20,
-                  color: AppColor.headingColor(context),
+              );
+            },
+          ),
+          centerTitle: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: AppColor.primaryColor(context),
+                        title: const Text("Language"),
+                        content: DropdownButton<String>(
+                          alignment: Alignment(0, 10),
+                          autofocus: true,
+                          dropdownColor: AppColor.primaryColor(context),
+                          icon: Icon(Icons.language_outlined),
+                          menuWidth: 110.0,
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          value: context
+                              .watch<Language>()
+                              .selectectLocale
+                              .languageCode,
+                          items: Language.languages
+                              .map(
+                                (e) => DropdownMenuItem<String>(
+                                  value: e['locale'],
+                                  child: Text(e['name']),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (value) {
+                            if (value != null) {
+                              context.read<Language>().changeLanguage(value);
+                              print(value);
+                              Navigator.pop(context);
+                            }
+                          },
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text("Close"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    // color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade100,
+                        blurRadius: 10,
+                        // spreadRadius: 5,
+                        offset: Offset(10, 5),
+                      ),
+                    ],
+                  ),
+                  child: SvgPicture.asset(
+                    'assets/svgImages/lang.svg',
+                    height: 20,
+                    width: 20,
+                    color: AppColor.headingColor(context),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
 
       body: _pages[_selectedIndex],

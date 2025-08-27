@@ -57,7 +57,7 @@ class _AcademicScreenState extends State<AcademicScreen> {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppColor.primaryColor(context),
+        // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(

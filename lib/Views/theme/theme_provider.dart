@@ -10,7 +10,7 @@ class ThemeProvider extends ChangeNotifier {
 
   ThemeProvider() {
     // _primaryColor = const Color(0xFF88D0F1);
-    _primaryColor = Color(0xFFeffdff);
+    _primaryColor = Color(0xFFE8E9F4);
     // _primaryColor =  Colors.cyan;
 
     loadTheme();

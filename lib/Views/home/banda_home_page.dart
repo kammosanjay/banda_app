@@ -31,6 +31,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
   int selectedIndex = 0;
 
   List<String> drawerMenuItems = [
+    'Kul-geet',
     'Announcements',
     'Id Card',
     'Academic',
@@ -46,6 +47,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
   ];
 
   final List<Widget> contentViews = [
+    Container(height: double.infinity, color: Colors.red),
     NotificationScreen(),
     Idcard(),
     AcademicScreen(),
@@ -60,6 +62,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     AboutHei(),
   ];
   List<IconData> drawerMenuIcons = [
+    Icons.hdr_strong_sharp,
     Icons.announcement,
     Icons.perm_identity,
     // Announcements
@@ -90,7 +93,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
       // backgroundColor: Color(0xFFe7f3ff),
-      backgroundColor: Colors.grey.shade100,
+      // backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
@@ -102,7 +105,9 @@ class _BandaHomePageState extends State<BandaHomePage> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              crossAxisCount: 3,
+              crossAxisCount: 2,
+mainAxisExtent: 128,
+              childAspectRatio: 1,
             ),
             itemBuilder: (context, index) {
               var isSelected = selectedIndex == index;
@@ -117,8 +122,8 @@ class _BandaHomePageState extends State<BandaHomePage> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.white
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white,
                     // gradient: LinearGradient(
                     //   colors: [
                     //     Colors.yellow.shade100,
@@ -135,15 +140,20 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(drawerMenuIcons[index], color: Colors.grey.shade900),
+                        Icon(
+                          drawerMenuIcons[index],
+                          color: Colors.grey.shade900,
+                        ),
                         Text(
                           drawerMenuItems[index],
                           textAlign: TextAlign.center,
                           maxLines: 2,
                           style: GoogleFonts.openSans(
                             fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: isSelected ? Colors.deepPurple : Colors.grey.shade900,
+                            fontWeight: FontWeight.w600,
+                            color: isSelected
+                                ? Colors.amber
+                                : Color(0xFF333333),
                           ),
                         ),
                       ],
