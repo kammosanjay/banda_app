@@ -6,6 +6,7 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -154,40 +155,74 @@ class _NotificationScreenState extends State<NotificationScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: // declare this in your StatefulWidget
-            CustomWidgets.customDropdownField(
-              context: context,
-              label: 'Notifications',
-              
-              fontSize: 12,
-              hint: 'Select',
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                // Expanded(
+                //   flex: 8,
+                //   child: Container(
+                //     height: 48,
 
-              items: ["tsfds", 'dfdkf', 'dfkdf'],
-              suffixIcon: Icon(Icons.keyboard_arrow_down, color: Colors.black),
+                //     decoration: BoxDecoration(
+                //       color: Colors.white,
+                //       borderRadius: BorderRadius.circular(6),
+                //     ),
+                //     child: ,
+                //   ),
+                // ),
+                Expanded(
+                  flex: 8,
+                  child: CustomWidgets.customTextFeild(
+                    context: context,
+                    height: 48,
+                    hint: "Search here...",
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  flex: 5,
+                  child: CustomWidgets.customDropdownField(
+                    context: context,
 
-              selectedItem: selectedValue?.isEmpty ?? true
-                  ? null
-                  : selectedValue, // can be null initially
-              onChanged: (value) {
-                setState(() {
-                  selectedValue = value; // update state when changed
-                });
-              },
+                    // label: 'Notifications',
+                    fontSize: 12,
+                    hint: 'All Category',
+                    width: 137,
+                    items: ["tsfds", 'dfdkf', 'dfkdf'],
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    ),
+
+                    selectedItem: selectedValue?.isEmpty ?? true
+                        ? null
+                        : selectedValue, // can be null initially
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value; // update state when changed
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 20,
 
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: Icon(Icons.circle, size: 10, color: Colors.red),
-                  title: Text('this is ${index + 1} Title',style: Theme.of(context).textTheme.bodyMedium,),
-                );
-              },
-            ),
-          ),
+          // Expanded(
+          //   child: ListView.builder(
+          //     itemCount: 20,
+
+          //     itemBuilder: (BuildContext context, int index) {
+          //       return ListTile(
+          //         leading: Icon(Icons.circle, size: 10, color: Colors.red),
+          //         title: Text(
+          //           'this is ${index + 1} Title',
+          //           style: Theme.of(context).textTheme.bodyMedium,
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

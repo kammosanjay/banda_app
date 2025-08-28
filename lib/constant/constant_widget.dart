@@ -41,15 +41,17 @@ class CustomWidgets {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: TextStyle(
-            color: headingcolor ?? Colors.white,
-            fontSize: fontSize ?? 16,
-            fontWeight: fontwgt ?? FontWeight.w600,
-          ),
-        ),
-        SizedBox(height: 10),
+        label.isEmpty
+            ? const SizedBox.shrink() // returns nothing
+            : Text(
+                label,
+                style: TextStyle(
+                  color: headingcolor ?? Colors.white,
+                  fontSize: fontSize ?? 16,
+                  fontWeight: fontwgt ?? FontWeight.w600,
+                ),
+              ),
+        SizedBox(height: label.isEmpty ? 0 : 10),
         TextFormField(
           buildCounter:
               (
@@ -65,7 +67,7 @@ class CustomWidgets {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: keyboardtype,
           validator: validate,
-
+          
           maxLength: maxLength,
           maxLines: maxLines ?? 1,
           controller: controller ?? TextEditingController(),
@@ -84,8 +86,10 @@ class CustomWidgets {
           },
           obscureText: isObstructed,
           decoration: InputDecoration(
+        
             contentPadding: const EdgeInsets.symmetric(
               vertical: 19,
+              
               horizontal: 12,
             ),
             suffixIcon: suffIcons,
@@ -96,7 +100,7 @@ class CustomWidgets {
 
             prefixIcon: icon,
             prefixIconColor: iconColor,
-
+            
             hintText: hint,
             hintStyle: TextStyle(
               color: hintColor ?? Colors.white,
@@ -142,15 +146,6 @@ class CustomWidgets {
       crossAxisAlignment: CrossAxisAlignment.start,
 
       children: [
-        Text(
-          label,
-          style: Theme.of(context).textTheme.titleSmall,
-
-          // color: color ?? Colors.white,
-          // fontSize: fontSize,
-          // fontWeight: fontwgt ?? FontWeight.w600,
-        ),
-        SizedBox(height: 10),
         Card(
           color: readOnly ? Colors.grey.shade400 : Colors.white,
           margin: EdgeInsets.zero,
@@ -158,7 +153,8 @@ class CustomWidgets {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
-          elevation: 5,
+          elevation: 0,
+
           child: DropdownButtonFormField<T>(
             dropdownColor: Colors.white,
             style: TextStyle(color: Colors.black),
@@ -166,7 +162,7 @@ class CustomWidgets {
             isExpanded: true,
             focusNode: focusNode,
             hint: Text(
-              'Select',
+              hint!,
               style: TextStyle(color: Colors.grey, fontSize: fontSize),
             ),
             selectedItemBuilder: (BuildContext context) {

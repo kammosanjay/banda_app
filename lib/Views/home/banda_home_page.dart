@@ -1,4 +1,6 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/academicPro.dart';
+import 'package:baanda_mobile_app/Views/ReportsPage/report_page.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
 import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
@@ -32,27 +34,33 @@ class _BandaHomePageState extends State<BandaHomePage> {
 
   List<String> drawerMenuItems = [
     'Kul-geet',
-    'Announcements',
     'Id Card',
+    '2024-2025 Students',
     'Academic',
-    'Administration',
-    'Admissions & Fee',
-    'Research',
-    'Student Career',
-    'Alumni',
-    'Information Corner',
+    'Library',
+    'Places',
+    'News',
+    'Publications',
+    'Bharat kala Bhavan',
+    'BUAT Forms',
+    'Holiday Calender',
+    'NEP courses',
+    'Faculty Search',
     'Emergency Contact',
-    'Gallery',
-    'About HEI',
+    'Grievence',
+    'Update Phone Number',
+    'Update Email',
   ];
 
   final List<Widget> contentViews = [
     Container(height: double.infinity, color: Colors.red),
-    NotificationScreen(),
     Idcard(),
-    AcademicScreen(),
+    Students(),
+    AcademicProgramScreen(),
+    ReportPage(),
+    NotificationScreen(),
     AdministrationScreen(),
-    Admissionfee(),
+
     Research(),
     StudentCareer(),
     Alumni(),
@@ -60,23 +68,30 @@ class _BandaHomePageState extends State<BandaHomePage> {
     Emergency(),
     Gallery(),
     AboutHei(),
+    AboutHei(),
+    AboutHei(),
+    AboutHei(),
   ];
-  List<IconData> drawerMenuIcons = [
-    Icons.hdr_strong_sharp,
-    Icons.announcement,
-    Icons.perm_identity,
-    // Announcements
-    Icons.school, // Academic
-    Icons.account_balance, // Administration
-    Icons.payment, // Admissions & Fee
-    Icons.science, // Research
-    Icons.work, // Student Career
-    Icons.group, // Alumni
-    Icons.info, // Information Corner
-    Icons.emergency, // Emergency Contact
-    Icons.photo_library, // Gallery
-    Icons.info_outline, // About HEI
-  ];
+  // List<IconData> drawerMenuIcons = [
+  //   Icons.hdr_strong_sharp,
+  //   Icons.perm_identity,
+  //   Icons.personal_injury,
+  //   Icons.school, // Academic
+  //   Icons.announcement,
+  //   // Announcements
+  //   Icons.account_balance, // Administration
+  //   Icons.payment, // Admissions & Fee
+  //   Icons.science, // Research
+  //   Icons.work, // Student Career
+  //   Icons.group, // Alumni
+  //   Icons.info, // Information Corner
+  //   Icons.emergency, // Emergency Contact
+  //   Icons.photo_library, // Gallery
+  //   Icons.info_outline, // About HEI
+  //   Icons.info_outline, // About HEI
+  //   Icons.info_outline, // About HEI
+  //   Icons.info_outline, // About HEI
+  // ];
 
   final ScrollController _scrollController = ScrollController();
 
@@ -106,7 +121,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
               crossAxisCount: 2,
-mainAxisExtent: 128,
+              mainAxisExtent: 128,
               childAspectRatio: 1,
             ),
             itemBuilder: (context, index) {
@@ -140,15 +155,15 @@ mainAxisExtent: 128,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          drawerMenuIcons[index],
-                          color: Colors.grey.shade900,
-                        ),
+                        // Icon(
+                        //   drawerMenuIcons[index],
+                        //   color: Colors.grey.shade900,
+                        // ),
                         Text(
                           drawerMenuItems[index],
                           textAlign: TextAlign.center,
                           maxLines: 2,
-                          style: GoogleFonts.openSans(
+                          style: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: isSelected

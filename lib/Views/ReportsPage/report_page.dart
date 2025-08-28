@@ -1,9 +1,8 @@
-import 'dart:async';
-
+import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:flutter/material.dart';
-import 'package:baanda_mobile_app/Views/ReportsPage/report_provider.dart';
+
 import 'package:getwidget/components/carousel/gf_carousel.dart';
-import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ReportPage extends StatefulWidget {
   const ReportPage({super.key});
@@ -34,50 +33,74 @@ class _ReportPageState extends State<ReportPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Color(0xFFe7f3ff),
-      body: Column(
+      appBar: AppBar(),
+      body: ListView(
         children: [
-          // Expanded(
-          //   child: Consumer<ReportProvider>(
-          //     builder: (context, reportProvider, child) {
-          //       if (reportProvider != null) {
-          //         return ListView.builder(
-          //           itemCount: reportProvider.getList.length,
-          //           itemBuilder: (BuildContext context, int index) {
-          //             return ListTile(
-          //               leading: Text(
-          //                 reportProvider.getList[index]['id'].toString(),
-          //               ),
-          //               title: Text(reportProvider.getList[index]['title']),
-          //             );
-          //           },
-          //         );
-          //       }
-          //       return Container();
-          //     },
-          //   ),
-          // ),
-
-          // ElevatedButton(
-          //   onPressed: () {
-          //     context.read<ReportProvider>().insertData();
-          //   },
-          //   child: Text("insert"),
-          // ),
           GFCarousel(
             items: imageList
-                .map((e) => Image.network(e, fit: BoxFit.cover))
+                .map(
+                  (e) => ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.network(
+                        e,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    ),
+                  ),
+                )
                 .toList(),
-                aspectRatio: 16/9,
-                
-                viewportFraction: 1,
-                autoPlayCurve: Curves.fastOutSlowIn,
-            height: 200,
-            autoPlay: true,
-            autoPlayInterval: Duration(seconds:2),
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            // autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(microseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            viewportFraction: 1.0,
+            aspectRatio: 16 / 7,
+            hasPagination: false,
+            enlargeMainPage: false,
+          ),
+          Center(
+            child: Text(
+              "Central Library",
+              style: GoogleFonts.openSans(
+                color: AppColor.textColor(context),
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Container(margin: EdgeInsets.all(12),
+            child: Text(
+              dummyText,
+              style: GoogleFonts.openSans(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: AppColor.textColor(context),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
+
+  String dummyText = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
+deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Curabitur vitae lorem eu nulla malesuada placerat. 
+Aliquam erat volutpat. Vivamus ultricies sapien ut neque tempor, 
+ut vulputate eros gravida. Nulla facilisi. Suspendisse potenti. 
+Fusce vitae lectus non risus euismod euismod nec sit amet metus. 
+Mauris malesuada, tortor nec bibendum vehicula, mauris augue cursus purus, 
+non vehicula nunc mauris at risus. 
+""";
 }

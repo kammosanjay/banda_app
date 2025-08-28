@@ -94,6 +94,57 @@ class _MyHomeState extends State<MyHome> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  List<String> menuTitles = [
+    "Notification",
+    "Academics",
+    "Grievance",
+    "Holiday Calendar",
+    "News",
+    "Places",
+    "Publications",
+    "BUAT Forms",
+    "Emergency Contact",
+    "Update Contact Number",
+    "Update Email",
+    "My Profile",
+    "Refresh",
+    "Logout",
+  ];
+  List<String> drawerIcons = [
+    'assets/svgImages/notification.svg',
+    'assets/svgImages/academics.svg',
+    'assets/svgImages/grievence.svg',
+    'assets/svgImages/holiday.svg',
+    'assets/svgImages/news.svg',
+    'assets/svgImages/places.svg',
+    'assets/svgImages/publication.svg',
+    'assets/svgImages/buatForms.svg',
+    'assets/svgImages/emerCont.svg',
+    'assets/svgImages/updateCont.svg',
+    'assets/svgImages/updateEmail.svg',
+    'assets/svgImages/myprofile.svg',
+    'assets/svgImages/refresh.svg',
+    'assets/svgImages/LogOut.svg',
+  ];
+  Widget drawerLitTile({
+    required String title,
+    required String icon,
+    VoidCallback? ontap,
+  }) {
+    return ListTile(
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: GoogleFonts.openSans(fontSize: 14,fontWeight: FontWeight.w600,color:AppColor.textColor(context))),
+          SvgPicture.asset(icon, color: AppColor.headingColor(context)),
+        ],
+      ),
+      tileColor: AppColor.backgroundColor(context),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      onTap: ontap, // ✅ use the callback correctly
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,26 +232,36 @@ class _MyHomeState extends State<MyHome> {
                 padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   children: [
-                    DrawerHeader(
+                    Container(
+                      padding: const EdgeInsets.all(16),
+                      width: double.infinity,
+                      height: 180, // adjust height as you want
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.surface,
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: Colors.black.withOpacity(0.1),
+                        //     blurRadius: 4,
+                        //     offset: Offset(0, 2),
+                        //   ),
+                        // ],
+                      ),
                       child: Stack(
-                        // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          // Profile Image
                           Positioned(
-                            left: 0,
-                            right: 0,
+                            left: 20,
+                            right: 20,
                             top: 0,
                             bottom: 50,
                             child: CircleAvatar(
-                              radius: 20,
+                              radius: 40,
                               backgroundColor: Theme.of(
                                 context,
                               ).colorScheme.primary,
-                              child: Consumer(
+                              child: Consumer<HomeProviders>(
                                 builder: (ctx, value, child) {
-                                  final imagePath = ctx
-                                      .watch<HomeProviders>()
-                                      .image
-                                      ?.path;
+                                  final imagePath = value.image?.path;
                                   return imagePath != null
                                       ? ClipRRect(
                                           borderRadius: BorderRadius.circular(
@@ -223,10 +284,10 @@ class _MyHomeState extends State<MyHome> {
                             ),
                           ),
 
+                          // Camera button
                           Positioned(
-                            left: 100,
-                            right: 15,
-
+                            left: 70,
+                            right: -20,
                             bottom: 60,
                             child: GestureDetector(
                               onTap: () {
@@ -234,17 +295,16 @@ class _MyHomeState extends State<MyHome> {
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text("Select Image"),
+                                      title: const Text("Select Image"),
                                       content: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           ListTile(
-                                            leading: Icon(Icons.camera_alt),
-                                            title: Text("Gallery"),
+                                            leading: const Icon(
+                                              Icons.camera_alt,
+                                            ),
+                                            title: const Text("Gallery"),
                                             onTap: () {
-                                              // context
-                                              //     .read<HomeProviders>()
-                                              //     .pickImage();
                                               context
                                                   .read<HomeProviders>()
                                                   .pickImage();
@@ -252,8 +312,10 @@ class _MyHomeState extends State<MyHome> {
                                             },
                                           ),
                                           ListTile(
-                                            leading: Icon(Icons.photo_library),
-                                            title: Text("Camera"),
+                                            leading: const Icon(
+                                              Icons.photo_library,
+                                            ),
+                                            title: const Text("Camera"),
                                             onTap: () {
                                               context
                                                   .read<HomeProviders>()
@@ -276,17 +338,10 @@ class _MyHomeState extends State<MyHome> {
                             ),
                           ),
 
-                          // SvgPicture.asset(
-                          //   'assets/svgImages/refresh.svg',
-                          //   height: 50,
-                          //   width: 50,
-                          // ),
-                          const SizedBox(height: 10),
+                          // Welcome Text
                           Positioned(
-                            left: 40,
-                            right: 30,
-                            top: 100,
-                            bottom: 10,
+                            left: 0,
+                            top: 120,
                             child: Text(
                               appLoc.welcome,
                               style: Theme.of(context).textTheme.titleMedium,
@@ -295,343 +350,25 @@ class _MyHomeState extends State<MyHome> {
                         ],
                       ),
                     ),
-                    Column(
-                      spacing: 2,
-                      children: [
-                        // ListTile(
-                        //   title: Row(
-                        //     mainAxisSize: MainAxisSize.min,
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Text(appLoc.theme),
-                        //       SvgPicture.asset("assets/svgImages/theme.svg"),
-                        //     ],
-                        //   ),
-
-                        //   style: ListTileStyle.list,
-                        //   tileColor: AppColor.backgroundColor,
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(5),
-                        //   ),
-                        //   onTap: () {
-                        //     // context.read<ThemeProvider>().toggleTheme();
-                        //     showDialog(
-                        //       context: context,
-                        //       builder: (context) {
-                        //         return AlertDialog(
-                        //           title: Text('Select Theme'),
-                        //           content: Container(
-                        //             height: 200,
-                        //             width: 200,
-                        //             child: GridView.builder(
-                        //               gridDelegate:
-                        //                   SliverGridDelegateWithFixedCrossAxisCount(
-                        //                     crossAxisCount: 5,
-                        //                     childAspectRatio: 1,
-                        //                   ),
-                        //               itemBuilder: (context, index) {
-                        //                 final colors = ThemeProvider.colors;
-                        //                 return GestureDetector(
-                        //                   onTap: () {
-                        //                     themeProvider.changeColor(
-                        //                       colors[index],
-                        //                     );
-                        //                     Navigator.pop(context);
-                        //                   },
-                        //                   child: Container(
-                        //                     width: 50,
-                        //                     height: 50,
-                        //                     margin: EdgeInsets.all(5),
-                        //                     decoration: BoxDecoration(
-                        //                       color: colors[index],
-                        //                       shape: BoxShape.circle,
-                        //                       border: Border.all(
-                        //                         color:
-                        //                             context
-                        //                                     .watch<
-                        //                                       ThemeProvider
-                        //                                     >()
-                        //                                     .primaryColor ==
-                        //                                 colors[index]
-                        //                             ? Colors.black
-                        //                             : Colors.transparent,
-                        //                         width: 2,
-                        //                       ),
-                        //                     ),
-                        //                   ),
-                        //                 );
-                        //               },
-                        //               itemCount: ThemeProvider.colors.length,
-                        //             ),
-                        //           ),
-                        //         );
-                        //       },
-                        //     );
-                        //   },
-                        // ),
-                        // ListTile(
-                        //   title: Row(
-                        //     mainAxisSize: MainAxisSize.min,
-                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //     children: [
-                        //       Text(
-                        //         'Theme Mode',
-                        //         style: Theme.of(context).textTheme.titleMedium,
-                        //       ),
-                        //       Image.asset(
-                        //         "assets/images/night.png",
-                        //         scale: 1,
-                        //         height: 25,
-                        //         color: AppColor.headingColor(context),
-                        //       ),
-                        //     ],
-                        //   ),
-
-                        //   style: ListTileStyle.list,
-                        //   tileColor: AppColor.backgroundColor(context),
-                        //   shape: RoundedRectangleBorder(
-                        //     borderRadius: BorderRadius.circular(5),
-                        //   ),
-                        //   onTap: () {
-                        //     showDialog(
-                        //       context: context,
-                        //       builder: (context) {
-                        //         final currentMode = themeProvider.themeMode;
-
-                        //         return AlertDialog(
-                        //           title: Text(
-                        //             'Select Theme',
-                        //             style: Theme.of(
-                        //               context,
-                        //             ).textTheme.bodyMedium,
-                        //           ),
-                        //           content: SizedBox(
-                        //             height: 200,
-                        //             width: 200,
-                        //             child: Column(
-                        //               mainAxisSize: MainAxisSize.min,
-                        //               children: [
-                        //                 RadioListTile<ThemeMode>(
-                        //                   title: Text(
-                        //                     'Light',
-                        //                     style: Theme.of(
-                        //                       context,
-                        //                     ).textTheme.bodyMedium,
-                        //                   ),
-                        //                   value: ThemeMode.light,
-                        //                   groupValue: currentMode,
-                        //                   onChanged: (value) {
-                        //                     print("selectedTheme is :$value");
-                        //                     if (value != null) {
-                        //                       themeProvider.setThemeMode(value);
-                        //                       Navigator.pop(context);
-                        //                     }
-                        //                   },
-                        //                 ),
-                        //                 RadioListTile<ThemeMode>(
-                        //                   title: Text(
-                        //                     'Dark',
-                        //                     style: Theme.of(
-                        //                       context,
-                        //                     ).textTheme.bodyMedium,
-                        //                   ),
-                        //                   value: ThemeMode.dark,
-                        //                   groupValue: currentMode,
-                        //                   onChanged: (value) {
-                        //                     if (value != null) {
-                        //                       print("selectedTheme is :$value");
-                        //                       themeProvider.setThemeMode(value);
-                        //                       Navigator.pop(context);
-                        //                     }
-                        //                   },
-                        //                 ),
-                        //                 // RadioListTile<ThemeMode>(
-                        //                 //   title: Text(
-                        //                 //     'System Default',
-                        //                 //     style: themeProvider
-                        //                 //         .themeData
-                        //                 //         .textTheme
-                        //                 //         .bodyMedium!
-                        //                 //         .copyWith(
-                        //                 //           color: AppColor.textColor,
-                        //                 //         ),
-                        //                 //   ),
-                        //                 //   value: ThemeMode.system,
-                        //                 //   groupValue: currentMode,
-                        //                 //   onChanged: (value) {
-                        //                 //     print("selectedTheme is :$value");
-                        //                 //     if (value != null) {
-                        //                 //       themeProvider.setThemeMode(value);
-                        //                 //       Navigator.pop(context);
-                        //                 //     }
-                        //                 //   },
-                        //                 // ),
-                        //               ],
-                        //             ),
-                        //           ),
-                        //         );
-                        //       },
-                        //     );
-                        //   },
-                        // ),
-                        ListTile(
-                          // title: Text(appLoc.contact_us),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                appLoc.contact_us,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/customer-service.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // context.read<HomeProvider>().logout();
-                            contactUs();
-                            // Navigator.pop(context);
-                          },
-                        ),
-
-                        ListTile(
-                          // title: Text(appLoc.feedback),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                appLoc.feedback,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/feedback-review.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // Show contact us dialog or navigate to contact page
-
-                            // Navigator.pop(context);
-                          },
-                        ),
-                        ListTile(
-                          // title: Text(appLoc.support),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Leave Request",
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/wheelchair-sleeping.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // Show help dialog or navigate to help page
-                            // Navigator.pop(context);
-                          },
-                        ),
-                        ListTile(
-                          // title: Text(appLoc.about_us),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                appLoc.about_us,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/about.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // Show settings dialog or navigate to settings page
-                            // Navigator.pop(context);
-                            aboutUs();
-                          },
-                        ),
-
-                        ListTile(
-                          // title: Text(appLoc.privacy_policy),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                appLoc.privacy_policy,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/policy.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // Show feedback dialog or navigate to feedback page
-                            // Navigator.pop(context);
-                            privacyPolicy();
-                          },
-                        ),
-                        ListTile(
-                          // title: Text(appLoc.terms_and_conditions),
-                          title: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                appLoc.terms_and_conditions,
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                              SvgPicture.asset(
-                                "assets/svgImages/termsConditions.svg",
-                                color: AppColor.headingColor(context),
-                              ),
-                            ],
-                          ),
-                          tileColor: AppColor.backgroundColor(context),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          onTap: () {
-                            // Show terms and conditions dialog or navigate to terms page
-                            // Navigator.pop(context);
-                            termsAndcdtn();
-                          },
-                        ),
-                      ],
+                    Container(
+                      height: 600,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.all(8),
+                        itemCount: menuTitles.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                            child: drawerLitTile(
+                              title: menuTitles[index],
+                              icon: drawerIcons[index],
+                              ontap: () {
+                                print("Clicked on: ${menuTitles[index]}");
+                              },
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -690,7 +427,7 @@ class _MyHomeState extends State<MyHome> {
                 appLoc.welcome,
                 // style: GoogleFonts.poppins(
                 //   textStyle: Theme.of(context).textTheme.bodyLarge,
-        
+
                 // ),
               );
             },
@@ -703,10 +440,10 @@ class _MyHomeState extends State<MyHome> {
                 },
                 child: Container(
                   margin: const EdgeInsets.only(top: 10),
-        
+
                   child: GFCarousel(
                     autoPlay: true,
-        
+
                     autoPlayInterval: Duration(seconds: 2),
                     // autoPlayAnimationDuration: Duration(milliseconds: 1600),
                     items: imageList.map((url) {

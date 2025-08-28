@@ -9,20 +9,20 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class Admissionfee extends StatefulWidget {
-  const Admissionfee({super.key});
+class Students extends StatefulWidget {
+  const Students({super.key});
 
   @override
-  State<Admissionfee> createState() => _AdmissionfeeState();
+  State<Students> createState() => _StudentsState();
 }
 
-class _AdmissionfeeState extends State<Admissionfee> {
+class _StudentsState extends State<Students> {
   //
   final List<String> feeItems = [
-    'Prospectus',
-    'Admission Process And Guidelines',
-    'Fee Submission',
-    'Fee Refund Policy',
+    'Admit Card',
+    'Dossier Form',
+    'Anti-Ragging Form',
+    'Wi-Fi Proxy Registration',
   ];
   //
   final List<String> feeRoutes = [
@@ -33,12 +33,10 @@ class _AdmissionfeeState extends State<Admissionfee> {
   ];
 
   final List<String> imageList = [
-    "assets/svgImages/menu.svg",
-    "assets/svgImages/customer-service.svg",
-    "assets/svgImages/leave.svg",
-    "assets/svgImages/about.svg",
-    "assets/svgImages/mode.svg",
-    "assets/svgImages/policy.svg",
+    "assets/svgImages/admitcard.svg",
+    "assets/svgImages/dossier.svg",
+    "assets/svgImages/admitcard.svg",
+    "assets/svgImages/wifi.svg",
   ];
   final List<IconData> admissionIcons = [
     Icons.menu_book, // Prospectus
@@ -188,6 +186,7 @@ class _AdmissionfeeState extends State<Admissionfee> {
               crossAxisCount: 2, // ✅ 3 items in one row
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
+              mainAxisExtent: 85,
               childAspectRatio: 1, // adjust for text layout
             ),
             itemBuilder: (context, index) {
@@ -199,7 +198,7 @@ class _AdmissionfeeState extends State<Admissionfee> {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(6),
                     color: Colors.white,
                   ),
                   child: Padding(
@@ -207,10 +206,7 @@ class _AdmissionfeeState extends State<Admissionfee> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          admissionIcons[index],
-                          color: Colors.grey.shade900,
-                        ),
+                        SvgPicture.asset(imageList[index]),
                         Text(
                           feeItems[index],
                           textAlign: TextAlign.center,

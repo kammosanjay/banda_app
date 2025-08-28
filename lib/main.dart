@@ -11,6 +11,7 @@ import 'package:baanda_mobile_app/Views/OTP/forgot_pass_reset.dart';
 import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profile_provider.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
+import 'package:baanda_mobile_app/Views/ReportsPage/report_page.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
 import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
@@ -60,7 +61,6 @@ void main() async {
   await GetStorage.init();
 
   await FirebaseMsg().initFCM();
-  
 
   runApp(
     MultiProvider(
@@ -129,7 +129,7 @@ class MyApp extends StatelessWidget {
         '/forgotpagetwo': (context) => ForgotPassReset(),
         '/signUpPage': (context) => SignupPage(),
         '/bandaHomePage': (context) => BandaHomePage(),
-        '/acadProgram': (context) => AcademicProgramScreen(),
+
         '/acadCalender': (context) => AcademicCalenderScreen(),
         '/acadExaminations': (context) => AcademicExamScreen(),
         '/colleges': (context) => AcademicCollegesScreen(),
@@ -138,12 +138,12 @@ class MyApp extends StatelessWidget {
         '/library': (context) => AcademicLibraryScreen(),
         '/acadCollaborations': (context) => AcademicCollaborationScreen(),
         //
-        'Announcements': (context) => NotificationScreen(),
-
-        'Academic': (context) => AcademicScreen(),
+        'Places': (context) => NotificationScreen(),
+        '2024-2025 Students': (context) => Students(),
         'Id Card': (context) => Idcard(),
+        'Academic': (context) => AcademicProgramScreen(),
         'Administration': (context) => AdministrationScreen(),
-        'Admissions & Fee': (context) => Admissionfee(),
+        // 'Admissions & Fee': (context) => Admissionfee(),
         'Research': (context) => Research(),
         'Student Career': (context) => StudentCareer(),
         'Alumni': (context) => Alumni(),
@@ -151,6 +151,7 @@ class MyApp extends StatelessWidget {
         'Emergency Contact': (context) => Emergency(),
         'Gallery': (context) => Gallery(),
         'About HEI': (context) => AboutHei(),
+        'Library': (context) => ReportPage(),
       },
     );
   }

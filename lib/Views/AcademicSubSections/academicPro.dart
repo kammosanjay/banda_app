@@ -136,6 +136,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
 
       body: Column(
         children: [
+          
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GridView.builder(
