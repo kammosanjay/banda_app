@@ -10,11 +10,14 @@ import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
 import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
 import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
 import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
+import 'package:baanda_mobile_app/Views/screenListView/grievence.dart';
 import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
 
 import 'package:baanda_mobile_app/Views/screenListView/information.dart';
 import 'package:baanda_mobile_app/Views/screenListView/research.dart';
 import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
+import 'package:baanda_mobile_app/Views/screenListView/update_email.dart';
+import 'package:baanda_mobile_app/Views/screenListView/updatephone.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
@@ -43,7 +46,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     'Publications',
     'Bharat kala Bhavan',
     'BUAT Forms',
-    'Holiday Calender',
+    'Holiday Calendar',
     'NEP courses',
     'Faculty Search',
     'Emergency Contact',
@@ -52,26 +55,25 @@ class _BandaHomePageState extends State<BandaHomePage> {
     'Update Email',
   ];
 
-  final List<Widget> contentViews = [
-    Container(height: double.infinity, color: Colors.red),
-    Idcard(),
-    Students(),
-    AcademicProgramScreen(),
-    ReportPage(),
-    NotificationScreen(),
-    AdministrationScreen(),
-
-    Research(),
-    StudentCareer(),
-    Alumni(),
-    Information(),
-    Emergency(),
-    Gallery(),
-    AboutHei(),
-    AboutHei(),
-    AboutHei(),
-    AboutHei(),
-  ];
+  // final List<Widget> contentViews = [
+  //   Container(height: double.infinity, color: Colors.red),
+  //   Idcard(),
+  //   Students(),
+  //   AcademicProgramScreen(),
+  //   Library(),
+  //   NotificationScreen(),
+  //   AdministrationScreen(),
+  //   Publications(),
+  //   BharaKalaBhavan(),
+  //   BuatForms(),
+  //   HolidayCalendar(),
+  //   NEPCourses(),
+  //   FacultySearch(),
+  //   EmergencyContact(),
+  //   Grievence(),
+  //   Updatephone(),
+  //   UpdateEmail(),
+  // ];
   // List<IconData> drawerMenuIcons = [
   //   Icons.hdr_strong_sharp,
   //   Icons.perm_identity,
@@ -144,6 +146,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     //     Colors.yellow.shade100,
                     //     Colors.green.shade100,
                     //     Colors.blue.shade100,
+
                     //   ],
                     //   begin: Alignment.topLeft,
                     //   end: Alignment.bottomRight,

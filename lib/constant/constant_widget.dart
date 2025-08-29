@@ -26,6 +26,7 @@ class CustomWidgets {
     TextInputType? keyboardtype,
     Function? onTap,
     Function? onChanges,
+    double? borderRad,
     var validate,
     bool isObstructed = false,
     Color? iconColor,
@@ -62,18 +63,19 @@ class CustomWidgets {
               }) {
                 return null;
               },
+              
           focusNode: focusNode,
           readOnly: isReadyOnly,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: keyboardtype,
           validator: validate,
-          
+        
           maxLength: maxLength,
           maxLines: maxLines ?? 1,
           controller: controller ?? TextEditingController(),
           textAlignVertical: TextAlignVertical.center,
           textInputAction: action,
-
+        
           onTap: () {
             if (onTap != null) {
               onTap();
@@ -86,10 +88,10 @@ class CustomWidgets {
           },
           obscureText: isObstructed,
           decoration: InputDecoration(
+            
+            contentPadding: EdgeInsets.symmetric(
+              vertical: height ?? 19,
         
-            contentPadding: const EdgeInsets.symmetric(
-              vertical: 19,
-              
               horizontal: 12,
             ),
             suffixIcon: suffIcons,
@@ -97,10 +99,10 @@ class CustomWidgets {
                 ? Colors.grey.shade400
                 : fillcolor ?? Colors.white,
             filled: true,
-
+        
             prefixIcon: icon,
             prefixIconColor: iconColor,
-            
+        
             hintText: hint,
             hintStyle: TextStyle(
               color: hintColor ?? Colors.white,
@@ -109,11 +111,11 @@ class CustomWidgets {
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(borderRad ?? 10)),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.grey, width: 2),
-              borderRadius: BorderRadius.all(Radius.circular(10)),
+              borderRadius: BorderRadius.all(Radius.circular(borderRad ?? 10)),
             ),
           ),
         ),

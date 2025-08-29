@@ -1,6 +1,7 @@
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,14 +9,14 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class Alumni extends StatefulWidget {
-  const Alumni({super.key});
+class BuatForms extends StatefulWidget {
+  const BuatForms({super.key});
 
   @override
-  State<Alumni> createState() => _AlumniState();
+  State<BuatForms> createState() => _BuatFormsState();
 }
 
-class _AlumniState extends State<Alumni> {
+class _BuatFormsState extends State<BuatForms> {
   List<String> alumniList = [
     'Alumni Registration',
     'Alumni Students list upto 2023',
@@ -30,11 +31,12 @@ class _AlumniState extends State<Alumni> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -158,74 +160,74 @@ class _AlumniState extends State<Alumni> {
 
       body: Column(
         children: [
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            width: double.infinity,
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 8,
+                  child: CustomWidgets.customTextFeild(
+                    context: context,
+                    height: 10,
 
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: AppColor.primaryColor(context),
-            ),
-            child: Center(
-              child: Text(
-                "Alumni",
-                style: Theme.of(context).textTheme.headlineSmall
-              ),
+                    icon: Icon(Icons.search),
+                    borderRad: 6,
+                    hint: "Search Forms...",
+                    hintColor: Colors.grey.shade400,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  flex: 5,
+                  child: CustomWidgets.customDropdownField(
+                    context: context,
+
+                    // label: 'Notifications',
+                    fontSize: 12,
+                    hint: 'All Category',
+                    width: 137,
+                    items: ["tsfds", 'dfdkf', 'dfkdf'],
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    ),
+
+                    selectedItem: selectedValue?.isEmpty ?? true
+                        ? null
+                        : selectedValue, // can be null initially
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value; // update state when changed
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 20),
-          Text(
-            "Alumni Association with Details",
-            style:  Theme.of(context).textTheme.bodyLarge,
-          ),
-          SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
-              itemCount: alumniList.length,
-
+              shrinkWrap: true,
+              itemCount: 20,
               itemBuilder: (BuildContext context, int index) {
-                return InkWell(
-                  onTap: () {
-                    // showAboutDialog(context: context);
-                    // showAdaptiveAboutDialog(context: context);
-                    showAdaptiveDialog(
-                      context: context,
-                      builder: (context) {
-                        return Container(
-                          margin: EdgeInsets.all(40),
-                          color: Colors.amber,
-                        );
-                      },
-                    );
-                  },
-                  child: Card.outlined(
-                    margin: EdgeInsets.all(1),
-                    shape: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      borderSide: BorderSide.none,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Card(
+                    elevation: 0,
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(6),
+                      side: BorderSide(width: 1, color: Colors.grey.shade400),
                     ),
                     child: ListTile(
-                      // leading: Text(
-                      //   (index + 1).toString(),
-                      //   style: GoogleFonts.poppins(
-                      //     fontSize: 16,
-                      //     fontWeight: FontWeight.w600,
-                      //   ),
-                      // ),
-                      leading: Text(
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        alumniList[index],
-                        style:  Theme.of(context).textTheme.bodyMedium,
+                      title: Text(
+                        "This is ${index + 1} data",
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.textColor(context),
+                        ),
                       ),
-                      // trailing:
-                      // Row(mainAxisAlignment: MainAxisAlignment.end,
-                      //   children: [
-                      //     Icon(Icons.remove_red_eye_outlined),
-
-                      //     Icon(Icons.download),
-                      //   ],
-                      // ),
                     ),
                   ),
                 );

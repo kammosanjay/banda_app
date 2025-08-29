@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ReportPage extends StatefulWidget {
-  const ReportPage({super.key});
+class Library extends StatefulWidget {
+  const Library({super.key});
 
   @override
-  State<ReportPage> createState() => _ReportPageState();
+  State<Library> createState() => _LibraryState();
 }
 
-class _ReportPageState extends State<ReportPage> {
+class _LibraryState extends State<Library> {
   // StreamController<List<Map<String, dynamic>>> streamController =
   //     StreamController<List<Map<String, dynamic>>>();
 

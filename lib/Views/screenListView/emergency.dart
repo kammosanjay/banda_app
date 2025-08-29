@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class Emergency extends StatefulWidget {
-  const Emergency({super.key});
+class NEPCourses extends StatefulWidget {
+  const NEPCourses({super.key});
 
   @override
-  State<Emergency> createState() => _EmergencyState();
+  State<NEPCourses> createState() => _NEPCoursesState();
 }
 
-class _EmergencyState extends State<Emergency> {
+class _NEPCoursesState extends State<NEPCourses> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;

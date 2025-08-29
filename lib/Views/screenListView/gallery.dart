@@ -1,23 +1,26 @@
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class Gallery extends StatefulWidget {
-  const Gallery({super.key});
+class FacultySearch extends StatefulWidget {
+  const FacultySearch({super.key});
 
   @override
-  State<Gallery> createState() => _GalleryState();
+  State<FacultySearch> createState() => _FacultySearchState();
 }
 
-class _GalleryState extends State<Gallery> {
+class _FacultySearchState extends State<FacultySearch> {
+  String? selectedValue;
+
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -137,6 +140,59 @@ class _GalleryState extends State<Gallery> {
             ),
           ),
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          spacing: 10,
+          children: [
+            CustomWidgets.customTextFeild(
+              context: context,
+              height: 10,
+              hint: "Name",
+              hintColor: Colors.grey.shade400,
+              fontSize: 14,
+              borderRad: 6,
+            ),
+            CustomWidgets.customDropdownField(
+              context: context,
+
+              hint: 'All Category',
+              items: ['a', 'b', 'c'],
+
+              selectedItem: selectedValue,
+              onChanged: (value) {
+                setState(() {
+                  selectedValue = value;
+                });
+              },
+            ),
+            SizedBox(height: 20),
+            Row(
+              spacing: 10,
+              children: [
+                Expanded(
+                  child: CustomWidgets.customButton(
+                    context: context,
+                    buttonName: 'Clear',
+                    radius: 6,
+                    btnColor: Color(0xffFD0000),
+                    fontSize: 14,
+                  ),
+                ),
+                Expanded(
+                  child: CustomWidgets.customButton(
+                    context: context,
+                    buttonName: "Search",
+                    radius: 6,
+                    fontSize: 14,
+                    btnColor: Colors.amber,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

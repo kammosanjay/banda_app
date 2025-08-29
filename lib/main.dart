@@ -15,6 +15,7 @@ import 'package:baanda_mobile_app/Views/ReportsPage/report_page.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:baanda_mobile_app/Views/home/firebase_messaging.dart';
 import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
+import 'package:baanda_mobile_app/Views/newsRoom/allnews.dart';
 import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
 import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
 import 'package:baanda_mobile_app/Views/screenListView/administration.dart';
@@ -23,6 +24,7 @@ import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
 import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
 import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
 import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
+import 'package:baanda_mobile_app/Views/screenListView/grievence.dart';
 import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
 
 import 'package:baanda_mobile_app/Views/screenListView/information.dart';
@@ -138,20 +140,24 @@ class MyApp extends StatelessWidget {
         '/library': (context) => AcademicLibraryScreen(),
         '/acadCollaborations': (context) => AcademicCollaborationScreen(),
         //
-        'Places': (context) => NotificationScreen(),
+        'Places': (context) => Places(),
         '2024-2025 Students': (context) => Students(),
         'Id Card': (context) => Idcard(),
         'Academic': (context) => AcademicProgramScreen(),
-        'Administration': (context) => AdministrationScreen(),
+        'News': (context) => AdministrationScreen(),
         // 'Admissions & Fee': (context) => Admissionfee(),
-        'Research': (context) => Research(),
-        'Student Career': (context) => StudentCareer(),
-        'Alumni': (context) => Alumni(),
-        'Information Corner': (context) => Information(),
-        'Emergency Contact': (context) => Emergency(),
-        'Gallery': (context) => Gallery(),
-        'About HEI': (context) => AboutHei(),
-        'Library': (context) => ReportPage(),
+        'Publications': (context) => Publications(),
+        'Bharat kala Bhavan': (context) => BharaKalaBhavan(),
+        'BUAT Forms': (context) => BuatForms(),
+        'Holiday Calendar': (context) => HolidayCalendar(),
+        'NEP courses': (context) => NEPCourses(),
+        'Faculty Search': (context) => FacultySearch(),
+        'Emergency Contact': (context) => EmergencyContact(),
+        'Grievence': (context) => Grievence(),
+        'Update Phone Number': (context) => EmergencyContact(),
+        'Update Email': (context) => EmergencyContact(),
+
+        'Library': (context) => Library(),
       },
     );
   }

@@ -9,14 +9,14 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AboutHei extends StatefulWidget {
-  const AboutHei({super.key});
+class EmergencyContact extends StatefulWidget {
+  const EmergencyContact({super.key});
 
   @override
-  State<AboutHei> createState() => _AboutHeiState();
+  State<EmergencyContact> createState() => _EmergencyContactState();
 }
 
-class _AboutHeiState extends State<AboutHei> {
+class _EmergencyContactState extends State<EmergencyContact> {
   //
   final List<String> aboutItems = [
     'About University',
@@ -188,58 +188,8 @@ class _AboutHeiState extends State<AboutHei> {
         ],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics:
-                NeverScrollableScrollPhysics(), // allow embedding in scroll view
-            itemCount: aboutItems.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, // ✅ 3 items in one row
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 1, // adjust for text layout
-            ),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  final route = aboutRoutes[index];
-                  context.read<RouteProvider>().navigateTo(route, context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(aboutIcons[index], color: Colors.grey.shade900),
-                        Text(
-                          aboutItems[index],
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.openSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade900,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
-        ),
-      ),
+      body:Container()
+      
     );
   }
 }

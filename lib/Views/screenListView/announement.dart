@@ -6,17 +6,18 @@ import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 
-class NotificationScreen extends StatefulWidget {
-  const NotificationScreen({super.key});
+class Places extends StatefulWidget {
+  const Places({super.key});
 
   @override
-  State<NotificationScreen> createState() => _NotificationScreenState();
+  State<Places> createState() => _PlacesState();
 }
 
-class _NotificationScreenState extends State<NotificationScreen> {
+class _PlacesState extends State<Places> {
   String? selectedValue;
   final List<String> imageList = [
     "assets/svgImages/menu.svg",
@@ -32,6 +33,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     return Scaffold(
       // backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
@@ -44,41 +46,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(
@@ -152,30 +120,23 @@ class _NotificationScreenState extends State<NotificationScreen> {
         ],
       ),
 
-      body: Column(
+      body:
+       Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Row(
               children: [
-                // Expanded(
-                //   flex: 8,
-                //   child: Container(
-                //     height: 48,
-
-                //     decoration: BoxDecoration(
-                //       color: Colors.white,
-                //       borderRadius: BorderRadius.circular(6),
-                //     ),
-                //     child: ,
-                //   ),
-                // ),
                 Expanded(
                   flex: 8,
                   child: CustomWidgets.customTextFeild(
                     context: context,
-                    height: 48,
+                    height: 10,
+
+                    icon: Icon(Icons.search),
+                    borderRad: 6,
                     hint: "Search here...",
+                    hintColor: Colors.grey.shade400,
                   ),
                 ),
                 SizedBox(width: 10),
@@ -207,22 +168,35 @@ class _NotificationScreenState extends State<NotificationScreen> {
               ],
             ),
           ),
-
-          // Expanded(
-          //   child: ListView.builder(
-          //     itemCount: 20,
-
-          //     itemBuilder: (BuildContext context, int index) {
-          //       return ListTile(
-          //         leading: Icon(Icons.circle, size: 10, color: Colors.red),
-          //         title: Text(
-          //           'this is ${index + 1} Title',
-          //           style: Theme.of(context).textTheme.bodyMedium,
-          //         ),
-          //       );
-          //     },
-          //   ),
-          // ),
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: 20,
+              itemBuilder: (BuildContext context, int index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Card(
+                    elevation: 0,
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(6),
+                      side: BorderSide(width: 1, color: Colors.grey.shade400),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        "This is ${index + 1} data",
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.textColor(context),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );

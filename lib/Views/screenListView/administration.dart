@@ -1,5 +1,6 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
+import 'package:baanda_mobile_app/Views/newsRoom/allnews.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
@@ -19,29 +20,19 @@ class AdministrationScreen extends StatefulWidget {
 class _AdministrationScreenState extends State<AdministrationScreen> {
   //
   final List<String> adminItems = [
-    'Chancellor',
-    'Registrar',
-    'Vice Chancellor',
-    'Finance Officer',
-    'Controller Of Examination',
-    'Chief Vigilance Officer',
-    'Ombudsperson',
-    'Executive Council',
-    'Internal Complaint Committee',
-    'Academic Leadership',
+    'News ',
+    'Initiatives',
+    'Achievements',
+    'News in Media',
+    'Events',
   ];
   //
   final List<String> adminRoutes = [
-    '/chancellor',
-    '/registrar',
-    '/vice-chancellor',
-    '/finance-officer',
-    '/controller-of-examination',
-    '/chief-vigilance-officer',
-    '/ombudsperson',
-    '/executive-council',
-    '/internal-complaint-committee',
-    '/academic-leadership',
+    '/news',
+    // '/initiatives',
+    // '/achievements',
+    // '/newsMedia',
+    // '/Events',
   ];
   final List<String> imageList = [
     "assets/svgImages/menu.svg",
@@ -57,11 +48,7 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
     Icons.person, // Vice Chancellor
     Icons.account_balance_wallet, // Finance Officer
     Icons.fact_check, // Controller Of Examination
-    Icons.shield, // Chief Vigilance Officer
-    Icons.gavel, // Ombudsperson
-    Icons.groups, // Executive Council
-    Icons.report_problem, // Internal Complaint Committee
-    Icons.school, // Academic Leadership
+    // Academic Leadership
   ];
 
   @override
@@ -203,18 +190,26 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              crossAxisCount: 3, // adjust for text layout
+              mainAxisExtent: 85,
+              crossAxisCount: 2, // adjust for text layout
             ),
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
-                  final route = adminRoutes[index];
-                  context.read<RouteProvider>().navigateTo(route, context);
+                  // final route = adminRoutes[index];
+                  // context.read<RouteProvider>().navigateTo(route, context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          NewsScreen(title: adminItems[index]),
+                    ),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(6),
                     color: Colors.white,
                   ),
                   child: Padding(
@@ -229,7 +224,7 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
                           style: GoogleFonts.openSans(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
-                            color:  Colors.grey.shade900,
+                            color: Colors.grey.shade900,
                           ),
                         ),
                       ],

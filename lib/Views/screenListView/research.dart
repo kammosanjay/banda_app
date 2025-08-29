@@ -2,6 +2,7 @@ import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,14 +10,14 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class Research extends StatefulWidget {
-  const Research({super.key});
+class Publications extends StatefulWidget {
+  const Publications({super.key});
 
   @override
-  State<Research> createState() => _ResearchState();
+  State<Publications> createState() => _PublicationsState();
 }
 
-class _ResearchState extends State<Research> {
+class _PublicationsState extends State<Publications> {
   //
   final List<String> researchItems = [
     'Research And Development Cell',
@@ -43,6 +44,7 @@ class _ResearchState extends State<Research> {
     Icons.business, // Central facilities
   ];
 
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -170,54 +172,132 @@ class _ResearchState extends State<Research> {
 
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics:
-                NeverScrollableScrollPhysics(), // allow embedding in scroll view
-            itemCount: researchItems.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, // ✅ 3 items in one row
-              crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
-              childAspectRatio: 1, // adjust for text layout
+        child: Column(
+          children: [
+            CustomWidgets.customTextFeild(
+              context: context,
+              height: 10,
+              icon: Icon(Icons.search),
+              hint: "Search Places...",
+              hintColor: Colors.grey.shade400,
             ),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  final route = researchRoutes[index];
-                  context.read<RouteProvider>().navigateTo(route, context);
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(16),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(researchIcons[index], color: Colors.grey.shade900),
-                        Text(
-                          researchItems[index],
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.openSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade900,
-                          ),
-                        ),
-                      ],
+            SizedBox(height: 10),
+            Row(
+              spacing: 5,
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: CustomWidgets.customDropdownField(
+                    context: context,
+
+                    // label: 'Notifications',
+                    fontSize: 12,
+                    hint: 'All Category',
+                    width: 137,
+                    items: ["a", 'b', 'c'],
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
                     ),
+
+                    selectedItem: selectedValue?.isEmpty ?? true
+                        ? null
+                        : selectedValue, // can be null initially
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value; // update state when changed
+                      });
+                    },
                   ),
                 ),
-              );
-            },
-          ),
+                Expanded(
+                  flex: 5,
+                  child: CustomWidgets.customDropdownField(
+                    context: context,
+
+                    // label: 'Notifications',
+                    fontSize: 12,
+                    hint: 'All House',
+                    width: 137,
+                    items: ["a", 'b', 'c'],
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    ),
+
+                    selectedItem: selectedValue?.isEmpty ?? true
+                        ? null
+                        : selectedValue, // can be null initially
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value; // update state when changed
+                      });
+                    },
+                  ),
+                ),
+                Expanded(
+                  flex: 5,
+                  child: CustomWidgets.customDropdownField(
+                    context: context,
+
+                    // label: 'Notifications',
+                    fontSize: 12,
+                    hint: 'All Names',
+                    width: 137,
+                    items: ["a", 'b', 'c'],
+                    suffixIcon: Icon(
+                      Icons.keyboard_arrow_down,
+                      color: Colors.black,
+                    ),
+
+                    selectedItem: selectedValue?.isEmpty ?? true
+                        ? null
+                        : selectedValue, // can be null initially
+                    onChanged: (value) {
+                      setState(() {
+                        selectedValue = value; // update state when changed
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 20,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    color: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(6),
+                      side: BorderSide(width: 1, color: Colors.grey.shade400),
+                    ),
+                    child: ListTile(
+                      title: Text("29-08-2025"),
+                      subtitle: Text(
+                        "Hello this is the news about the event that has been intialized by the adimin. ",
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                      trailing: Text(
+                        "Magzines",
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );

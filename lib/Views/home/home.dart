@@ -33,7 +33,7 @@ class _MyHomeState extends State<MyHome> {
     // MyMapLocation(),
     BandaHomePage(),
     TodoListPage(),
-    ReportPage(),
+    Library(),
     Profilepage(),
   ];
 
