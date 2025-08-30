@@ -30,6 +30,7 @@ import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
 import 'package:baanda_mobile_app/Views/screenListView/information.dart';
 import 'package:baanda_mobile_app/Views/screenListView/research.dart';
 import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
+import 'package:baanda_mobile_app/Views/screenListView/updatephone.dart';
 import 'package:baanda_mobile_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -152,10 +153,10 @@ class MyApp extends StatelessWidget {
         'Holiday Calendar': (context) => HolidayCalendar(),
         'NEP courses': (context) => NEPCourses(),
         'Faculty Search': (context) => FacultySearch(),
-        'Emergency Contact': (context) => EmergencyContact(),
+        'Emergency Contact': (context) => Updatephone(),
         'Grievence': (context) => Grievence(),
-        'Update Phone Number': (context) => EmergencyContact(),
-        'Update Email': (context) => EmergencyContact(),
+        'Update Phone Number': (context) => Updatephone(),
+        'Update Email': (context) => UpdateEmail(),
 
         'Library': (context) => Library(),
       },

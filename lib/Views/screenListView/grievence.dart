@@ -1,4 +1,6 @@
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Grievence extends StatefulWidget {
   const Grievence({super.key});
@@ -27,16 +29,32 @@ class _GrievenceState extends State<Grievence> {
               flex: 2,
               child: Text(
                 e.key,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: GoogleFonts.openSans(
+                  fontSize: 14,
+                  color: Color(0xFF333333),
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             const Text(": "),
-            Expanded(flex: 3, child: Text(e.value.toString())),
+            Expanded(
+              flex: 3,
+              child: Text(
+                e.value.toString(),
+                style: GoogleFonts.openSans(
+                  fontSize: 14,
+                  color: Color(0xFF333333),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
           ],
         ),
       );
     }).toList();
   }
+
+  String? selectedItem;
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +62,16 @@ class _GrievenceState extends State<Grievence> {
       appBar: AppBar(title: const Text("Grievance")),
       body: ListView(
         padding: const EdgeInsets.all(16),
+
         children: [
           Container(
-            height: MediaQuery.of(context).size.height * 0.23,
-            color: Colors.white,
+            padding: EdgeInsets.all(10),
+            height: MediaQuery.of(context).size.height * 0.24,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: Colors.white,
+            ),
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -59,6 +83,47 @@ class _GrievenceState extends State<Grievence> {
                 ...details(), // ✅],),)
               ],
             ),
+          ),
+          SizedBox(height: 7),
+          Text(
+            "Please select the category of your grievance",
+            style: GoogleFonts.openSans(
+              fontSize: 16,
+              color: Color(0xFF333333),
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          SizedBox(height: 10),
+          CustomWidgets.customDropdownField(
+            context: context,
+            hint: "Select",
+            items: ["a", 'b', 'c'],
+            selectedItem: selectedItem,
+            onChanged: (value) {
+              setState(() {
+                selectedItem = value;
+              });
+            },
+          ),
+          SizedBox(height: 10),
+          CustomWidgets.customTextFeild(
+            context: context,
+            maxLines: 5,
+            borderRad: 6,
+            hintfontSize: 14,
+            hintColor: Colors.grey.shade400,
+            hint: '''Please describe your complain in less than
+150 word.''',
+          ),
+          SizedBox(height: 40),
+          CustomWidgets.customButton(
+            context: context,
+            buttonName: 'Proceed',
+            fontSize: 16,
+            fontWeight: FontWeight.w600,
+            height: 60,
+            btnColor: Colors.amber,
+            radius: 6
           ),
         ],
       ),

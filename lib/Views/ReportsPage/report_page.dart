@@ -1,4 +1,5 @@
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:getwidget/components/carousel/gf_carousel.dart';
@@ -39,16 +40,26 @@ class _LibraryState extends State<Library> {
           GFCarousel(
             items: imageList
                 .map(
-                  (e) => ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Image.network(
-                        e,
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                  (e) => CachedNetworkImage(
+                    imageUrl: e,
+                    width: double.infinity,
+                    
+                    imageBuilder: (context, imageProvider) => ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image(
+                          image: imageProvider, // ✅ use network imageProvider
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
+                    placeholder: (context, url) => const Center(
+                      child:
+                          CircularProgressIndicator(), // ✅ loader while fetching
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error), // ✅ error fallback
                   ),
                 )
                 .toList(),
@@ -71,7 +82,8 @@ class _LibraryState extends State<Library> {
               ),
             ),
           ),
-          Container(margin: EdgeInsets.all(12),
+          Container(
+            margin: EdgeInsets.all(12),
             child: Text(
               dummyText,
               style: GoogleFonts.openSans(

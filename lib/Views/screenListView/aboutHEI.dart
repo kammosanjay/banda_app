@@ -2,6 +2,7 @@ import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -9,14 +10,14 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class EmergencyContact extends StatefulWidget {
-  const EmergencyContact({super.key});
+class UpdateEmail extends StatefulWidget {
+  const UpdateEmail({super.key});
 
   @override
-  State<EmergencyContact> createState() => _EmergencyContactState();
+  State<UpdateEmail> createState() => _UpdateEmailState();
 }
 
-class _EmergencyContactState extends State<EmergencyContact> {
+class _UpdateEmailState extends State<UpdateEmail> {
   //
   final List<String> aboutItems = [
     'About University',
@@ -66,7 +67,8 @@ class _EmergencyContactState extends State<EmergencyContact> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold(
+    return 
+    Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -188,8 +190,48 @@ class _EmergencyContactState extends State<EmergencyContact> {
         ],
       ),
 
-      body:Container()
-      
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: 
+        Column(
+          children: [
+            CustomWidgets.customTextFeild(
+              context: context,
+              label: 'Enter Your email',
+              hintfontSize: 14,
+              borderRad: 6,
+              hintfontWeight: FontWeight.normal,
+              fontwgt: FontWeight.w600,
+              headingcolor: AppColor.textColor(context),
+              hint: 'Enter Your email',
+
+              hintColor: Theme.of(context).colorScheme.secondary,
+              // controller: phoneEmaiController,
+              keyboardtype: TextInputType.number,
+              icon: Image(
+                image: AssetImage('assets/images/email.png'),
+                height: 14,
+                
+                width: 18,
+                color: AppColor.textColor(context),
+              ),
+            ),
+
+            SizedBox(height: 20),
+            CustomWidgets.customButton(
+              context: context,
+              buttonName: "Submit",
+              height: 60,
+              fontSize: 16,fontWeight: FontWeight.w600,
+              btnColor: Colors.amber,
+              radius: 6
+            ),
+          ],
+        ),
+      ),
     );
+
+
+
   }
 }

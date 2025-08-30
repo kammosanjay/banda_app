@@ -66,6 +66,7 @@ dependencies:
   firebase_messaging: 
   pin_code_fields: 
   unicons: ^3.0.0
+  cached_network_image: 
 
   
   
