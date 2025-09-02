@@ -74,36 +74,27 @@ class _BandaHomePageState extends State<BandaHomePage> {
   //   Updatephone(),
   //   UpdateEmail(),
   // ];
-  // List<IconData> drawerMenuIcons = [
-  //   Icons.hdr_strong_sharp,
-  //   Icons.perm_identity,
-  //   Icons.personal_injury,
-  //   Icons.school, // Academic
-  //   Icons.announcement,
-  //   // Announcements
-  //   Icons.account_balance, // Administration
-  //   Icons.payment, // Admissions & Fee
-  //   Icons.science, // Research
-  //   Icons.work, // Student Career
-  //   Icons.group, // Alumni
-  //   Icons.info, // Information Corner
-  //   Icons.emergency, // Emergency Contact
-  //   Icons.photo_library, // Gallery
-  //   Icons.info_outline, // About HEI
-  //   Icons.info_outline, // About HEI
-  //   Icons.info_outline, // About HEI
-  //   Icons.info_outline, // About HEI
-  // ];
 
   final ScrollController _scrollController = ScrollController();
 
   final List<String> imageList = [
-    "assets/svgImages/menu.svg",
-    "assets/svgImages/customer-service.svg",
-    "assets/svgImages/leave.svg",
-    "assets/svgImages/about.svg",
-    "assets/svgImages/mode.svg",
-    "assets/svgImages/policy.svg",
+    'assets/svgImages/homescreenSvg/0.svg',
+    'assets/svgImages/homescreenSvg/1.svg',
+    'assets/svgImages/homescreenSvg/1.svg',
+    'assets/svgImages/homescreenSvg/3.svg',
+    'assets/svgImages/homescreenSvg/4.svg',
+    'assets/svgImages/homescreenSvg/5.svg',
+    'assets/svgImages/homescreenSvg/6.svg',
+    'assets/svgImages/homescreenSvg/7.svg',
+    'assets/svgImages/homescreenSvg/8.svg',
+    'assets/svgImages/homescreenSvg/9.svg',
+    'assets/svgImages/homescreenSvg/10.svg',
+    'assets/svgImages/homescreenSvg/10.svg',
+    'assets/svgImages/homescreenSvg/12.svg',
+    'assets/svgImages/homescreenSvg/13.svg',
+    'assets/svgImages/homescreenSvg/13.svg',
+    'assets/svgImages/homescreenSvg/15.svg',
+    'assets/svgImages/homescreenSvg/16.svg',
   ];
   @override
   Widget build(BuildContext context) {
@@ -158,10 +149,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Icon(
-                        //   drawerMenuIcons[index],
-                        //   color: Colors.grey.shade900,
-                        // ),
+                        SvgPicture.asset(imageList[index], height: 24),
                         Text(
                           drawerMenuItems[index],
                           textAlign: TextAlign.center,

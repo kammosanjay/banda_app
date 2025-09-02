@@ -8,6 +8,7 @@ import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/state_manager.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -21,25 +22,16 @@ class AcademicProgramScreen extends StatefulWidget {
 }
 
 class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
+  List<String> list=['Institutes','Departments','Faculty'];
   //
-  List<String> acadlist = [
-    'Undergraduate Programmes',
-    'Postgraduate Programmes',
-    'Postgraduate Diploma',
-    'Doctoral Programmes',
-  ];
+  List<String> acadlist = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD'];
 
-  List<String> courseList = [
-    "Economics",
-    'Informatics',
-    'siesmographic',
-    'pyrologic',
-    'mechanics',
-  ];
-  List<String> searchedList = [];
   //
-  TextEditingController searchContrll = TextEditingController();
+  TextEditingController programC = TextEditingController();
+  TextEditingController titleC = TextEditingController();
   String? searchedText;
+  bool isSelected = false;
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -134,20 +126,20 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
         ],
       ),
 
-      body: Column(
-        children: [
-          
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.builder(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: ListView(
+          children: [
+            GridView.builder(
               shrinkWrap: true,
               physics:
                   NeverScrollableScrollPhysics(), // allow embedding in scroll view
-              itemCount: acadlist.length,
+              itemCount: list.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 mainAxisSpacing: 8,
                 crossAxisSpacing: 8,
-                crossAxisCount: 4,
+                crossAxisCount: 2,
+                mainAxisExtent: 85,
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
@@ -158,7 +150,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(width: 1, color: Colors.grey.shade400),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(6),
                       color: Colors.white,
                       // gradient: LinearGradient(
                       //   colors: [
@@ -178,7 +170,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                           acadlist[index],
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
-                            fontSize: 12,
+                            fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Colors.grey.shade900,
                           ),
@@ -189,45 +181,224 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                 );
               },
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: CustomWidgets.customTextFeild(
-              context: context,
-              label: 'Search Courses',
-              hintfontSize: 14,
-              hintfontWeight: FontWeight.normal,
-              fontwgt: FontWeight.bold,
-              headingcolor: AppColor.textColor(context),
-              hint: 'Search Courses here...',
-              onChanges: (value) {
-                print("User typed: $value");
-              },
-              hintColor: Theme.of(context).colorScheme.secondary,
-              controller: searchContrll,
-              keyboardtype: TextInputType.emailAddress,
-            ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
+            SizedBox(height: 20),
+            Row(
+              spacing: 2,
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 0;
+                      });
+                    },
+                    child: Container(
+                      height: 50,
 
-              scrollDirection: Axis.vertical,
-
-              itemCount: courseList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ListTile(
-                  leading: Text('${index + 1}'),
-                  title: Text(courseList[index]),
-                  trailing: TextButton(
-                    onPressed: () {},
-                    child: Text('view${index + 1}'),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: selectedIndex == 0 ? Colors.amber : Colors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Undergraduate",
+                          style: GoogleFonts.openSans(
+                            fontSize: 13,
+                            color: AppColor.textColor(context),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                );
-              },
+                ),
+                Expanded(
+                  flex: 3,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 1;
+                      });
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: selectedIndex == 1 ? Colors.amber : Colors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Postgraduate",
+                          style: GoogleFonts.openSans(
+                            fontSize: 13,
+                            color: AppColor.textColor(context),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 2;
+                      });
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: selectedIndex == 2 ? Colors.amber : Colors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Diploma",
+                          style: GoogleFonts.openSans(
+                            fontSize: 13,
+                            color: AppColor.textColor(context),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = 3;
+                      });
+                    },
+                    child: Container(
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: selectedIndex == 3 ? Colors.amber : Colors.white,
+                      ),
+                      child: Center(
+                        child: Text(
+                          "PhD",
+                          style: GoogleFonts.openSans(
+                            fontSize: 13,
+                            color: AppColor.textColor(context),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
+            SizedBox(height: 20),
+            Column(
+              spacing: 20,
+              children: [
+                Row(
+                  spacing: 5,
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: CustomWidgets.customTextFeild(
+                        context: context,
+                        controller: programC,
+                        hintColor: Colors.grey.shade600,
+                        borderRad: 6,
+                        hint: 'Program Name',
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: IconButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            Colors.white,
+                          ),
+                          minimumSize: WidgetStateProperty.all(
+                            const Size(60, 62),
+                          ),
+                          maximumSize: WidgetStateProperty.all(
+                            const Size(60, 62),
+                          ),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.search,
+                          size: 22,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  spacing: 5,
+                  children: [
+                    Expanded(
+                      flex: 8,
+                      child: CustomWidgets.customTextFeild(
+                        context: context,
+                        controller: titleC,
+
+                        hintColor: Colors.grey.shade600,
+                        borderRad: 6,
+                        hint: 'Course Title',
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: IconButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStateProperty.all(
+                            Colors.white,
+                          ),
+                          minimumSize: WidgetStateProperty.all(
+                            const Size(60, 62),
+                          ),
+                          maximumSize: WidgetStateProperty.all(
+                            const Size(60, 62),
+                          ),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.search,
+                          size: 22,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
+            CustomWidgets.customButton(
+              context: context,
+              btnColor: Colors.amber,
+              height: 60,
+              fontSize: 20,
+              radius: 6,
+              fontWeight: FontWeight.w600,
+              buttonName: "Clear",
+            ),
+          ],
+        ),
       ),
     );
   }

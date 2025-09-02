@@ -212,7 +212,7 @@ class CustomWidgets {
 
   static Widget customButton({
     required BuildContext context, // Pass BuildContext as a parameter
-    String? buttonName,
+    dynamic buttonName,
     Function? onPressed,
     double? width,
     double? height,
