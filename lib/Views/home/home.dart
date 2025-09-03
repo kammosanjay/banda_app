@@ -136,7 +136,14 @@ class _MyHomeState extends State<MyHome> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(title, style: GoogleFonts.openSans(fontSize: 14,fontWeight: FontWeight.w600,color:AppColor.textColor(context))),
+          Text(
+            title,
+            style: GoogleFonts.openSans(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              color: AppColor.textColor(context),
+            ),
+          ),
           SvgPicture.asset(icon, color: AppColor.headingColor(context)),
         ],
       ),
@@ -159,16 +166,16 @@ class _MyHomeState extends State<MyHome> {
         selectedItemColor: _selectedIndex.isFinite
             ? Colors.white
             : Colors.black, // This shows all 5 items
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Color(0xFF333333),
         selectedFontSize: 12,
         unselectedFontSize: 10,
-        selectedLabelStyle: GoogleFonts.poppins(
+        selectedLabelStyle: GoogleFonts.openSans(
           fontSize: 14,
           fontWeight: FontWeight.bold,
         ),
-        unselectedLabelStyle: GoogleFonts.poppins(
+        unselectedLabelStyle: GoogleFonts.openSans(
           fontSize: 14,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.w600,
         ),
         landscapeLayout: BottomNavigationBarLandscapeLayout.linear,
         currentIndex: _selectedIndex,
@@ -344,7 +351,11 @@ class _MyHomeState extends State<MyHome> {
                             top: 120,
                             child: Text(
                               appLoc.welcome,
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: GoogleFonts.poppins(
+                                fontSize: 15.8,
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.textColor(context),
+                              ),
                             ),
                           ),
                         ],

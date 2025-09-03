@@ -1,22 +1,63 @@
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
+import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AcademicExamScreen extends StatefulWidget {
-  const AcademicExamScreen({super.key});
+class Department extends StatefulWidget {
+  const Department({super.key});
 
   @override
-  State<AcademicExamScreen> createState() => _AcademicExamScreenState();
+  State<Department> createState() => _DepartmentState();
 }
 
-class _AcademicExamScreenState extends State<AcademicExamScreen> {
+class _DepartmentState extends State<Department> {
+  // get DepartmentList => _institueList;
+  final List<String> departmentList = [
+    'Deptt. of Anaesthesiology',
+    'Deptt. of Anatomy',
+    'Deptt. of Biochemistry',
+    'Deptt. of Biophysics',
+    'Deptt. of Cardiology',
+    'Deptt. of Cardiothoracic Surgery',
+    'Deptt. of Community Medicine',
+    'Deptt. of Dermatology & Venereology',
+    'Deptt. of Endocrinology & Metabolism',
+    'Deptt. of Forensic Medicine',
+    'Deptt. of Gastroenterology',
+    'Deptt. of Microbiology',
+    'Deptt. of General Medicine',
+    'Deptt. of Nephrology',
+    'Deptt. of Neurology',
+    'Deptt. of Neurosurgery',
+    'Deptt. of Obstetrics & Gynaecology',
+    'Deptt. of Ophthalmology',
+    'Deptt. of Orthopaedics',
+    'Deptt. of Otorhinolaryngology (ENT)',
+    'Deptt. of Pediatrics',
+    'Deptt. of Paediatric Surgery',
+    'Deptt. of Pathology',
+    'Deptt. of Pharmacology',
+    'Deptt. of Physiology',
+    'Deptt. of Plastic Surgery',
+    'Deptt. of Psychiatry',
+    'Deptt. of Radio-Diagnosis Imaging (Radiology)',
+    'Deptt. of Radiotherapy & Radiation Medicine',
+    'Deptt. of Surgical Oncology',
+    'Deptt. of General Surgery',
+    'Deptt. of T. B. & Respiratory Diseases',
+    'Deptt. of Urology',
+  ];
+  final TextEditingController searchC = TextEditingController();
+
   @override
-  Widget build(BuildContext context) { final appLoc = AppLocalizations.of(context)!;
-    return  Scaffold(
+  Widget build(BuildContext context) {
+    final appLoc = AppLocalizations.of(context)!;
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -30,41 +71,7 @@ class _AcademicExamScreenState extends State<AcademicExamScreen> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(
@@ -137,8 +144,68 @@ class _AcademicExamScreenState extends State<AcademicExamScreen> {
           ),
         ],
       ),
-    
-    
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 3.0),
+              child: CustomWidgets.customTextFeild(
+                context: context,
+                controller: searchC,
+                height: 16,
+                hint: 'Search',borderRad: 6,
+                hintColor: Colors.grey.shade400,
+                hintfontSize: 14,
+                hintfontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              // color: Colors.amber,
+              height: MediaQuery.of(context).size.height * 0.8 - 50,
+              child: ListView.builder(
+                itemCount: departmentList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(6),
+                    ),
+                    child: ListTile(
+                      leading: Text(
+                        '${index + 1}',
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                      title: Text(
+                        departmentList[index],
+
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                      trailing: Text(
+                        "Main Campus",
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF333333),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

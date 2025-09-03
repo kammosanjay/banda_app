@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/home/home_providers.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
@@ -144,8 +145,8 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    // final route = menuRoutes[index];
-                    // context.read<RouteProvider>().navigateTo(route, context);
+                    final route = list[index];
+                    context.read<RouteProvider>().navigateTo(route, context);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -167,7 +168,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                       padding: const EdgeInsets.all(5.0),
                       child: Center(
                         child: Text(
-                          acadlist[index],
+                          list[index],
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                             fontSize: 14,

@@ -92,7 +92,7 @@ class CustomWidgets {
             contentPadding: EdgeInsets.symmetric(
               vertical: height ?? 19,
         
-              horizontal: 12,
+              horizontal: width??12,
             ),
             suffixIcon: suffIcons,
             fillColor: isReadyOnly

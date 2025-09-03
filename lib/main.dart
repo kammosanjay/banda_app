@@ -133,9 +133,9 @@ class MyApp extends StatelessWidget {
         '/signUpPage': (context) => SignupPage(),
         '/bandaHomePage': (context) => BandaHomePage(),
 
-        '/acadCalender': (context) => AcademicCalenderScreen(),
-        '/acadExaminations': (context) => AcademicExamScreen(),
-        '/colleges': (context) => AcademicCollegesScreen(),
+        'Institutes': (context) => Institutes(),
+        'Departments': (context) =>Department(),
+        'Faculty': (context) => Faculty(),
         '/UGC': (context) => AcademicUGCScreen(),
         '/IQA': (context) => AcademicIQAScreen(),
         '/library': (context) => AcademicLibraryScreen(),

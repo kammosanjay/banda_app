@@ -1,13 +1,19 @@
+import 'dart:io';
+
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
+import 'package:baanda_mobile_app/Views/screenListView/pdfscreen.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Students extends StatefulWidget {
   const Students({super.key});
@@ -38,12 +44,39 @@ class _StudentsState extends State<Students> {
     "assets/svgImages/admitcard.svg",
     "assets/svgImages/wifi.svg",
   ];
+  List<String> pdfUrls = [
+    "https://drive.google.com/uc?export=download&id=1-exV-rV6SCbPKpmxWXgqNlJi3mLv2r9D",
+    "https://drive.google.com/uc?export=download&id=1-exV-rV6SCbPKpmxWXgqNlJi3mLv2r9D",
+    "https://drive.google.com/uc?export=download&id=1-exV-rV6SCbPKpmxWXgqNlJi3mLv2r9D",
+    "https://drive.google.com/uc?export=download&id=1-exV-rV6SCbPKpmxWXgqNlJi3mLv2r9D",
+  ];
   final List<IconData> admissionIcons = [
     Icons.menu_book, // Prospectus
     Icons.rule, // Admission Process And Guidelines
     Icons.payment, // Fee Submission
     Icons.attach_money, // Fee Refund Policy
   ];
+  Future<File> _downloadPDF(String url) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final fileName = url.split('/').last; // give unique name
+    final filePath = "${dir.path}/$fileName";
+    final file = File(filePath);
+
+    if (await file.exists()) {
+      return file; // ✅ Already downloaded
+    } else {
+      await Dio().download(url, filePath);
+      return file;
+    }
+  }
+
+  void _openPDF(BuildContext context, String url) async {
+    File file = await _downloadPDF(url);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => PDFScreen(file: file)),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +213,7 @@ class _StudentsState extends State<Students> {
           child: GridView.builder(
             shrinkWrap: true,
             physics:
-                NeverScrollableScrollPhysics(), // allow embedding in scroll view
+                NeverScrollableScrollPhysics(), // allow embedding in scroll views
             itemCount: feeItems.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, // ✅ 3 items in one row
@@ -191,9 +224,16 @@ class _StudentsState extends State<Students> {
             ),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () {
-                  final route = feeRoutes[index];
-                  context.read<RouteProvider>().navigateTo(route, context);
+                onTap: () async {
+                  String url =
+                      'https://drive.google.com/uc?export=download&id=1-exV-rV6SCbPKpmxWXgqNlJi3mLv2r9D';
+
+                  if (await canLaunchUrl(Uri.parse(url))) {
+                    await launchUrl(
+                      Uri.parse(url),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -212,8 +252,8 @@ class _StudentsState extends State<Students> {
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                             fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade900,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF333333),
                           ),
                         ),
                       ],

@@ -58,6 +58,7 @@ dependencies:
   geocoding: 
   google_maps_flutter: 
   flutter_toastr: ^1.0.3
+  flutter_inset_box_shadow: 
   lottie: 
   file_picker: 
   image_picker: 
@@ -67,6 +68,7 @@ dependencies:
   pin_code_fields: 
   unicons: ^3.0.0
   cached_network_image: 
+  syncfusion_flutter_pdfviewer:
 
   
   

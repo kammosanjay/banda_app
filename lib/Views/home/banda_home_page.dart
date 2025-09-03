@@ -27,6 +27,7 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+
 class BandaHomePage extends StatefulWidget {
   @override
   _BandaHomePageState createState() => _BandaHomePageState();
@@ -115,7 +116,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
               crossAxisSpacing: 8,
               crossAxisCount: 2,
               mainAxisExtent: 128,
-              childAspectRatio: 1,
+              // childAspectRatio: 16/9,
             ),
             itemBuilder: (context, index) {
               var isSelected = selectedIndex == index;
@@ -132,24 +133,31 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     border: Border.all(width: 1, color: Colors.grey.shade400),
                     borderRadius: BorderRadius.circular(5),
                     color: Colors.white,
-                    // gradient: LinearGradient(
-                    //   colors: [
-                    //     Colors.yellow.shade100,
-                    //     Colors.green.shade100,
-                    //     Colors.blue.shade100,
-
-                    //   ],
-                    //   begin: Alignment.topLeft,
-                    //   end: Alignment.bottomRight,
-                    //   // center: Alignment.center,
-                    // ),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: Colors.white,
+                    //     offset: Offset(-10, -10),
+                    //     blurRadius: 30,
+                    //     inset: true,
+                    //   ),
+                    //   BoxShadow(
+                    //     color: Colors.grey,
+                    //     offset: Offset(10, 10),
+                    //     blurRadius: 30,
+                    //     inset: true,
+                    //   ),
+                    // ],
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(5.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(imageList[index], height: 24),
+                        SvgPicture.asset(
+                          imageList[index],
+                          height: 24,
+                          color: isSelected ? Colors.amber : Color(0xFF333333),
+                        ),
                         Text(
                           drawerMenuItems[index],
                           textAlign: TextAlign.center,

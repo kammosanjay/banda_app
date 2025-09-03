@@ -127,9 +127,7 @@ class Idcard extends StatelessWidget {
                   alignment: Alignment.bottomCenter,
                   child: Opacity(
                     opacity: 0.06,
-                    child: imagepicked != null
-                        ? Image.file(File(imagepicked))
-                        : Image.asset(
+                    child: Image.asset(
                             'assets/images/bandabg.png',
                             height: 300,
                             fit: BoxFit.contain,
@@ -180,10 +178,13 @@ class Idcard extends StatelessWidget {
                         width: 150,
                         height: 150,
                         color: Colors.grey.shade50,
-                        child: Image.asset(
-                          'assets/images/bandabg.png',
-                          fit: BoxFit.cover,
-                        ),
+                        child: imagepicked != null
+                            ? Image.file(File(imagepicked))
+                            : Image.asset(
+                                'assets/images/bandabg.png',
+                                height: 300,
+                                fit: BoxFit.contain,
+                              ),
                       ),
                     ),
                     Container(

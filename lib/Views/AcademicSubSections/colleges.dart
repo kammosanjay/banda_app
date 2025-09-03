@@ -4,19 +4,45 @@ import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AcademicCollegesScreen extends StatefulWidget {
-  const AcademicCollegesScreen({super.key});
+class Faculty extends StatefulWidget {
+  const Faculty({super.key});
 
   @override
-  State<AcademicCollegesScreen> createState() => _AcademicCollegesScreenState();
+  State<Faculty> createState() => _FacultyState();
 }
 
-class _AcademicCollegesScreenState extends State<AcademicCollegesScreen> {
+class _FacultyState extends State<Faculty> {
+  // get FacultyList => _institueList;
+  final List<String> instituteList = [
+    'Faculty of Arts',
+    'Faculty of Social Sciences',
+    'Faculty of Law',
+    'Faculty of Education',
+    'Faculty of Commerce',
+    'Faculty of Management Studies',
+    'Faculty of Science',
+    'Faculty of Agriculture',
+    'Faculty of Biology',
+    'Faculty of Psychology',
+    'Faculty of Medical Science',
+    'Faculty of Dentist',
+    'Faculty of Visual Arts',
+    'Faculty of Performing Arts',
+    'Faculty of Sanskrit Vidya Dharm Vijnan',
+    'Faculty of Medicine',
+    'Faculty of Dental Science',
+    'Faculty of Ayurveda',
+    'Faculty of Engineering and Technology',
+    'Faculty of Environment and Sustainable Development',
+  ];
+
   @override
-  Widget build(BuildContext context) { final appLoc = AppLocalizations.of(context)!;
-    return  Scaffold(
+  Widget build(BuildContext context) {
+    final appLoc = AppLocalizations.of(context)!;
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -30,41 +56,7 @@ class _AcademicCollegesScreenState extends State<AcademicCollegesScreen> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(
@@ -137,8 +129,47 @@ class _AcademicCollegesScreenState extends State<AcademicCollegesScreen> {
           ),
         ],
       ),
-    
-    
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: ListView.builder(
+          itemCount: instituteList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Card(
+              color: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadiusGeometry.circular(6),
+              ),
+              child: ListTile(
+                leading: Text(
+                  '${index + 1}',
+                  style: GoogleFonts.openSans(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF333333),
+                  ),
+                ),
+                title: Text(
+                  instituteList[index],
+
+                  style: GoogleFonts.openSans(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF333333),
+                  ),
+                ),
+                trailing: Text(
+                  "Main Campus",
+                  style: GoogleFonts.openSans(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFF333333),
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
