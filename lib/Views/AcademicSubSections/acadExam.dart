@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
@@ -53,6 +55,7 @@ class _DepartmentState extends State<Department> {
     'Deptt. of Urology',
   ];
   final TextEditingController searchC = TextEditingController();
+  List<String> searchDepart = [];
 
   @override
   Widget build(BuildContext context) {
@@ -154,14 +157,26 @@ class _DepartmentState extends State<Department> {
                 context: context,
                 controller: searchC,
                 height: 16,
-                hint: 'Search',borderRad: 6,
+                hint: 'Search',
+                borderRad: 6,
                 hintColor: Colors.grey.shade400,
                 hintfontSize: 14,
                 hintfontWeight: FontWeight.w400,
+                onChanges: (value) {
+                  setState(() {
+                    searchDepart = departmentList
+                        .where(
+                          (dept) =>
+                              dept.toLowerCase().contains(value.toLowerCase()),
+                        )
+                        .toList();
+                        searchDepart.add(value);
+                  });
+                },
               ),
             ),
             SizedBox(height: 20),
-            Container(
+            SizedBox(
               // color: Colors.amber,
               height: MediaQuery.of(context).size.height * 0.8 - 50,
               child: ListView.builder(

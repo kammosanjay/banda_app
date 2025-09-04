@@ -27,6 +27,22 @@ class _PlacesState extends State<Places> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  List<String> allCategory = [
+  "Academic",
+  "Auditorium",
+  "Bank",
+  "Eatery",
+  "Gate",
+  "Guest House",
+  "Hostel",
+  "Hospital",
+  "Office",
+  "Other",
+  "Residential",
+  "Sports",
+  "Temple",
+];
+
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -149,7 +165,7 @@ class _PlacesState extends State<Places> {
                     fontSize: 12,
                     hint: 'All Category',
                     width: 137,
-                    items: ["tsfds", 'dfdkf', 'dfkdf'],
+                    items: allCategory,
                     suffixIcon: Icon(
                       Icons.keyboard_arrow_down,
                       color: Colors.black,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
 class HolidayCalendar extends StatefulWidget {
@@ -61,6 +64,32 @@ class _HolidayCalendarState extends State<HolidayCalendar> {
     "assets/svgImages/mode.svg",
     "assets/svgImages/policy.svg",
   ];
+  Future<List<Map<String, dynamic>>> fetchHoliday({
+    required String apiKey,
+    required String country,
+    int? year,
+    int? month,
+    int? day,
+  }) async {
+    final uri = Uri.https('holidays.abstractapi.com', '/v1/', {
+      'api_key': apiKey,
+      'country': country,
+      if (year != null) 'year': year.toString(),
+      if (month != null) 'month': month.toString(),
+      if (day != null) 'day': day.toString(),
+    });
+
+    final response = await http.get(uri);
+
+    if (response.statusCode == 200) {
+      final List<dynamic> jsonList = jsonDecode(response.body);
+      print(jsonList);
+      return jsonList.map((e) => e as Map<String, dynamic>).toList();
+    } else {
+      throw Exception('Failed to fetch holidays: ${response.statusCode}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -186,7 +215,39 @@ class _HolidayCalendarState extends State<HolidayCalendar> {
         ],
       ),
 
-      body: Container()
+      body: FutureBuilder<List<Map<String, dynamic>>>(
+        future: fetchHoliday(
+          apiKey: '545d77e5b5124010ba4861409ee86c78',
+          country: 'IN',
+          year: 2025,
+          month: 09,
+          day: 04,
+        ),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No holidays found.'));
+          }
+
+          final holidays = snapshot.data!;
+          return ListView.builder(
+            itemCount: holidays.length,
+            itemBuilder: (context, index) {
+              final holiday = holidays[index];
+              return ListTile(
+                title: Text(holiday['name'] ?? 'Unknown'),
+                subtitle: Text(holiday['date'] ?? ''),
+              );
+            },
+          );
+        },
+      ),
+
       // Padding(
       //   padding: const EdgeInsets.all(8.0),
       //   child: SizedBox(
@@ -239,8 +300,6 @@ class _HolidayCalendarState extends State<HolidayCalendar> {
       //     ),
       //   ),
       // ),
-    
-    
     );
   }
 }

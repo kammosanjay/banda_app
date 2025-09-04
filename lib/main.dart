@@ -157,6 +157,7 @@ class MyApp extends StatelessWidget {
         'Grievence': (context) => Grievence(),
         'Update Phone Number': (context) => Updatephone(),
         'Update Email': (context) => UpdateEmail(),
+        'profile': (context) => Profilepage(),
 
         'Library': (context) => Library(),
       },

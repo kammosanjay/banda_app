@@ -1,5 +1,6 @@
 // import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -110,6 +111,25 @@ class _MyHomeState extends State<MyHome> {
     "Refresh",
     "Logout",
   ];
+  final Map<String, String> menuRoutes = {
+    'Notification': 'Id Card',
+    'Academics': 'Academic',
+
+    'Grievance': 'Grievence',
+    'Holiday Calendar': 'Holiday Calendar',
+    'News': 'News',
+    'Places': 'Places',
+    'Publications': 'Publications',
+    'BUAT Forms': 'BUAT Forms',
+    'Emergency Contact': 'Emergency Contact',
+    'Update Contact Number': 'Update Phone Number',
+    'Update Email': 'Update Email',
+    'My Profile': 'profile',
+    'Refresh': 'Sports',
+    'Logout': 'Sports',
+    // add more here...
+  };
+
   List<String> drawerIcons = [
     'assets/svgImages/notification.svg',
     'assets/svgImages/academics.svg',
@@ -374,7 +394,14 @@ class _MyHomeState extends State<MyHome> {
                               title: menuTitles[index],
                               icon: drawerIcons[index],
                               ontap: () {
-                                print("Clicked on: ${menuTitles[index]}");
+                                final title = menuTitles[index];
+                                final route = menuRoutes[title];
+                                if (route != null) {
+                                  context.read<RouteProvider>().navigateTo(
+                                    route,
+                                    context,
+                                  );
+                                }
                               },
                             ),
                           );
