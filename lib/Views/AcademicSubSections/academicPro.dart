@@ -23,7 +23,7 @@ class AcademicProgramScreen extends StatefulWidget {
 }
 
 class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
-  List<String> list=['Institutes','Departments','Faculty'];
+  List<String> list = ['Institutes', 'Departments', 'Faculty'];
   //
   List<String> acadlist = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD'];
 
@@ -153,16 +153,6 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                       border: Border.all(width: 1, color: Colors.grey.shade400),
                       borderRadius: BorderRadius.circular(6),
                       color: Colors.white,
-                      // gradient: LinearGradient(
-                      //   colors: [
-                      //     Colors.yellow.shade100,
-                      //     Colors.green.shade100,
-                      //     Colors.blue.shade100,
-                      //   ],
-                      //   begin: Alignment.topLeft,
-                      //   end: Alignment.bottomRight,
-                      //   // center: Alignment.center,
-                      // ),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),

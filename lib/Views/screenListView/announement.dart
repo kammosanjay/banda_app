@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -28,20 +31,44 @@ class _PlacesState extends State<Places> {
     "assets/svgImages/policy.svg",
   ];
   List<String> allCategory = [
-  "Academic",
-  "Auditorium",
-  "Bank",
-  "Eatery",
-  "Gate",
-  "Guest House",
-  "Hostel",
-  "Hospital",
-  "Office",
-  "Other",
-  "Residential",
-  "Sports",
-  "Temple",
-];
+    "Academic",
+    "Auditorium",
+    "Bank",
+    "Eatery",
+    "Gate",
+    "Guest House",
+    "Hostel",
+    "Hospital",
+    "Office",
+    "Other",
+    "Residential",
+    "Sports",
+    "Temple",
+  ];
+  final TextEditingController searchC = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    getDepartments();
+  }
+
+  List<Map<String, dynamic>> placesList = [];
+  List<Map<String, dynamic>> serachedPlaceList = [];
+  //
+  getDepartments() async {
+    final String response = await rootBundle.loadString(
+      'assets/json/places.json',
+    );
+
+    final List<dynamic> data = jsonDecode(response);
+
+    setState(() {
+      placesList = List<Map<String, dynamic>>.from(data);
+      serachedPlaceList = placesList.toList(); // show all initially
+    });
+
+    return placesList;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,8 +163,7 @@ class _PlacesState extends State<Places> {
         ],
       ),
 
-      body:
-       Column(
+      body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.all(12.0),
@@ -148,11 +174,25 @@ class _PlacesState extends State<Places> {
                   child: CustomWidgets.customTextFeild(
                     context: context,
                     height: 10,
-
+                    controller: searchC,
                     icon: Icon(Icons.search),
                     borderRad: 6,
                     hint: "Search here...",
                     hintColor: Colors.grey.shade400,
+                    onChanges: (value) {
+                      setState(() {
+                        if (value.isEmpty) {
+                          serachedPlaceList = placesList.toList();
+                        } else {
+                          serachedPlaceList = placesList.where((place) {
+                            final name = place["name"].toString().toLowerCase();
+                            final type = place["type"].toString().toLowerCase();
+                            return name.contains(value.toLowerCase()) ||
+                                type.contains(value.toLowerCase());
+                          }).toList();
+                        }
+                      });
+                    },
                   ),
                 ),
                 SizedBox(width: 10),
@@ -186,27 +226,25 @@ class _PlacesState extends State<Places> {
           ),
           Expanded(
             child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: 20,
-              itemBuilder: (BuildContext context, int index) {
+              itemCount: serachedPlaceList.length,
+              itemBuilder: (context, index) {
+                final place = serachedPlaceList[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10.0,
+                    vertical: 5,
+                  ),
                   child: Card(
                     elevation: 0,
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(6),
+                      borderRadius: BorderRadius.circular(6),
                       side: BorderSide(width: 1, color: Colors.grey.shade400),
                     ),
                     child: ListTile(
-                      title: Text(
-                        "This is ${index + 1} data",
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.textColor(context),
-                        ),
-                      ),
+                      title: Text(place["name"]),
+                      subtitle: Text(place["type"]),
+                      trailing: Text(place["campus"]),
                     ),
                   ),
                 );

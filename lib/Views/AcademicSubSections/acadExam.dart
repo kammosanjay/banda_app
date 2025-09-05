@@ -58,6 +58,12 @@ class _DepartmentState extends State<Department> {
   List<String> searchDepart = [];
 
   @override
+  void initState() {
+    super.initState();
+    searchDepart = List.from(departmentList); // show full list initially
+  }
+
+  @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
@@ -157,6 +163,7 @@ class _DepartmentState extends State<Department> {
                 context: context,
                 controller: searchC,
                 height: 16,
+               
                 hint: 'Search',
                 borderRad: 6,
                 hintColor: Colors.grey.shade400,
@@ -164,13 +171,17 @@ class _DepartmentState extends State<Department> {
                 hintfontWeight: FontWeight.w400,
                 onChanges: (value) {
                   setState(() {
-                    searchDepart = departmentList
-                        .where(
-                          (dept) =>
-                              dept.toLowerCase().contains(value.toLowerCase()),
-                        )
-                        .toList();
-                        searchDepart.add(value);
+                    if (value.isEmpty) {
+                      searchDepart = departmentList.toList();
+                    } else {
+                      searchDepart = departmentList
+                          .where(
+                            (dept) => dept.toLowerCase().contains(
+                              value.trim().toLowerCase(),
+                            ),
+                          )
+                          .toList();
+                    }
                   });
                 },
               ),
@@ -180,7 +191,7 @@ class _DepartmentState extends State<Department> {
               // color: Colors.amber,
               height: MediaQuery.of(context).size.height * 0.8 - 50,
               child: ListView.builder(
-                itemCount: departmentList.length,
+                itemCount: searchDepart.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Card(
                     color: Colors.white,
@@ -197,7 +208,7 @@ class _DepartmentState extends State<Department> {
                         ),
                       ),
                       title: Text(
-                        departmentList[index],
+                        searchDepart[index],
 
                         style: GoogleFonts.openSans(
                           fontSize: 14,

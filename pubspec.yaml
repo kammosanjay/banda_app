@@ -107,6 +107,7 @@ flutter:
     - assets/svgImages/homescreenSvg/
     - assets/animated/
     - assets/lottie/
+    - assets/json/places.json
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
