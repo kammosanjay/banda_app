@@ -126,7 +126,7 @@ class _MyHomeState extends State<MyHome> {
     'Update Email': 'Update Email',
     'My Profile': 'profile',
     'Refresh': 'Sports',
-    'Logout': 'Sports',
+    'Logout': 'Logout',
     // add more here...
   };
 
@@ -396,7 +396,37 @@ class _MyHomeState extends State<MyHome> {
                               ontap: () {
                                 final title = menuTitles[index];
                                 final route = menuRoutes[title];
-                                if (route != null) {
+
+                                if (title == "Logout") {
+                                  // 🔥 check title instead of route
+                                  Navigator.pop(context);
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: Text("Confirm Logout"),
+                                        content: Text(
+                                          "Are you sure you want to logout?",
+                                        ),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: Text("Cancel"),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              // perform logout logic here
+                                              Navigator.pop(context);
+                                              context.read<RouteProvider>().navigateReplace('/loginpage', context);
+                                            },
+                                            child: Text("Logout"),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                } else if (route != null) {
                                   context.read<RouteProvider>().navigateTo(
                                     route,
                                     context,

@@ -243,8 +243,22 @@ class _PlacesState extends State<Places> {
                     ),
                     child: ListTile(
                       title: Text(place["name"]),
-                      subtitle: Text(place["type"]),
-                      trailing: Text(place["campus"]),
+                      subtitle: Text(
+                        place["type"],
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: AppColor.textColor(context),
+                        ),
+                      ),
+                      trailing: Text(
+                        place["campus"],
+                        style: GoogleFonts.openSans(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.textColor(context),
+                        ),
+                      ),
                     ),
                   ),
                 );
