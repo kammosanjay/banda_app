@@ -9,7 +9,8 @@ import 'package:provider/provider.dart';
 
 class OtpPage extends StatefulWidget {
   final String? arguments;
-  const OtpPage({super.key, this.arguments});
+  String? veriId;
+   OtpPage({super.key, this.arguments, this.veriId});
 
   @override
   State<OtpPage> createState() => _OtpPageState();
@@ -23,7 +24,7 @@ class _OtpPageState extends State<OtpPage> {
     print("testing==>${from}");
 
     return Scaffold(
-      // backgroundColor: Colors.grey.shade100,
+      // backgroundColor: Colors.grey.shade100, 
       // backgroundColor: Colors.white,
       resizeToAvoidBottomInset: true,
       body: Padding(

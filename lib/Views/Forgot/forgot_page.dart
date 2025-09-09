@@ -1,4 +1,5 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
+import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -145,6 +146,10 @@ class _ForgotPageState extends State<ForgotPage> {
                   height: 60,
                   buttonName: 'Submit',
                   onPressed: () {
+                    context.read<LoginProvider>().sendOtp(
+                      "+91${oldPassController.text}",
+                      context,
+                    );
                     context.read<RouteProvider>().navigateTo(
                       '/otpPage',
                       context,

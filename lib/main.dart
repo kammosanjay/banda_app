@@ -122,17 +122,14 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const MyHome(),
-        '/otpPage': (context) => const OtpPage(),
+        '/otpPage': (context) =>  OtpPage(),
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
         '/loginpage': (context) => LoginPage(),
         '/profilepage': (context) => Profilepage(),
-
         '/forgotpage': (context) => ForgotPage(),
         '/forgotpagetwo': (context) => ForgotPassReset(),
         '/signUpPage': (context) => SignupPage(),
-        '/bandaHomePage': (context) => BandaHomePage(),
-
         'Institutes': (context) => Institutes(),
         'Departments': (context) =>Department(),
         'Faculty': (context) => Faculty(),
@@ -140,7 +137,6 @@ class MyApp extends StatelessWidget {
         '/IQA': (context) => AcademicIQAScreen(),
         '/library': (context) => AcademicLibraryScreen(),
         '/acadCollaborations': (context) => AcademicCollaborationScreen(),
-        //
         'Places': (context) => Places(),
         '2024-2025 Students': (context) => Students(),
         'Id Card': (context) => Idcard(),
@@ -158,8 +154,12 @@ class MyApp extends StatelessWidget {
         'Update Phone Number': (context) => Updatephone(),
         'Update Email': (context) => UpdateEmail(),
         'profile': (context) => Profilepage(),
-
         'Library': (context) => Library(),
+        '/bandaHomePage': (context) => BandaHomePage(),
+
+
+        //
+
       },
     );
   }

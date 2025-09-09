@@ -16,7 +16,6 @@ import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-  
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -282,7 +281,7 @@ class _LoginPageState extends State<LoginPage> {
                             );
                             return;
                           }
-                          
+
                           // First-time login (no saved credentials)
                           if (!loginProvider.isLoggedIn()) {
                             loginProvider.login(

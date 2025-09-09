@@ -69,6 +69,7 @@ dependencies:
   unicons: ^3.0.0
   cached_network_image: 
   syncfusion_flutter_pdfviewer:
+  firebase_auth: 
 
   
   

@@ -257,132 +257,133 @@ class _MyHomeState extends State<MyHome> {
               backgroundColor: AppColor.primaryColor(context),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ListView(
+                child: Column(
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      width: double.infinity,
-                      height: 180, // adjust height as you want
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.surface,
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.black.withOpacity(0.1),
-                        //     blurRadius: 4,
-                        //     offset: Offset(0, 2),
-                        //   ),
-                        // ],
-                      ),
-                      child: Stack(
-                        children: [
-                          // Profile Image
-                          Positioned(
-                            left: 20,
-                            right: 20,
-                            top: 0,
-                            bottom: 50,
-                            child: CircleAvatar(
-                              radius: 40,
-                              backgroundColor: Theme.of(
-                                context,
-                              ).colorScheme.primary,
-                              child: Consumer<HomeProviders>(
-                                builder: (ctx, value, child) {
-                                  final imagePath = value.image?.path;
-                                  return imagePath != null
-                                      ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            50,
-                                          ),
-                                          child: Image.file(
-                                            File(imagePath),
-                                            fit: BoxFit.cover,
-                                            height: 80,
-                                            width: 80,
-                                          ),
-                                        )
-                                      : Icon(
-                                          Icons.person,
-                                          size: 50,
-                                          color: Colors.grey,
-                                        );
-                                },
-                              ),
-                            ),
-                          ),
-
-                          // Camera button
-                          Positioned(
-                            left: 70,
-                            right: -20,
-                            bottom: 60,
-                            child: GestureDetector(
-                              onTap: () {
-                                showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      title: const Text("Select Image"),
-                                      content: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          ListTile(
-                                            leading: const Icon(
-                                              Icons.camera_alt,
+                    Expanded(flex: 3,
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        width: double.infinity,
+                        height: 180, // adjust height as you want
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: Colors.black.withOpacity(0.1),
+                          //     blurRadius: 4,
+                          //     offset: Offset(0, 2),
+                          //   ),
+                          // ],
+                        ),
+                        child: Stack(
+                          children: [
+                            // Profile Image
+                            Positioned(
+                              left: 20,
+                              right: 20,
+                              top: 0,
+                              bottom: 50,
+                              child: CircleAvatar(
+                                radius: 40,
+                                backgroundColor: Theme.of(
+                                  context,
+                                ).colorScheme.primary,
+                                child: Consumer<HomeProviders>(
+                                  builder: (ctx, value, child) {
+                                    final imagePath = value.image?.path;
+                                    return imagePath != null
+                                        ? ClipRRect(
+                                            borderRadius: BorderRadius.circular(
+                                              50,
                                             ),
-                                            title: const Text("Gallery"),
-                                            onTap: () {
-                                              context
-                                                  .read<HomeProviders>()
-                                                  .pickImage();
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                          ListTile(
-                                            leading: const Icon(
-                                              Icons.photo_library,
+                                            child: Image.file(
+                                              File(imagePath),
+                                              fit: BoxFit.cover,
+                                              height: 80,
+                                              width: 80,
                                             ),
-                                            title: const Text("Camera"),
-                                            onTap: () {
-                                              context
-                                                  .read<HomeProviders>()
-                                                  .pickImageFromCamera();
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    );
+                                          )
+                                        : Icon(
+                                            Icons.person,
+                                            size: 50,
+                                            color: Colors.grey,
+                                          );
                                   },
-                                );
-                              },
-                              child: SvgPicture.asset(
-                                'assets/svgImages/camera.svg',
-                                height: 20,
-                                width: 20,
-                                color: AppColor.headingColor(context),
+                                ),
                               ),
                             ),
-                          ),
-
-                          // Welcome Text
-                          Positioned(
-                            left: 0,
-                            top: 120,
-                            child: Text(
-                              appLoc.welcome,
-                              style: GoogleFonts.poppins(
-                                fontSize: 15.8,
-                                fontWeight: FontWeight.w600,
-                                color: AppColor.textColor(context),
+                      
+                            // Camera button
+                            Positioned(
+                              left: 70,
+                              right: -20,
+                              bottom: 60,
+                              child: GestureDetector(
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text("Select Image"),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ListTile(
+                                              leading: const Icon(
+                                                Icons.camera_alt,
+                                              ),
+                                              title: const Text("Gallery"),
+                                              onTap: () {
+                                                context
+                                                    .read<HomeProviders>()
+                                                    .pickImage();
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                            ListTile(
+                                              leading: const Icon(
+                                                Icons.photo_library,
+                                              ),
+                                              title: const Text("Camera"),
+                                              onTap: () {
+                                                context
+                                                    .read<HomeProviders>()
+                                                    .pickImageFromCamera();
+                                                Navigator.pop(context);
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: SvgPicture.asset(
+                                  'assets/svgImages/camera.svg',
+                                  height: 20,
+                                  width: 20,
+                                  color: AppColor.headingColor(context),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                      
+                            // Welcome Text
+                            Positioned(
+                              left: 0,
+                              top: 120,
+                              child: Text(
+                                appLoc.welcome,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 15.8,
+                                  fontWeight: FontWeight.w600,
+                                  color: AppColor.textColor(context),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    Container(
-                      height: 600,
+                    Expanded(flex: 8,
                       child: ListView.builder(
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(8),
@@ -396,7 +397,7 @@ class _MyHomeState extends State<MyHome> {
                               ontap: () {
                                 final title = menuTitles[index];
                                 final route = menuRoutes[title];
-
+                      
                                 if (title == "Logout") {
                                   // 🔥 check title instead of route
                                   Navigator.pop(context);

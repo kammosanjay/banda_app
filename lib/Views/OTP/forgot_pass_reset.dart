@@ -104,6 +104,7 @@ class _ForgotPassResetState extends State<ForgotPassReset> {
                 CustomWidgets.customTextFeild(
                   context: context,
                   label: 'Confirm Password',
+                  hintfontSize: 14,
                   suffIcons: InkWell(
                     onTap: () {
                       setState(() {
@@ -125,7 +126,7 @@ class _ForgotPassResetState extends State<ForgotPassReset> {
 
                   headingcolor: AppColor.textColor(context),
                   hint: 'Confirm Password',
-                  hintColor: AppColor.textColor(context),
+                  hintColor: Theme.of(context).colorScheme.secondary,
                   controller: newPassController,
                   isObstructed: isShown,
                   icon: Icon(Icons.lock),
