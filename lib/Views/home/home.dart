@@ -369,7 +369,7 @@ class _MyHomeState extends State<MyHome> {
                             // Welcome Text
                             Positioned(
                               left: 0,
-                              top: 120,
+                              top: 130,
                               child: Text(
                                 appLoc.welcome,
                                 style: GoogleFonts.poppins(
@@ -431,6 +431,8 @@ class _MyHomeState extends State<MyHome> {
                                   context.read<RouteProvider>().navigateTo(
                                     route,
                                     context,
+                                    arguments: 'fromDrawer'
+                                  
                                   );
                                 }
                               },

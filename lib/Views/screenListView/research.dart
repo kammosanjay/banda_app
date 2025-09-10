@@ -44,7 +44,9 @@ class _PublicationsState extends State<Publications> {
     Icons.business, // Central facilities
   ];
 
-  String? selectedValue;
+  String? selectedCategory;
+  String? selectedHouse;
+  String? selectedNames;
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -200,12 +202,12 @@ class _PublicationsState extends State<Publications> {
                       color: Colors.black,
                     ),
 
-                    selectedItem: selectedValue?.isEmpty ?? true
+                    selectedItem: selectedCategory?.isEmpty ?? true
                         ? null
-                        : selectedValue, // can be null initially
+                        : selectedCategory, // can be null initially
                     onChanged: (value) {
                       setState(() {
-                        selectedValue = value; // update state when changed
+                        selectedCategory = value; // update state when changed
                       });
                     },
                   ),
@@ -225,12 +227,12 @@ class _PublicationsState extends State<Publications> {
                       color: Colors.black,
                     ),
 
-                    selectedItem: selectedValue?.isEmpty ?? true
+                    selectedItem: selectedHouse?.isEmpty ?? true
                         ? null
-                        : selectedValue, // can be null initially
+                        : selectedHouse, // can be null initially
                     onChanged: (value) {
                       setState(() {
-                        selectedValue = value; // update state when changed
+                        selectedHouse = value; // update state when changed
                       });
                     },
                   ),
@@ -250,12 +252,12 @@ class _PublicationsState extends State<Publications> {
                       color: Colors.black,
                     ),
 
-                    selectedItem: selectedValue?.isEmpty ?? true
+                    selectedItem: selectedNames?.isEmpty ?? true
                         ? null
-                        : selectedValue, // can be null initially
+                        : selectedNames, // can be null initially
                     onChanged: (value) {
                       setState(() {
-                        selectedValue = value; // update state when changed
+                        selectedNames = value; // update state when changed
                       });
                     },
                   ),
