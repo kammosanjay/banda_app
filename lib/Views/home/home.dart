@@ -107,14 +107,13 @@ class _MyHomeState extends State<MyHome> {
     "Emergency Contact",
     "Update Contact Number",
     "Update Email",
-    "My Profile",
+    // "My Profile",
     "Refresh",
     "Logout",
   ];
   final Map<String, String> menuRoutes = {
     'Notification': 'Id Card',
     'Academics': 'Academic',
-
     'Grievance': 'Grievence',
     'Holiday Calendar': 'Holiday Calendar',
     'News': 'News',
@@ -124,7 +123,7 @@ class _MyHomeState extends State<MyHome> {
     'Emergency Contact': 'Emergency Contact',
     'Update Contact Number': 'Update Phone Number',
     'Update Email': 'Update Email',
-    'My Profile': 'profile',
+    // 'My Profile': 'profile',
     'Refresh': 'Sports',
     'Logout': 'Logout',
     // add more here...
@@ -142,7 +141,7 @@ class _MyHomeState extends State<MyHome> {
     'assets/svgImages/emerCont.svg',
     'assets/svgImages/updateCont.svg',
     'assets/svgImages/updateEmail.svg',
-    'assets/svgImages/myprofile.svg',
+    // 'assets/svgImages/myprofile.svg',
     'assets/svgImages/refresh.svg',
     'assets/svgImages/LogOut.svg',
   ];
@@ -259,7 +258,8 @@ class _MyHomeState extends State<MyHome> {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Expanded(flex: 3,
+                    Expanded(
+                      flex: 3,
                       child: Container(
                         padding: const EdgeInsets.all(16),
                         width: double.infinity,
@@ -298,8 +298,8 @@ class _MyHomeState extends State<MyHome> {
                                             child: Image.file(
                                               File(imagePath),
                                               fit: BoxFit.cover,
-                                              height: 80,
-                                              width: 80,
+                                              height: 110,
+                                              width: 110,
                                             ),
                                           )
                                         : Icon(
@@ -311,7 +311,7 @@ class _MyHomeState extends State<MyHome> {
                                 ),
                               ),
                             ),
-                      
+
                             // Camera button
                             Positioned(
                               left: 70,
@@ -365,7 +365,7 @@ class _MyHomeState extends State<MyHome> {
                                 ),
                               ),
                             ),
-                      
+
                             // Welcome Text
                             Positioned(
                               left: 0,
@@ -383,7 +383,8 @@ class _MyHomeState extends State<MyHome> {
                         ),
                       ),
                     ),
-                    Expanded(flex: 8,
+                    Expanded(
+                      flex: 8,
                       child: ListView.builder(
                         shrinkWrap: true,
                         padding: const EdgeInsets.all(8),
@@ -397,7 +398,7 @@ class _MyHomeState extends State<MyHome> {
                               ontap: () {
                                 final title = menuTitles[index];
                                 final route = menuRoutes[title];
-                      
+
                                 if (title == "Logout") {
                                   // 🔥 check title instead of route
                                   Navigator.pop(context);
@@ -419,7 +420,12 @@ class _MyHomeState extends State<MyHome> {
                                             onPressed: () {
                                               // perform logout logic here
                                               Navigator.pop(context);
-                                              context.read<RouteProvider>().navigateReplace('/loginpage', context);
+                                              context
+                                                  .read<RouteProvider>()
+                                                  .navigateReplace(
+                                                    '/loginpage',
+                                                    context,
+                                                  );
                                             },
                                             child: Text("Logout"),
                                           ),
@@ -431,8 +437,6 @@ class _MyHomeState extends State<MyHome> {
                                   context.read<RouteProvider>().navigateTo(
                                     route,
                                     context,
-                                    arguments: 'fromDrawer'
-                                  
                                   );
                                 }
                               },

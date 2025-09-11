@@ -14,16 +14,27 @@ class NEPCourses extends StatefulWidget {
 }
 
 class _NEPCoursesState extends State<NEPCourses> {
+  double? select = 10.0;
+   final int rows = 5;
+
+  pattern(int num) {
+    List<Widget> widgets = [];
+    for (int i = 0; i < num; i++) {
+      widgets.add(Container(child: Text('$i')));
+    }
+    return widgets;
+  }
+
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    return Scaffold( 
+    return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(
-              appLoc.welcome,
+              ModalRoute.of(context)!.settings.arguments.toString(),
               // style: GoogleFonts.poppins(
               //   textStyle: Theme.of(context).textTheme.bodyLarge,
 
@@ -31,41 +42,7 @@ class _NEPCoursesState extends State<NEPCourses> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(
@@ -138,8 +115,18 @@ class _NEPCoursesState extends State<NEPCourses> {
           ),
         ],
       ),
-    
-    
+
+      body:Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(rows, (i) {
+            return Text(
+              List.filled(i+1, "*").join(" "),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            );
+          }),
+        ),
+      ),
     
     );
   }

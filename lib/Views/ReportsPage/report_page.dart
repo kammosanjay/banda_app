@@ -34,7 +34,6 @@ class _LibraryState extends State<Library> {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: Color(0xFFe7f3ff),
-      appBar: AppBar(),
       body: ListView(
         children: [
           GFCarousel(
@@ -43,7 +42,7 @@ class _LibraryState extends State<Library> {
                   (e) => CachedNetworkImage(
                     imageUrl: e,
                     width: double.infinity,
-                    
+
                     imageBuilder: (context, imageProvider) => ClipRRect(
                       borderRadius: BorderRadius.circular(6),
                       child: Padding(

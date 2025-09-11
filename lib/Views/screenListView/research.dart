@@ -56,7 +56,7 @@ class _PublicationsState extends State<Publications> {
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(
-              appLoc.welcome,
+              ModalRoute.of(context)!.settings.arguments.toString(),
               // style: GoogleFonts.poppins(
               //   textStyle: Theme.of(context).textTheme.bodyLarge,
 
@@ -64,41 +64,7 @@ class _PublicationsState extends State<Publications> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(

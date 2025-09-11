@@ -25,7 +25,7 @@ class Idcard extends StatelessWidget {
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(
-              appLoc.welcome,
+              ModalRoute.of(context)!.settings.arguments.toString(),
               // style: GoogleFonts.poppins(
               //   textStyle: Theme.of(context).textTheme.bodyLarge,
 
@@ -128,10 +128,10 @@ class Idcard extends StatelessWidget {
                   child: Opacity(
                     opacity: 0.06,
                     child: Image.asset(
-                            'assets/images/bandabg.png',
-                            height: 300,
-                            fit: BoxFit.contain,
-                          ),
+                      'assets/images/bandabg.png',
+                      height: 300,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 );
               },

@@ -42,7 +42,7 @@ class _BuatFormsState extends State<BuatForms> {
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(
-              appLoc.welcome,
+              ModalRoute.of(context)!.settings.arguments.toString(),
               // style: GoogleFonts.poppins(
               //   textStyle: Theme.of(context).textTheme.bodyLarge,
 

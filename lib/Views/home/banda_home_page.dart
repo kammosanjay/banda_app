@@ -27,7 +27,6 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 class BandaHomePage extends StatefulWidget {
   @override
   _BandaHomePageState createState() => _BandaHomePageState();
@@ -41,7 +40,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     'Id Card',
     '2024-2025 Students',
     'Academic',
-    'Library',
+    // 'Library',
     'Places',
     'News',
     'Publications',
@@ -83,7 +82,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     'assets/svgImages/homescreenSvg/1.svg',
     'assets/svgImages/homescreenSvg/1.svg',
     'assets/svgImages/homescreenSvg/3.svg',
-    'assets/svgImages/homescreenSvg/4.svg',
+    // 'assets/svgImages/homescreenSvg/4.svg',
     'assets/svgImages/homescreenSvg/5.svg',
     'assets/svgImages/homescreenSvg/6.svg',
     'assets/svgImages/homescreenSvg/7.svg',
@@ -126,7 +125,11 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     selectedIndex = index;
                   });
                   var route = drawerMenuItems[index];
-                  context.read<RouteProvider>().navigateTo(route, context);
+                  context.read<RouteProvider>().navigateTo(
+                    route,
+                    context,
+                    arguments: route,
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
