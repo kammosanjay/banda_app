@@ -169,35 +169,38 @@ class Idcard extends StatelessWidget {
                 const SizedBox(height: 12),
 
                 // Photo + QR Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: Container(
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Container(
+                          width: 150,
+                          height: 150,
+                          color: Colors.grey.shade50,
+                          child: imagepicked != null
+                              ? Image.file(File(imagepicked), fit: BoxFit.cover)
+                              : Image.asset(
+                                  'assets/images/bandabg.png',
+                                  height: 300,
+                                  fit: BoxFit.contain,
+                                ),
+                        ),
+                      ),
+                      Container(
                         width: 150,
                         height: 150,
-                        color: Colors.grey.shade50,
-                        child: imagepicked != null
-                            ? Image.file(File(imagepicked))
-                            : Image.asset(
-                                'assets/images/bandabg.png',
-                                height: 300,
-                                fit: BoxFit.contain,
-                              ),
+                        color: Colors.grey.shade50, // Replace with QR image
+                        child: Icon(
+                          Icons.qr_code,
+                          size: 150,
+                          color: Colors.grey.shade500,
+                        ),
                       ),
-                    ),
-                    Container(
-                      width: 150,
-                      height: 150,
-                      color: Colors.grey.shade50, // Replace with QR image
-                      child: Icon(
-                        Icons.qr_code,
-                        size: 150,
-                        color: Colors.grey.shade500,
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
 
                 const SizedBox(height: 5),

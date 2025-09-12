@@ -8,7 +8,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 class UpdateEmail extends StatefulWidget {
-  const UpdateEmail({super.key});
+  String? title;
+  UpdateEmail({super.key, this.title});
 
   @override
   State<UpdateEmail> createState() => _UpdateEmailState();
@@ -23,13 +24,15 @@ class _UpdateEmailState extends State<UpdateEmail> {
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
-            return Text(
-              ModalRoute.of(context)!.settings.arguments.toString(),
-              // style: GoogleFonts.poppins(
-              //   textStyle: Theme.of(context).textTheme.bodyLarge,
+            return widget.title!.isNotEmpty
+                ? Text(widget.title!)
+                : Text(
+                    ModalRoute.of(context)!.settings.arguments.toString(),
+                    // style: GoogleFonts.poppins(
+                    //   textStyle: Theme.of(context).textTheme.bodyLarge,
 
-              // ),
-            );
+                    // ),
+                  );
           },
         ),
         // leading: Builder(

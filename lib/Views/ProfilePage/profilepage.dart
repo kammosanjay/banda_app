@@ -5,13 +5,15 @@ import 'package:baanda_mobile_app/Views/home/home_providers.dart';
 import 'package:baanda_mobile_app/Views/screenListView/update_email.dart';
 import 'package:baanda_mobile_app/Views/screenListView/updatephone.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:provider/provider.dart';
 
 class Profilepage extends StatefulWidget {
-  
-   Profilepage({super.key,});
+  Profilepage({super.key});
 
   @override
   State<Profilepage> createState() => _ProfilepageState();
@@ -53,6 +55,11 @@ class _ProfilepageState extends State<Profilepage> {
     "Academic Year": Icons.calendar_view_month,
     "Current Semester": Icons.menu_book,
   };
+  List<String> imageList = [
+    "https://buat.edu.in/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-07-at-2.49.11-PM.jpeg",
+    "https://buat.edu.in/wp-content/uploads/2023/02/DSC_7909-min-scaled.jpg",
+    "https://buat.edu.in/wp-content/uploads/2025/07/DSC_7891.jpg",
+  ];
 
   /// Example user data
   userProfile(Map<String, dynamic> userData) {
@@ -88,66 +95,77 @@ class _ProfilepageState extends State<Profilepage> {
     );
   }
 
+  String? imagePath;
   @override
   Widget build(BuildContext context) {
-   
-
-
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
-      
-        
+
       body: Center(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.center,
           // padding: EdgeInsets.zero,
           children: [
-            Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(10),
-                  height: 200,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.18,
+              color: Colors.grey.shade100,
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
 
-                  child: Row(
-                    children: [
-                      Consumer(
-                        builder: (ctx, value, child) {
-                          final imagePath = ctx
-                              .watch<HomeProviders>()
-                              .image
-                              ?.path;
-                          return imagePath != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(80),
-                                  child: Image.file(
-                                    File(imagePath),
-                                    fit: BoxFit.cover,
-                                    height: 140,
-                                    width: 140,
-                                  ),
-                                )
-                              : CircleAvatar(
-                                  backgroundColor: Colors.grey.shade200,
-                                  radius: 80,
-                                  child: Icon(
-                                    Icons.person,
-                                    size: 50,
-                                    color: Colors.grey,
-                                  ),
-                                );
-                        },
-                      ),
-                      SizedBox(width: 10),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: Row(
+                      spacing: 30,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Positioned(
+                          left: MediaQuery.of(context).size.width - 635,
+                          // left: -240,
+                          right: 0,
+                          top: MediaQuery.of(context).size.height * 0.06,
+                          child: Consumer<HomeProviders>(
+                            builder: (ctx, value, child) {
+                              imagePath = ctx
+                                  .watch<HomeProviders>()
+                                  .image
+                                  ?.path;
+                              return imagePath != null
+                                  ? CircleAvatar(
+                                      radius: 50,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadiusGeometry.circular(100),
+                                        child: Image.file(
+                                          File(imagePath!),
+                                          height: 100,
+                                          width: 100,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    )
+                                  : Image.asset(
+                                      'assets/svgImages/proImg.png',
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.contain,
+                                    );
+                            },
+                          ),
+                        ),
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -166,45 +184,29 @@ class _ProfilepageState extends State<Profilepage> {
                                 color: Colors.black87,
                               ),
                             ),
-                            Text(
-                              usersInfo['Phone'],
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                              ),
-                            ),
-                            Text(
-                              usersInfo['Address'],
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.black87,
-                              ),
-                            ),
                           ],
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-
-                Positioned(
-                  top: 150,
-                  left: 0,
-                  right: 100,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.read<HomeProviders>().pickImage();
-                    },
-                    child: Icon(
-                      Icons.camera_alt_outlined,
-                      size: 30,
-                      color: Colors.grey.shade700,
+                      ],
                     ),
                   ),
-                ),
-              ],
+
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.14,
+                    left: MediaQuery.of(context).size.width - 470,
+                    right: 100,
+                    child: GestureDetector(
+                      onTap: () {
+                        context.read<HomeProviders>().pickImage();
+                      },
+                      child: Icon(
+                        Icons.camera_alt_outlined,
+                        size: 30,
+                        color: Colors.grey.shade700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
             SizedBox(height: 20),
@@ -231,10 +233,11 @@ class _ProfilepageState extends State<Profilepage> {
                       fontWeight: FontWeight.w600,
                       btnColor: Colors.amber,
                       onPressed: () {
-                         Navigator.push(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => Updatephone(),
+                            builder: (context) =>
+                                Updatephone(title: 'Update Phone Number'),
                           ),
                         );
                       },
@@ -251,7 +254,8 @@ class _ProfilepageState extends State<Profilepage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => UpdateEmail(),
+                            builder: (context) =>
+                                UpdateEmail(title: 'Update Email'),
                           ),
                         );
                       },

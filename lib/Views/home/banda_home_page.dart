@@ -113,7 +113,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
-              crossAxisCount: 2,
+              crossAxisCount: 3,
               mainAxisExtent: 128,
               // childAspectRatio: 16/9,
             ),

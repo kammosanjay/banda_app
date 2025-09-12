@@ -266,13 +266,6 @@ class _MyHomeState extends State<MyHome> {
                         height: 180, // adjust height as you want
                         decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.surface,
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Colors.black.withOpacity(0.1),
-                          //     blurRadius: 4,
-                          //     offset: Offset(0, 2),
-                          //   ),
-                          // ],
                         ),
                         child: Stack(
                           children: [
@@ -369,7 +362,9 @@ class _MyHomeState extends State<MyHome> {
                             // Welcome Text
                             Positioned(
                               left: 0,
-                              top: 130,
+                              top:
+                                  MediaQuery.of(context).size.height *
+                                  0.16, // 20% of screen height
                               child: Text(
                                 appLoc.welcome,
                                 style: GoogleFonts.poppins(
@@ -437,6 +432,7 @@ class _MyHomeState extends State<MyHome> {
                                   context.read<RouteProvider>().navigateTo(
                                     route,
                                     context,
+                                    arguments: route,
                                   );
                                 }
                               },

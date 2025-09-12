@@ -5,10 +5,12 @@ import 'package:baanda_mobile_app/constant/constant_widget.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class Updatephone extends StatefulWidget {
-  const Updatephone({super.key});
+  String? title;
+  Updatephone({super.key, this.title});
 
   @override
   State<Updatephone> createState() => _UpdatephoneState();
@@ -18,56 +20,25 @@ class _UpdatephoneState extends State<Updatephone> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+    print(widget.title!);
 
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
-            return Text(
-              ModalRoute.of(context)!.settings.arguments.toString(),
-              // style: GoogleFonts.poppins(
-              //   textStyle: Theme.of(context).textTheme.bodyLarge,
+            return (widget.title != null && widget.title!.isNotEmpty)
+                ? Text(widget.title!)
+                : Text(
+                    ModalRoute.of(context)!.settings.arguments.toString(),
 
-              // ),
-            );
+                    style: GoogleFonts.poppins(
+                      textStyle: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(

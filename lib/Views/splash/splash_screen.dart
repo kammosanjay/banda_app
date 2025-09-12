@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
         height: double.infinity,
         child: Stack(
           children: [
-            Image.asset('assets/images/splash_wheat.png', fit: BoxFit.cover),
+            Image.asset('assets/images/splash_wheat.png', fit: BoxFit.contain),
             Center(
               child: Image.asset(
                 'assets/images/bandabg.png',
