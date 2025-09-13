@@ -1,29 +1,9 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
-import 'package:baanda_mobile_app/Views/AcademicSubSections/academicPro.dart';
-import 'package:baanda_mobile_app/Views/ReportsPage/report_page.dart';
-import 'package:baanda_mobile_app/Views/language/language.dart';
-import 'package:baanda_mobile_app/Views/screenListView/aboutHEI.dart';
-import 'package:baanda_mobile_app/Views/screenListView/academic.dart';
-import 'package:baanda_mobile_app/Views/screenListView/administration.dart';
-import 'package:baanda_mobile_app/Views/screenListView/admissionFee.dart';
-import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
-import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
-import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
-import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
-import 'package:baanda_mobile_app/Views/screenListView/grievence.dart';
-import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
 
-import 'package:baanda_mobile_app/Views/screenListView/information.dart';
-import 'package:baanda_mobile_app/Views/screenListView/research.dart';
-import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
-import 'package:baanda_mobile_app/Views/screenListView/update_email.dart';
-import 'package:baanda_mobile_app/Views/screenListView/updatephone.dart';
-import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
-import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:getwidget/components/carousel/gf_carousel.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -75,7 +55,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
   //   UpdateEmail(),
   // ];
 
-  final ScrollController _scrollController = ScrollController();
+
 
   final List<String> imageList = [
     'assets/svgImages/homescreenSvg/0.svg',

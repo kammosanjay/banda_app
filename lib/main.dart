@@ -23,6 +23,7 @@ import 'package:baanda_mobile_app/Views/screenListView/admissionFee.dart';
 import 'package:baanda_mobile_app/Views/screenListView/alumni.dart';
 import 'package:baanda_mobile_app/Views/screenListView/announement.dart';
 import 'package:baanda_mobile_app/Views/screenListView/emergency.dart';
+import 'package:baanda_mobile_app/Views/screenListView/emergency_contact_scree.dart';
 import 'package:baanda_mobile_app/Views/screenListView/gallery.dart';
 import 'package:baanda_mobile_app/Views/screenListView/grievence.dart';
 import 'package:baanda_mobile_app/Views/screenListView/idcard.dart';
@@ -122,7 +123,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const SplashScreen(),
         '/home': (context) => const MyHome(),
-        '/otpPage': (context) =>  OtpPage(),
+        '/otpPage': (context) => OtpPage(),
         '/task': (context) => TaskPage(),
         '/CreateTaskList': (context) => CreateTaskList(),
         '/loginpage': (context) => LoginPage(),
@@ -131,7 +132,7 @@ class MyApp extends StatelessWidget {
         '/forgotpagetwo': (context) => ForgotPassReset(),
         '/signUpPage': (context) => SignupPage(),
         'Institutes': (context) => Institutes(),
-        'Departments': (context) =>Department(),
+        'Departments': (context) => Department(),
         'Faculty': (context) => Faculty(),
         '/UGC': (context) => AcademicUGCScreen(),
         '/IQA': (context) => AcademicIQAScreen(),
@@ -149,17 +150,13 @@ class MyApp extends StatelessWidget {
         'Holiday Calendar': (context) => HolidayCalendar(),
         'NEP courses': (context) => NEPCourses(),
         'Faculty Search': (context) => FacultySearch(),
-        'Emergency Contact': (context) => Updatephone(),
+        'Emergency Contact': (context) => EmergencyContact(),
         'Grievence': (context) => Grievence(),
         'Update Phone Number': (context) => Updatephone(),
         'Update Email': (context) => UpdateEmail(),
         'profile': (context) => Profilepage(),
         'Library': (context) => Library(),
         '/bandaHomePage': (context) => BandaHomePage(),
-
-
-        //
-
       },
     );
   }

@@ -20,7 +20,7 @@ class _UpdatephoneState extends State<Updatephone> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
-    print(widget.title!);
+    debugPrint(widget.title);
 
     return Scaffold(
       appBar: AppBar(
