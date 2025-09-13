@@ -447,50 +447,11 @@ class _MyHomeState extends State<MyHome> {
             );
           },
         ),
-        //  DrawerButtonIcon(
-        // elevation: 5,
-        // child: ListView(
-        //   children: [
-        //     DrawerHeader(
-        //       child: Text(appLoc.welcome),
-        //       decoration: BoxDecoration(color: AppColor.primaryColor),
-        //     ),
-        //     ListTile(
-        //       title: Text("appLoc.changeTheme"),
-        //       onTap: () {
-        //         // context.read<ThemeProvider>().toggleTheme();
-        //         Navigator.pop(context);
-        //       },
-        //     ),
-        //     ListTile(
-        //       title: Text("appLoc.changeLanguage"),
-        //       onTap: () {
-        //         // This will be handled by the dropdown in the app bar
-        //         Navigator.pop(context);
-        //       },
-        //     ),
-        //   ],
-        // ),
-        // ),
       ),
 
       appBar: PreferredSize(
         preferredSize: Size.square(50),
         child: AppBar(
-          // flexibleSpace: Container(s
-          //   decoration: BoxDecoration(
-          //     gradient: LinearGradient(
-          //       colors: [
-          //         Colors.yellow.shade100,
-          //         Colors.green.shade100,
-          //         Colors.blue.shade100,
-          //       ],
-          //       begin: Alignment.topLeft,
-          //       end: Alignment.bottomRight,
-          //       // center: Alignment.center,
-          //     ),
-          //   ),
-          // ),
           // backgroundColor:Colors.grey.shade100,
           title: Consumer<ThemeProvider>(
             builder: (context, themeProvider, child) {
@@ -509,30 +470,34 @@ class _MyHomeState extends State<MyHome> {
                 onTap: () {
                   Scaffold.of(context).openDrawer();
                 },
-                child: Container(
-                  margin: const EdgeInsets.only(top: 10),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10.0),
+                  child: Container(
+                    // decoration: BoxDecoration(border:BoxBorder.all(color: Colors.grey)),
+                    margin: const EdgeInsets.only(top: 10),
 
-                  child: GFCarousel(
-                    autoPlay: true,
+                    child: GFCarousel(
+                      autoPlay: true,
 
-                    autoPlayInterval: Duration(seconds: 2),
-                    // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-                    items: imageList.map((url) {
-                      return ClipRRect(
-                        child: SvgPicture.asset(
-                          url,
-                          fit: BoxFit.contain,
-                          height: 20,
-                          width: 20,
-                          color: AppColor.headingColor(context),
-                        ),
-                      );
-                    }).toList(),
-                    onPageChanged: (index) {
-                      // setState(() {
-                      //   index;
-                      // });
-                    },
+                      autoPlayInterval: Duration(seconds: 2),
+                      // autoPlayAnimationDuration: Duration(milliseconds: 1600),
+                      items: imageList.map((url) {
+                        return ClipRRect(
+                          child: SvgPicture.asset(
+                            url,
+                            fit: BoxFit.contain,
+                            height: 20,
+                            width: 20,
+                            color: AppColor.headingColor(context),
+                          ),
+                        );
+                      }).toList(),
+                      onPageChanged: (index) {
+                        // setState(() {
+                        //   index;
+                        // });
+                      },
+                    ),
                   ),
                 ),
               );

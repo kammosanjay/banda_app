@@ -148,12 +148,12 @@ class _TodoListPageState extends State<TodoListPage> {
                           hint: 'Add a new task',
                           fillcolor:
                               Theme.of(context).brightness == Brightness.dark
-                              ? Color(0xFFeffdff)
-                              : Color(0xFFeffdff),
+                              ? Colors.red
+                              : Colors.white,
                           hintColor:
                               Theme.of(context).brightness == Brightness.dark
-                              ? Color(0xFFeffdff)
-                              : Color(0xFFeffdff),
+                              ? Colors.black
+                              : Colors.black,
                           onTap: () {
                             FocusScope.of(context).unfocus();
                           },
@@ -294,330 +294,334 @@ class _TodoListPageState extends State<TodoListPage> {
       // onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: Color(0xFFe7f3ff),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // bottomSheet(context);
-            showBottomSheet(context);
-          },
-          child: Icon(Icons.add),
-        ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: () {
+        //     // bottomSheet(context);
+        //     showBottomSheet(context);
+        //   },
+        //   child: Icon(Icons.add),
+        // ),
 
-        body: Column(
-          children: [
-            Consumer<TodoProvider>(
-              builder: (context, todoProvider, child) {
-                return Expanded(
-                  child: (todoProvider.tasks.isEmpty)
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Lottie.asset(
-                                'assets/lottie/noTask.json',
-                                height: 200,
-                                width: 200,
-                              ),
-                              Text(
-                                "No Task is added yet.",
-                                style: GoogleFonts.poppins(
-                                  fontSize: 14,
-                                  color: AppColor.textColor(context),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: todoProvider.tasks.length,
+        body: 
+        Container(color: Colors.grey.shade100,)
+        // Column(
+        //   children: [
+        //     Consumer<TodoProvider>(
+        //       builder: (context, todoProvider, child) {
+        //         return Expanded(
+        //           child: (todoProvider.tasks.isEmpty)
+        //               ? Center(
+        //                   child: Column(
+        //                     mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       Lottie.asset(
+        //                         'assets/lottie/noTask.json',
+        //                         height: 200,
+        //                         width: 200,
+        //                       ),
+        //                       Text(
+        //                         "No Task is added yet.",
+        //                         style: GoogleFonts.poppins(
+        //                           fontSize: 14,
+        //                           color: AppColor.textColor(context),
+        //                         ),
+        //                       ),
+        //                     ],
+        //                   ),
+        //                 )
+        //               : ListView.builder(
+        //                   itemCount: todoProvider.tasks.length,
 
-                          itemBuilder: (context, index) {
-                            final task = todoProvider.tasks[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 5.0),
-                              child: Column(
-                                spacing: 10,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(4),
-                                    margin: EdgeInsets.symmetric(
-                                      horizontal: 20,
-                                    ),
-                                    // elevation: 10,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(5),
-                                      ),
-                                      color: task.priority == "Low"
-                                          ? Colors.amber.shade50
-                                          : task.priority == "Medium"
-                                          ? Colors.green.shade50
-                                          : Colors.red.shade50,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey,
-                                          blurRadius: 10,
-                                          offset: Offset(3, 3),
-                                        ),
-                                      ],
-                                    ),
+        //                   itemBuilder: (context, index) {
+        //                     final task = todoProvider.tasks[index];
+        //                     return Padding(
+        //                       padding: const EdgeInsets.only(top: 5.0),
+        //                       child: Column(
+        //                         spacing: 10,
+        //                         crossAxisAlignment: CrossAxisAlignment.center,
+        //                         children: [
+        //                           Container(
+        //                             padding: EdgeInsets.all(4),
+        //                             margin: EdgeInsets.symmetric(
+        //                               horizontal: 20,
+        //                             ),
+        //                             // elevation: 10,
+        //                             decoration: BoxDecoration(
+        //                               borderRadius: BorderRadius.all(
+        //                                 Radius.circular(5),
+        //                               ),
+        //                               color: task.priority == "Low"
+        //                                   ? Colors.amber.shade50
+        //                                   : task.priority == "Medium"
+        //                                   ? Colors.green.shade50
+        //                                   : Colors.red.shade50,
+        //                               boxShadow: [
+        //                                 BoxShadow(
+        //                                   color: Colors.grey,
+        //                                   blurRadius: 10,
+        //                                   offset: Offset(3, 3),
+        //                                 ),
+        //                               ],
+        //                             ),
 
-                                    child: SizedBox(
-                                      height: 80,
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        spacing: 0,
-                                        children: [
-                                          Expanded(
-                                            child: ListTile(
-                                              contentPadding: EdgeInsets.all(0),
-                                              leading: Checkbox(
-                                                value: task.ischecked,
-                                                onChanged: (value) {
-                                                  todoProvider.toggleTask(
-                                                    index,
-                                                  );
-                                                },
-                                              ),
-                                              title: SizedBox(
-                                                height: 70,
-                                                child: ListView(
-                                                  children: [
-                                                    Text(
-                                                      task.title,
-                                                      style: GoogleFonts.poppins(
-                                                        decoration:
-                                                            task.ischecked
-                                                            ? TextDecoration
-                                                                  .lineThrough
-                                                            : TextDecoration
-                                                                  .none,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                        textStyle: Theme.of(
-                                                          context,
-                                                        ).textTheme.bodyLarge,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Column(
-                                            children: [
-                                              Expanded(
-                                                child: IconButton(
-                                                  icon: const Icon(
-                                                    UniconsLine.edit,
-                                                    size: 20,
-                                                  ),
-                                                  onPressed: () {
-                                                    print(
-                                                      "helo==>" + task.title,
-                                                    );
-                                                    showBottomSheet(
-                                                      context,
-                                                      taskToEdit: TaskModel(
-                                                        title: task.title,
-                                                        date: task.date,
-                                                        priority: task.priority,
-                                                        index: task.index,
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              Expanded(
-                                                child: IconButton(
-                                                  icon: const Icon(
-                                                    UniconsLine.trash,
+        //                             child: SizedBox(
+        //                               height: 80,
+        //                               child: Row(
+        //                                 crossAxisAlignment:
+        //                                     CrossAxisAlignment.start,
+        //                                 spacing: 0,
+        //                                 children: [
+        //                                   Expanded(
+        //                                     child: ListTile(
+        //                                       contentPadding: EdgeInsets.all(0),
+        //                                       leading: Checkbox(
+        //                                         value: task.ischecked,
+        //                                         onChanged: (value) {
+        //                                           todoProvider.toggleTask(
+        //                                             index,
+        //                                           );
+        //                                         },
+        //                                       ),
+        //                                       title: SizedBox(
+        //                                         height: 70,
+        //                                         child: ListView(
+        //                                           children: [
+        //                                             Text(
+        //                                               task.title,
+        //                                               style: GoogleFonts.poppins(
+        //                                                 decoration:
+        //                                                     task.ischecked
+        //                                                     ? TextDecoration
+        //                                                           .lineThrough
+        //                                                     : TextDecoration
+        //                                                           .none,
+        //                                                 fontSize: 14,
+        //                                                 fontWeight:
+        //                                                     FontWeight.normal,
+        //                                                 textStyle: Theme.of(
+        //                                                   context,
+        //                                                 ).textTheme.bodyLarge,
+        //                                               ),
+        //                                             ),
+        //                                           ],
+        //                                         ),
+        //                                       ),
+        //                                     ),
+        //                                   ),
+        //                                   Column(
+        //                                     children: [
+        //                                       Expanded(
+        //                                         child: IconButton(
+        //                                           icon: const Icon(
+        //                                             UniconsLine.edit,
+        //                                             size: 20,
+        //                                           ),
+        //                                           onPressed: () {
+        //                                             print(
+        //                                               "helo==>" + task.title,
+        //                                             );
+        //                                             showBottomSheet(
+        //                                               context,
+        //                                               taskToEdit: TaskModel(
+        //                                                 title: task.title,
+        //                                                 date: task.date,
+        //                                                 priority: task.priority,
+        //                                                 index: task.index,
+        //                                               ),
+        //                                             );
+        //                                           },
+        //                                         ),
+        //                                       ),
+        //                                       Expanded(
+        //                                         child: IconButton(
+        //                                           icon: const Icon(
+        //                                             UniconsLine.trash,
 
-                                                    color: Color.fromARGB(
-                                                      255,
-                                                      240,
-                                                      169,
-                                                      164,
-                                                    ),
-                                                  ),
-                                                  onPressed: () {
-                                                    showDialog(
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return AlertDialog(
-                                                          title: Text(
-                                                            "Are You Sure ? You want to delete this task.",
-                                                            style: GoogleFonts.poppins(
-                                                              fontSize: 14,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal,
-                                                              color:
-                                                                  AppColor.headingColor(
-                                                                    context,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                          actions: [
-                                                            Row(
-                                                              spacing: 10,
-                                                              children: [
-                                                                Expanded(
-                                                                  child: Container(
-                                                                    child: CustomWidgets.customButton(
-                                                                      context:
-                                                                          context,
-                                                                      width:
-                                                                          100,
-                                                                      height:
-                                                                          40,
-                                                                      btnColor:
-                                                                          AppColor.primaryColor(
-                                                                            context,
-                                                                          ),
-                                                                      buttonName:
-                                                                          "Yes",
-                                                                      onPressed: () {
-                                                                        todoProvider.removeTask(
-                                                                          index,
-                                                                        );
-                                                                        Navigator.pop(
-                                                                          context,
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                                Expanded(
-                                                                  child: Container(
-                                                                    child: CustomWidgets.customButton(
-                                                                      context:
-                                                                          context,
-                                                                      width:
-                                                                          100,
-                                                                      height:
-                                                                          40,
+        //                                             color: Color.fromARGB(
+        //                                               255,
+        //                                               240,
+        //                                               169,
+        //                                               164,
+        //                                             ),
+        //                                           ),
+        //                                           onPressed: () {
+        //                                             showDialog(
+        //                                               context: context,
+        //                                               builder: (context) {
+        //                                                 return AlertDialog(
+        //                                                   title: Text(
+        //                                                     "Are You Sure ? You want to delete this task.",
+        //                                                     style: GoogleFonts.poppins(
+        //                                                       fontSize: 14,
+        //                                                       fontWeight:
+        //                                                           FontWeight
+        //                                                               .normal,
+        //                                                       color:
+        //                                                           AppColor.headingColor(
+        //                                                             context,
+        //                                                           ),
+        //                                                     ),
+        //                                                   ),
+        //                                                   actions: [
+        //                                                     Row(
+        //                                                       spacing: 10,
+        //                                                       children: [
+        //                                                         Expanded(
+        //                                                           child: Container(
+        //                                                             child: CustomWidgets.customButton(
+        //                                                               context:
+        //                                                                   context,
+        //                                                               width:
+        //                                                                   100,
+        //                                                               height:
+        //                                                                   40,
+        //                                                               btnColor:
+        //                                                                   AppColor.primaryColor(
+        //                                                                     context,
+        //                                                                   ),
+        //                                                               buttonName:
+        //                                                                   "Yes",
+        //                                                               onPressed: () {
+        //                                                                 todoProvider.removeTask(
+        //                                                                   index,
+        //                                                                 );
+        //                                                                 Navigator.pop(
+        //                                                                   context,
+        //                                                                 );
+        //                                                               },
+        //                                                             ),
+        //                                                           ),
+        //                                                         ),
+        //                                                         Expanded(
+        //                                                           child: Container(
+        //                                                             child: CustomWidgets.customButton(
+        //                                                               context:
+        //                                                                   context,
+        //                                                               width:
+        //                                                                   100,
+        //                                                               height:
+        //                                                                   40,
 
-                                                                      buttonName:
-                                                                          "No",
-                                                                      btnColor:
-                                                                          Colors
-                                                                              .red,
-                                                                      onPressed: () {
-                                                                        Navigator.pop(
-                                                                          context,
-                                                                        );
-                                                                      },
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 20.0,
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      spacing: 10,
-                                      children: [
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Date : ', // First part
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.headingColor(
-                                                context,
-                                              ),
-                                            ),
-                                            children: [
-                                              TextSpan(
-                                                text: task.date
-                                                    .toIso8601String()
-                                                    .split('T')
-                                                    .first,
+        //                                                               buttonName:
+        //                                                                   "No",
+        //                                                               btnColor:
+        //                                                                   Colors
+        //                                                                       .red,
+        //                                                               onPressed: () {
+        //                                                                 Navigator.pop(
+        //                                                                   context,
+        //                                                                 );
+        //                                                               },
+        //                                                             ),
+        //                                                           ),
+        //                                                         ),
+        //                                                       ],
+        //                                                     ),
+        //                                                   ],
+        //                                                 );
+        //                                               },
+        //                                             );
+        //                                           },
+        //                                         ),
+        //                                       ),
+        //                                     ],
+        //                                   ),
+        //                                 ],
+        //                               ),
+        //                             ),
+        //                           ),
+        //                           Padding(
+        //                             padding: const EdgeInsets.symmetric(
+        //                               horizontal: 20.0,
+        //                             ),
+        //                             child: Row(
+        //                               mainAxisAlignment: MainAxisAlignment.end,
+        //                               spacing: 10,
+        //                               children: [
+        //                                 RichText(
+        //                                   text: TextSpan(
+        //                                     text: 'Date : ', // First part
+        //                                     style: GoogleFonts.poppins(
+        //                                       fontSize: 12,
+        //                                       fontWeight: FontWeight.bold,
+        //                                       color: AppColor.headingColor(
+        //                                         context,
+        //                                       ),
+        //                                     ),
+        //                                     children: [
+        //                                       TextSpan(
+        //                                         text: task.date
+        //                                             .toIso8601String()
+        //                                             .split('T')
+        //                                             .first,
 
-                                                // text: _selectedDay!
-                                                //     .toIso8601String()
-                                                //     .split('T')
-                                                //     .first,
-                                                style: GoogleFonts.poppins(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: task.priority == "Low"
-                                                      ? Colors.amber
-                                                      : task.priority ==
-                                                            "Medium"
-                                                      ? Colors.green
-                                                      : AppColor.errorColor(
-                                                          context,
-                                                        ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Priority : ', // First part
-                                            style: GoogleFonts.poppins(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColor.headingColor(
-                                                context,
-                                              ),
-                                            ),
-                                            children: [
-                                              TextSpan(
-                                                text: task.priority,
-                                                style: GoogleFonts.poppins(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: task.priority == "Low"
-                                                      ? Colors.amber
-                                                      : task.priority ==
-                                                            "Medium"
-                                                      ? Colors.green
-                                                      : AppColor.errorColor(
-                                                          context,
-                                                        ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
-                );
-              },
-            ),
+        //                                         // text: _selectedDay!
+        //                                         //     .toIso8601String()
+        //                                         //     .split('T')
+        //                                         //     .first,
+        //                                         style: GoogleFonts.poppins(
+        //                                           fontSize: 12,
+        //                                           fontWeight: FontWeight.bold,
+        //                                           color: task.priority == "Low"
+        //                                               ? Colors.amber
+        //                                               : task.priority ==
+        //                                                     "Medium"
+        //                                               ? Colors.green
+        //                                               : AppColor.errorColor(
+        //                                                   context,
+        //                                                 ),
+        //                                         ),
+        //                                       ),
+        //                                     ],
+        //                                   ),
+        //                                 ),
+        //                                 RichText(
+        //                                   text: TextSpan(
+        //                                     text: 'Priority : ', // First part
+        //                                     style: GoogleFonts.poppins(
+        //                                       fontSize: 12,
+        //                                       fontWeight: FontWeight.bold,
+        //                                       color: AppColor.headingColor(
+        //                                         context,
+        //                                       ),
+        //                                     ),
+        //                                     children: [
+        //                                       TextSpan(
+        //                                         text: task.priority,
+        //                                         style: GoogleFonts.poppins(
+        //                                           fontSize: 12,
+        //                                           fontWeight: FontWeight.bold,
+        //                                           color: task.priority == "Low"
+        //                                               ? Colors.amber
+        //                                               : task.priority ==
+        //                                                     "Medium"
+        //                                               ? Colors.green
+        //                                               : AppColor.errorColor(
+        //                                                   context,
+        //                                                 ),
+        //                                         ),
+        //                                       ),
+        //                                     ],
+        //                                   ),
+        //                                 ),
+        //                               ],
+        //                             ),
+        //                           ),
+        //                         ],
+        //                       ),
+        //                     );
+        //                   },
+        //                 ),
+        //         );
+        //       },
+        //     ),
           
           
           
-          ],
-        ),
+        //   ],
+        // ),
+     
+     
       ),
     );
   }

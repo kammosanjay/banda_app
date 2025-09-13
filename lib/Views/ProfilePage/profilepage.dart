@@ -55,11 +55,6 @@ class _ProfilepageState extends State<Profilepage> {
     "Academic Year": Icons.calendar_view_month,
     "Current Semester": Icons.menu_book,
   };
-  List<String> imageList = [
-    "https://buat.edu.in/wp-content/uploads/2025/07/WhatsApp-Image-2025-07-07-at-2.49.11-PM.jpeg",
-    "https://buat.edu.in/wp-content/uploads/2023/02/DSC_7909-min-scaled.jpg",
-    "https://buat.edu.in/wp-content/uploads/2025/07/DSC_7891.jpg",
-  ];
 
   /// Example user data
   userProfile(Map<String, dynamic> userData) {
@@ -111,6 +106,7 @@ class _ProfilepageState extends State<Profilepage> {
               color: Colors.grey.shade100,
               child: Stack(
                 children: [
+                  // Background logo box
                   Container(
                     width: double.infinity,
                     margin: EdgeInsets.all(10),
@@ -120,50 +116,46 @@ class _ProfilepageState extends State<Profilepage> {
                       color: Colors.grey.shade400,
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    child: Image.asset('assets/images/softgenLogo.png'),
                   ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
+                  // Profile image + name/email row
+                  Positioned(
+                    left: 15,
+                    top: MediaQuery.of(context).size.height * 0.06,
                     child: Row(
-                      spacing: 30,
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Positioned(
-                          left: MediaQuery.of(context).size.width - 635,
-                          // left: -240,
-                          right: 0,
-                          top: MediaQuery.of(context).size.height * 0.06,
-                          child: Consumer<HomeProviders>(
-                            builder: (ctx, value, child) {
-                              imagePath = ctx
-                                  .watch<HomeProviders>()
-                                  .image
-                                  ?.path;
-                              return imagePath != null
-                                  ? CircleAvatar(
-                                      radius: 50,
-                                      child: ClipRRect(
-                                        borderRadius:
-                                            BorderRadiusGeometry.circular(100),
-                                        child: Image.file(
-                                          File(imagePath!),
-                                          height: 100,
-                                          width: 100,
-                                          fit: BoxFit.cover,
-                                        ),
+                        Consumer<HomeProviders>(
+                          builder: (ctx, value, child) {
+                            imagePath = ctx.watch<HomeProviders>().image?.path;
+                            return imagePath != null
+                                ? CircleAvatar(
+                                    radius: 50,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(
+                                        100,
+                                      ), // ✅ fixed
+                                      child: Image.file(
+                                        File(imagePath!),
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
                                       ),
-                                    )
-                                  : Image.asset(
+                                    ),
+                                  )
+                                : CircleAvatar(
+                                    radius: 50,
+                                    child: Image.asset(
                                       'assets/svgImages/proImg.png',
                                       height: 100,
                                       width: 100,
                                       fit: BoxFit.contain,
-                                    );
-                            },
-                          ),
+                                    ),
+                                  );
+                          },
                         ),
-
+                        SizedBox(width: 20), // ✅ spacing instead of Row.spacing
                         Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,10 +182,10 @@ class _ProfilepageState extends State<Profilepage> {
                     ),
                   ),
 
+                  // Camera icon overlay
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.14,
-                    left: MediaQuery.of(context).size.width - 470,
-                    right: 100,
+                    left: 90,
                     child: GestureDetector(
                       onTap: () {
                         context.read<HomeProviders>().pickImage();
@@ -209,6 +201,109 @@ class _ProfilepageState extends State<Profilepage> {
               ),
             ),
 
+            // Container(
+            //   height: MediaQuery.of(context).size.height * 0.18,
+            //   color: Colors.grey.shade100,
+            //   child: Stack(
+            //     children: [
+            //       Container(
+            //         width: double.infinity,
+            //         margin: EdgeInsets.all(10),
+            //         padding: EdgeInsets.all(10),
+            //         height: MediaQuery.of(context).size.height * 0.1,
+            //         decoration: BoxDecoration(
+            //           color: Colors.grey.shade400,
+            //           borderRadius: BorderRadius.circular(10),
+            //         ),
+            //         child: Image.asset('assets/images/softgenLogo.png'),
+            //       ),
+
+            //       Padding(
+            //         padding: const EdgeInsets.only(left: 15.0),
+            //         child: Row(
+            //           spacing: 30,
+            //           crossAxisAlignment: CrossAxisAlignment.end,
+            //           mainAxisAlignment: MainAxisAlignment.start,
+            //           children: [
+            //             Positioned(
+            //               left: MediaQuery.of(context).size.width - 635,
+
+            //               right: 0,
+            //               top: MediaQuery.of(context).size.height * 0.06,
+            //               child: Consumer<HomeProviders>(
+            //                 builder: (ctx, value, child) {
+            //                   imagePath = ctx
+            //                       .watch<HomeProviders>()
+            //                       .image
+            //                       ?.path;
+            //                   return imagePath != null
+            //                       ? CircleAvatar(
+            //                           radius: 50,
+            //                           child: ClipRRect(
+            //                             borderRadius:
+            //                                 BorderRadius.circular(100),
+            //                             child: Image.file(
+            //                               File(imagePath!),
+            //                               height: 100,
+            //                               width: 100,
+            //                               fit: BoxFit.cover,
+            //                             ),
+            //                           ),
+            //                         )
+            //                       : Image.asset(
+            //                           'assets/svgImages/proImg.png',
+            //                           height: 100,
+            //                           width: 100,
+            //                           fit: BoxFit.contain,
+            //                         );
+            //                 },
+            //               ),
+            //             ),
+
+            //             Column(
+            //               mainAxisAlignment: MainAxisAlignment.end,
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Text(
+            //                   usersInfo['Name'],
+            //                   style: TextStyle(
+            //                     fontSize: 20,
+            //                     fontWeight: FontWeight.w600,
+            //                     color: Colors.black87,
+            //                   ),
+            //                 ),
+            //                 Text(
+            //                   usersInfo['Email'],
+            //                   style: TextStyle(
+            //                     fontSize: 12,
+            //                     fontWeight: FontWeight.w600,
+            //                     color: Colors.black87,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+
+            //       Positioned(
+            //         top: MediaQuery.of(context).size.height * 0.14,
+            //         left: MediaQuery.of(context).size.width - 470,
+            //         right: 100,
+            //         child: GestureDetector(
+            //           onTap: () {
+            //             context.read<HomeProviders>().pickImage();
+            //           },
+            //           child: Icon(
+            //             Icons.camera_alt_outlined,
+            //             size: 30,
+            //             color: Colors.grey.shade700,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(height: 20),
             userProfile(
               Map<String, dynamic>.from(usersInfo)..removeWhere(

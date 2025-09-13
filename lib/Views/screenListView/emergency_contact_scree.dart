@@ -149,13 +149,14 @@ class _EmergencyContactState extends State<EmergencyContact> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Table(
-              border: TableBorder.all(),
+              border: TableBorder.all(color: Color(0xffCCCCCC)),
               columnWidths: const {
                 0: FlexColumnWidth(2), // name column
                 1: FlexColumnWidth(1), // number column
               },
               children: contactList.entries.map((e) {
                 return TableRow(
+                  decoration: BoxDecoration(color: Colors.white),
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -186,13 +187,14 @@ class _EmergencyContactState extends State<EmergencyContact> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Table(
-              border: TableBorder.all(),
+              border: TableBorder.all(color: Color(0xffCCCCCC)),
               columnWidths: const {
                 0: FlexColumnWidth(2), // name column
                 1: FlexColumnWidth(1), // number column
               },
               children: cityContact.entries.map((e) {
                 return TableRow(
+                  decoration: BoxDecoration(color: Colors.white),
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(8.0),

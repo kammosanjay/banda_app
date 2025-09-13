@@ -191,7 +191,8 @@ class _BharaKalaBhavanState extends State<BharaKalaBhavan> {
               ),
             ),
           ),
-          Container(
+          Container(color: Colors.white,
+          padding: EdgeInsets.all(10),
             margin: EdgeInsets.all(12),
             child: Text(
               dummyText,
