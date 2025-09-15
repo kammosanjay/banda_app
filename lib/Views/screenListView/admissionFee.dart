@@ -82,7 +82,7 @@ class _StudentsState extends State<Students> {
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
 
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.grey.shade100,
       //  backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),

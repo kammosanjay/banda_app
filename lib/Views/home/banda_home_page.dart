@@ -81,7 +81,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
       // backgroundColor: Color(0xFFe7f3ff),
-      // backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(

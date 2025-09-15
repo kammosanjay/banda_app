@@ -38,6 +38,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       // backgroundColor: Color(0xFFe7f3ff),
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,

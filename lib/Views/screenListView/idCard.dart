@@ -19,7 +19,7 @@ class Idcard extends StatelessWidget {
     final appLoc = AppLocalizations.of(context)!;
 
     final imagepicked = context.watch<HomeProviders>().image?.path;
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
+import 'package:baanda_mobile_app/Views/todolist/inbox_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,7 @@ class _MyHomeState extends State<MyHome> {
   final List<Widget> _pages = [
     // MyMapLocation(),
     BandaHomePage(),
-    TodoListPage(),
+    InboxScreen(),
     Library(),
     Profilepage(),
   ];
@@ -277,9 +278,9 @@ class _MyHomeState extends State<MyHome> {
                               bottom: 50,
                               child: CircleAvatar(
                                 radius: 40,
-                                backgroundColor: Theme.of(
-                                  context,
-                                ).colorScheme.primary,
+                                // backgroundColor: Theme.of(
+                                //   context,
+                                // ).colorScheme.primary,
                                 child: Consumer<HomeProviders>(
                                   builder: (ctx, value, child) {
                                     final imagePath = value.image?.path;

@@ -213,7 +213,7 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                     ),
                                   ),
-                                  SizedBox(height: 8),
+                                  SizedBox(height:12),
                                   Text(
                                     "Remember Me",
                                     style: GoogleFonts.poppins(
