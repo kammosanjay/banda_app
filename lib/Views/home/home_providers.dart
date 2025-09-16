@@ -4,9 +4,9 @@ import 'package:image_picker/image_picker.dart';
 
 class HomeProviders with ChangeNotifier {
   int _counter = 0;
-  String _name = "sdfsfsd";
+
   int get counter => _counter;
-  String get name => _name;
+
   XFile? _image;
   XFile? get image => _image;
   FilePickerResult? result;
@@ -22,14 +22,6 @@ class HomeProviders with ChangeNotifier {
       _counter--;
       notifyListeners();
     }
-  }
-
-  String changeName(String newName) {
-    if (newName.isNotEmpty) {
-      _name = newName;
-      notifyListeners();
-    }
-    return _name;
   }
 
   final ImagePicker _imagePicker = ImagePicker();

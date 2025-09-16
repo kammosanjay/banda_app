@@ -152,19 +152,19 @@ class _MyHomeState extends State<MyHome> {
     VoidCallback? ontap,
   }) {
     return ListTile(
-      title: Row(
+      title: Row(spacing: 40,
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          SvgPicture.asset(icon, color: AppColor.headingColor(context)),
           Text(
             title,
             style: GoogleFonts.openSans(
               fontSize: 14,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w400,
               color: AppColor.textColor(context),
             ),
           ),
-          SvgPicture.asset(icon, color: AppColor.headingColor(context)),
         ],
       ),
       tileColor: AppColor.backgroundColor(context),

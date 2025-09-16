@@ -1,14 +1,11 @@
-import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
-import 'package:baanda_mobile_app/Views/OTP/otp_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:baanda_mobile_app/Views/loginpage/loginmodal.dart';
-import 'package:http/http.dart';
-import 'package:path/path.dart';
 
 class LoginProvider extends ChangeNotifier {
   final box = GetStorage();
+  
   String? storedEmail;
   String? storedPassword;
   bool isRememberMeChecked = false;
@@ -88,10 +85,9 @@ class LoginProvider extends ChangeNotifier {
         verificationId = verId; // save for later
         debugPrint("📩 OTP sent to $phone");
         debugPrint("Saved verificationId: $verificationId");
-       
       },
 
-      codeAutoRetrievalTimeout: (String verId) {  
+      codeAutoRetrievalTimeout: (String verId) {
         verificationId = verId;
       },
     );

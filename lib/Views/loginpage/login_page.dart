@@ -101,15 +101,9 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 5),
-                  // Text(S
-                  //   'Accredated "A" by NAAC',
-                  //   style: GoogleFonts.poppins(
-                  //     fontSize: 12,
-                  //     color: AppColor.textColor(context),
-                  //   ),
-                  // ),
-                  SizedBox(height: 53),
+
+                  // SizedBox(height: 5),
+                  SizedBox(height: 50),
                   Column(
                     children: [
                       CustomWidgets.customTextFeild(
@@ -191,8 +185,8 @@ class _LoginPageState extends State<LoginPage> {
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: 24, // exact size of checkbox
-                                    height: 24,
+                                    width: 25, // exact size of checkbox
+                                    height: 25,
                                     child: Checkbox(
                                       value:
                                           context
@@ -213,7 +207,7 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                     ),
                                   ),
-                                  SizedBox(height:12),
+                                  SizedBox(width: 12),
                                   Text(
                                     "Remember Me",
                                     style: GoogleFonts.poppins(

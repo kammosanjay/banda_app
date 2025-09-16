@@ -150,7 +150,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
                           maxLines: 2,
                           style: GoogleFonts.poppins(
                             fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w500,
                             color: isSelected
                                 ? Colors.amber
                                 : Color(0xFF333333),
