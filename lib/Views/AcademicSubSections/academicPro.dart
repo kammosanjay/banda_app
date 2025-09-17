@@ -24,6 +24,7 @@ class AcademicProgramScreen extends StatefulWidget {
 
 class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
   List<String> list = ['Institutes', 'Departments', 'Faculty'];
+  List<String> icons=[];
   //
   List<String> acadlist = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD'];
 

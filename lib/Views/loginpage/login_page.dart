@@ -185,29 +185,32 @@ class _LoginPageState extends State<LoginPage> {
                               child: Row(
                                 children: [
                                   SizedBox(
-                                    width: 25, // exact size of checkbox
+                                    width: 25,
                                     height: 25,
-                                    child: Checkbox(
-                                      value:
-                                          context
-                                              .watch<LoginProvider>()
-                                              .isRememberMeChecked ??
-                                          false,
-                                      side: BorderSide(
-                                        color: AppColor.textColor(context),
-                                      ),
-                                      activeColor: Colors.amber,
-                                      checkColor: Colors.white,
-                                      materialTapTargetSize: MaterialTapTargetSize
-                                          .shrinkWrap, // removes extra tap padding
-                                      onChanged: (value) {
-                                        context
-                                            .read<LoginProvider>()
-                                            .setRememberMe(value);
+                                    child: Selector<LoginProvider, bool>(
+                                      selector: (ctxe, provider) =>
+                                          provider.isRememberMeChecked,
+
+                                      builder: (ctx, isChecked, _) {
+                                        return Checkbox(
+                                          value: isChecked,
+                                          side: BorderSide(
+                                            color: AppColor.textColor(context),
+                                          ),
+                                          activeColor: Colors.amber,
+                                          checkColor: Colors.white,
+                                          materialTapTargetSize:
+                                              MaterialTapTargetSize.shrinkWrap,
+                                          onChanged: (value) {
+                                            ctx
+                                                .read<LoginProvider>()
+                                                .setRememberMe(value);
+                                          },
+                                        );
                                       },
                                     ),
                                   ),
-                                  SizedBox(width: 12),
+                                  const SizedBox(width: 12),
                                   Text(
                                     "Remember Me",
                                     style: GoogleFonts.poppins(
@@ -325,9 +328,10 @@ class _LoginPageState extends State<LoginPage> {
                           if (context
                                   .read<LoginProvider>()
                                   .isRememberMeChecked ==
-                              false) {
+                              true) {
                             passController.clear();
                             phoneEmaiController.clear();
+                            
                           }
                         },
                         fontWeight: FontWeight.w600,
