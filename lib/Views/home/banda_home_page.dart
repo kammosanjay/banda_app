@@ -1,9 +1,9 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
-import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -54,8 +54,6 @@ class _BandaHomePageState extends State<BandaHomePage> {
   //   Updatephone(),
   //   UpdateEmail(),
   // ];
-
-
 
   final List<String> imageList = [
     'assets/svgImages/homescreenSvg/0.svg',
@@ -122,14 +120,14 @@ class _BandaHomePageState extends State<BandaHomePage> {
                     //     // color: Colors. grey,
                     //     offset: Offset(-10, -10),
                     //     blurRadius: 30,
-                       
+
                     //     inset: false,
                     //   ),
                     //   BoxShadow(
                     //     color: Colors.grey,
                     //     offset: Offset(10, 10),
                     //     blurRadius: 30,
-                        
+
                     //     inset: true,
                     //   ),
                     // ],

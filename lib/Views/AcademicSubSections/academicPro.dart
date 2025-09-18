@@ -24,7 +24,12 @@ class AcademicProgramScreen extends StatefulWidget {
 
 class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
   List<String> list = ['Institutes', 'Departments', 'Faculty'];
-  List<String> icons=[];
+  final List<String> imageList = [
+    'assets/svgImages/homescreenSvg/3.svg',
+    'assets/svgImages/homescreenSvg/5.svg',
+    'assets/svgImages/homescreenSvg/1.svg',
+  ];
+  List<String> icons = [];
   //
   List<String> acadlist = ['Undergraduate', 'Postgraduate', 'Diploma', 'PhD'];
 
@@ -158,16 +163,26 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Center(
-                        child: Text(
-                          list[index],
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.openSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey.shade900,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SvgPicture.asset(
+                            imageList[index],
+                            height: 24,
+                            color: isSelected
+                                ? Colors.amber
+                                : Color(0xFF333333),
                           ),
-                        ),
+                          Text(
+                            list[index],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey.shade900,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
