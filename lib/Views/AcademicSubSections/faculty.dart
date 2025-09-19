@@ -42,13 +42,14 @@ class _FacultyState extends State<Faculty> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+    final appbar = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
           builder: (context, themeProvider, child) {
             return Text(
-              appLoc.welcome,
+              appbar.toString(),
               // style: GoogleFonts.poppins(
               //   textStyle: Theme.of(context).textTheme.bodyLarge,
 

@@ -1,8 +1,9 @@
-import 'package:baanda_mobile_app/Views/AcademicSubSections/acadCalen.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/institueListDetailScreen.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/institute.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/acadColla.dart';
-import 'package:baanda_mobile_app/Views/AcademicSubSections/acadExam.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/department.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/academicPro.dart';
-import 'package:baanda_mobile_app/Views/AcademicSubSections/colleges.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/faculty.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/internalQA.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/library.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/listOfUgc.dart';
@@ -157,6 +158,7 @@ class MyApp extends StatelessWidget {
         'profile': (context) => Profilepage(),
         'Library': (context) => Library(),
         '/bandaHomePage': (context) => BandaHomePage(),
+        '/instituteListDetailScreen': (context) => InstDetailScreen(),
       },
     );
   }

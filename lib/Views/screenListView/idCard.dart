@@ -19,7 +19,8 @@ class Idcard extends StatelessWidget {
     final appLoc = AppLocalizations.of(context)!;
 
     final imagepicked = context.watch<HomeProviders>().image?.path;
-    return Scaffold(backgroundColor: Colors.grey.shade100,
+    return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         // backgroundColor: AppColor.primaryColor(context),
         title: Consumer<ThemeProvider>(
@@ -221,7 +222,7 @@ class Idcard extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 60),
+                const SizedBox(height: 50),
 
                 // Details
                 _buildDetail("Department", "Department of Chemistry"),

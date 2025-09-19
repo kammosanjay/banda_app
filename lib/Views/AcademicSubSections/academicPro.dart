@@ -153,7 +153,11 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
                 return GestureDetector(
                   onTap: () {
                     final route = list[index];
-                    context.read<RouteProvider>().navigateTo(route, context);
+                    context.read<RouteProvider>().navigateTo(
+                      route,
+                      context,
+                      arguments: route,
+                    );
                   },
                   child: Container(
                     decoration: BoxDecoration(
