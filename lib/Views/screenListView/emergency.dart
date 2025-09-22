@@ -15,14 +15,18 @@ class NEPCourses extends StatefulWidget {
 
 class _NEPCoursesState extends State<NEPCourses> {
   double? select = 10.0;
-   final int rows = 5;
+   int rows = 1;
+  @override
+  void initState() {
+    super.initState();
+    pattern();
+  }
 
-  pattern(int num) {
-    List<Widget> widgets = [];
-    for (int i = 0; i < num; i++) {
-      widgets.add(Container(child: Text('$i')));
-    }
-    return widgets;
+  pattern() {
+    do {
+      print('*');
+      rows++;
+    } while (rows <= 5);
   }
 
   @override
@@ -116,18 +120,17 @@ class _NEPCoursesState extends State<NEPCourses> {
         ],
       ),
 
-      body:Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(rows, (i) {
             return Text(
-              List.filled(i+1, "*").join(" "),
+              List.filled(i + 1, "*").join(" "),
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             );
           }),
         ),
       ),
-    
     );
   }
 }

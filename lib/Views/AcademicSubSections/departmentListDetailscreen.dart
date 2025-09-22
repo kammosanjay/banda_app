@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class InstDetailScreen extends StatefulWidget {
-  const InstDetailScreen({super.key});
+class Departmentlistdetailscreen extends StatefulWidget {
+  const Departmentlistdetailscreen({super.key});
 
   @override
-  State<InstDetailScreen> createState() => _InstDetailScreenState();
+  State<Departmentlistdetailscreen> createState() =>
+      _DepartmentlistdetailscreenState();
 }
 
-class _InstDetailScreenState extends State<InstDetailScreen> {
+class _DepartmentlistdetailscreenState
+    extends State<Departmentlistdetailscreen> {
   List<String> title = ['Name', 'Location', 'Director'];
   final List<String> departmentList = [
     'Deptt. of Anaesthesiology',

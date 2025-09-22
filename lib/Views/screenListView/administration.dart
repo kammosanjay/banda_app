@@ -69,41 +69,7 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
             );
           },
         ),
-        // leading: Builder(
-        //   builder: (context) {
-        //     return GestureDetector(
-        //       onTap: () {
-        //         Scaffold.of(context).openDrawer();
-        //       },
-        //       child: Container(
-        //         margin: const EdgeInsets.only(top: 10),
 
-        //         child: GFCarousel(
-        //           autoPlay: true,
-
-        //           autoPlayInterval: Duration(seconds: 2),
-        //           // autoPlayAnimationDuration: Duration(milliseconds: 1600),
-        //           items: imageList.map((url) {
-        //             return ClipRRect(
-        //               child: SvgPicture.asset(
-        //                 url,
-        //                 fit: BoxFit.contain,
-        //                 height: 20,
-        //                 width: 20,
-        //                 color: AppColor.headingColor(context),
-        //               ),
-        //             );
-        //           }).toList(),
-        //           onPageChanged: (index) {
-        //             // setState(() {
-        //             //   index;
-        //             // });
-        //           },
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // ),
         centerTitle: true,
         actions: [
           Padding(
@@ -177,64 +143,66 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
         ],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: double.infinity,
-          width: double.infinity,
-          child: GridView.builder(
-            shrinkWrap: true,
-            physics:
-                NeverScrollableScrollPhysics(), // allow embedding in scroll view
-            itemCount: adminItems.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              mainAxisExtent: 85,
-              crossAxisCount: 2, // adjust for text layout
-            ),
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {
-                  // final route = adminRoutes[index];
-                  // context.read<RouteProvider>().navigateTo(route, context);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          NewsScreen(title: adminItems[index]),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              // physics:
+              //     BouncingScrollPhysics(),// allow embedding in scroll view
+              itemCount: adminItems.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisSpacing: 8,
+                crossAxisSpacing: 8,
+                mainAxisExtent: 85,
+                crossAxisCount: 2, // adjust for text layout
+              ),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    // final route = adminRoutes[index];
+                    // context.read<RouteProvider>().navigateTo(route, context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            NewsScreen(title: adminItems[index]),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.white,
                     ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(6),
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(officerIcons[index]),
-                        Text(
-                          adminItems[index],
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.openSans(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade900,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(officerIcons[index]),
+                          Text(
+                            adminItems[index],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.openSans(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.grey.shade900,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
-        ),
+
+          SizedBox(height: 50),
+        ],
       ),
     );
   }

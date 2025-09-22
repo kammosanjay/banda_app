@@ -1,3 +1,5 @@
+import 'package:baanda_mobile_app/Views/AcademicSubSections/departmentListDetailscreen.dart';
+import 'package:baanda_mobile_app/Views/AcademicSubSections/facultyListDetailscreen.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/institueListDetailScreen.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/institute.dart';
 import 'package:baanda_mobile_app/Views/AcademicSubSections/acadColla.dart';
@@ -159,6 +161,8 @@ class MyApp extends StatelessWidget {
         'Library': (context) => Library(),
         '/bandaHomePage': (context) => BandaHomePage(),
         '/instituteListDetailScreen': (context) => InstDetailScreen(),
+        '/departmentListDetailScreen': (context) => Departmentlistdetailscreen(),
+        '/facultyListDetailScreen': (context) => Facultylistdetailscreen(),
       },
     );
   }

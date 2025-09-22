@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/language/language.dart';
 import 'package:baanda_mobile_app/Views/theme/theme_provider.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
@@ -194,35 +195,44 @@ class _DepartmentState extends State<Department> {
               child: ListView.builder(
                 itemCount: searchDepart.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(6),
-                    ),
-                    child: ListTile(
-                      leading: Text(
-                        '${index + 1}',
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF333333),
-                        ),
+                  return GestureDetector(
+                    onTap: () {
+                      context.read<RouteProvider>().navigateTo(
+                        '/departmentListDetailScreen',
+                        context,
+                        arguments: departmentList[index],
+                      );
+                    },
+                    child: Card(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadiusGeometry.circular(6),
                       ),
-                      title: Text(
-                        searchDepart[index],
-
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF333333),
+                      child: ListTile(
+                        leading: Text(
+                          '${index + 1}',
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF333333),
+                          ),
                         ),
-                      ),
-                      trailing: Text(
-                        "Main Campus",
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF333333),
+                        title: Text(
+                          searchDepart[index],
+                    
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF333333),
+                          ),
+                        ),
+                        trailing: Text(
+                          "Main Campus",
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF333333),
+                          ),
                         ),
                       ),
                     ),

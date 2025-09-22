@@ -12,6 +12,7 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Places extends StatefulWidget {
   const Places({super.key});
@@ -68,6 +69,14 @@ class _PlacesState extends State<Places> {
     });
 
     return placesList;
+  }
+
+  launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 
   @override
@@ -234,29 +243,34 @@ class _PlacesState extends State<Places> {
                     horizontal: 10.0,
                     vertical: 5,
                   ),
-                  child: Card(
-                    elevation: 0,
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                      side: BorderSide(width: 1, color: Colors.grey.shade400),
-                    ),
-                    child: ListTile(
-                      title: Text(place["name"]),
-                      subtitle: Text(
-                        place["type"],
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.textColor(context),
-                        ),
+                  child: GestureDetector(
+                    onTap: () {
+                      launchURL('https://www.google.com/maps');
+                    },
+                    child: Card(
+                      elevation: 0,
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                        side: BorderSide(width: 1, color: Colors.grey.shade400),
                       ),
-                      trailing: Text(
-                        place["campus"],
-                        style: GoogleFonts.openSans(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: AppColor.textColor(context),
+                      child: ListTile(
+                        title: Text(place["name"]),
+                        subtitle: Text(
+                          place["type"],
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: AppColor.textColor(context),
+                          ),
+                        ),
+                        trailing: Text(
+                          place["campus"],
+                          style: GoogleFonts.openSans(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.textColor(context),
+                          ),
                         ),
                       ),
                     ),

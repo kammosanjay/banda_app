@@ -39,6 +39,7 @@ class _AcademicProgramScreenState extends State<AcademicProgramScreen> {
   String? searchedText;
   bool isSelected = false;
   int selectedIndex = 0;
+  int selected = 0;
 
   @override
   Widget build(BuildContext context) {
