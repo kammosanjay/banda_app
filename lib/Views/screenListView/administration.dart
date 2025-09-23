@@ -10,14 +10,14 @@ import 'package:getwidget/components/carousel/gf_carousel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class AdministrationScreen extends StatefulWidget {
-  const AdministrationScreen({super.key});
+class NewsPage extends StatefulWidget {
+  const NewsPage({super.key});
 
   @override
-  State<AdministrationScreen> createState() => _AdministrationScreenState();
+  State<NewsPage> createState() => _NewsPageState();
 }
 
-class _AdministrationScreenState extends State<AdministrationScreen> {
+class _NewsPageState extends State<NewsPage> {
   //
   final List<String> adminItems = [
     'News ',
@@ -202,6 +202,8 @@ class _AdministrationScreenState extends State<AdministrationScreen> {
           ),
 
           SizedBox(height: 50),
+
+          
         ],
       ),
     );

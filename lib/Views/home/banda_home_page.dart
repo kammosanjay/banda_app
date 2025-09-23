@@ -140,7 +140,7 @@ class _BandaHomePageState extends State<BandaHomePage> {
                         SvgPicture.asset(
                           imageList[index],
                           height: 24,
-                          color: isSelected ? Colors.amber : Color(0xFF333333),
+                          color: isSelected ? Colors.amber : Color(0xFF333333).withOpacity(0.4),
                         ),
                         Text(
                           drawerMenuItems[index],

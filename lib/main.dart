@@ -145,7 +145,7 @@ class MyApp extends StatelessWidget {
         '2024-2025 Students': (context) => Students(),
         'Id Card': (context) => Idcard(),
         'Academic': (context) => AcademicProgramScreen(),
-        'News': (context) => AdministrationScreen(),
+        'News': (context) => NewsPage(),
         // 'Admissions & Fee': (context) => Admissionfee(),
         'Publications': (context) => Publications(),
         'Bharat kala Bhavan': (context) => BharaKalaBhavan(),
@@ -161,7 +161,8 @@ class MyApp extends StatelessWidget {
         'Library': (context) => Library(),
         '/bandaHomePage': (context) => BandaHomePage(),
         '/instituteListDetailScreen': (context) => InstDetailScreen(),
-        '/departmentListDetailScreen': (context) => Departmentlistdetailscreen(),
+        '/departmentListDetailScreen': (context) =>
+            Departmentlistdetailscreen(),
         '/facultyListDetailScreen': (context) => Facultylistdetailscreen(),
       },
     );

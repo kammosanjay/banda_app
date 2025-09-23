@@ -17,7 +17,7 @@ class _NEPCoursesState extends State<NEPCourses> {
   double? select = 10.0;
    int rows = 1;
   @override
-  void initState() {
+  void initState() { 
     super.initState();
     pattern();
   }
