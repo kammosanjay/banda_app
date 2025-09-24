@@ -5,7 +5,7 @@ import 'package:baanda_mobile_app/Views/loginpage/loginmodal.dart';
 
 class LoginProvider extends ChangeNotifier {
   final box = GetStorage();
-  
+
   String? storedEmail;
   String? storedPassword;
   bool isRememberMeChecked = false;
@@ -60,6 +60,7 @@ class LoginProvider extends ChangeNotifier {
     isRememberMeChecked = value ?? false;
     box.write("isRememberMe", isRememberMeChecked);
     debugPrint("isRememberMe: $isRememberMeChecked");
+
     notifyListeners();
   }
 

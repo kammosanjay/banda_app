@@ -25,11 +25,11 @@ class _LoginPageState extends State<LoginPage> {
   bool isShown = true;
   TextEditingController passController = TextEditingController();
   TextEditingController phoneEmaiController = TextEditingController();
-  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+
     return Scaffold(
       // backgroundColor: Colors.grey.shade100,
       // backgroundColor: Colors.white,
@@ -331,7 +331,6 @@ class _LoginPageState extends State<LoginPage> {
                               true) {
                             passController.clear();
                             phoneEmaiController.clear();
-                            
                           }
                         },
                         fontWeight: FontWeight.w600,
