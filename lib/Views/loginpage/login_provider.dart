@@ -8,6 +8,7 @@ class LoginProvider extends ChangeNotifier {
 
   String? storedEmail;
   String? storedPassword;
+  String? storedName;
   bool isRememberMeChecked = false;
 
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
@@ -48,10 +49,22 @@ class LoginProvider extends ChangeNotifier {
 
   /// Logout and clear credentials
   void logout() {
-    box.remove("email");
-    box.remove("password");
-    storedEmail = null;
-    storedPassword = null;
+    bool remember = box.read('isRememberMe') ?? false;
+
+    if (remember) {
+      // keep email & password, just clear session-related stuff
+      // maybe only reset runtime variables
+      storedEmail = box.read("email");
+      storedPassword = box.read("password");
+    } else {
+      // clear everything if not remembered
+      box.remove("email");
+      box.remove("password");
+      box.remove("isRememberMe");
+      storedEmail = null;
+      storedPassword = null;
+    }
+
     notifyListeners();
   }
 
@@ -59,7 +72,10 @@ class LoginProvider extends ChangeNotifier {
   void setRememberMe(bool? value) {
     isRememberMeChecked = value ?? false;
     box.write("isRememberMe", isRememberMeChecked);
+    box.write("email", isRememberMeChecked ? storedEmail : null);
+    box.write("password", isRememberMeChecked ? storedPassword : null);
     debugPrint("isRememberMe: $isRememberMeChecked");
+    print("Stored Email: $storedEmail, Password: $storedPassword");
 
     notifyListeners();
   }
@@ -108,5 +124,21 @@ class LoginProvider extends ChangeNotifier {
         print("❌ Invalid OTP: $e");
       }
     }
+  }
+
+  void saveSignupData(String email, String password, String name) {
+    box.write("email", email);
+    box.write("password", password);
+    box.write("name", name);
+
+    storedEmail = email;
+    storedPassword = password;
+    storedName = name;
+
+    debugPrint(
+      "Saved Email: $storedEmail, Password: $storedPassword, Name: $storedName",
+    );
+
+    notifyListeners();
   }
 }

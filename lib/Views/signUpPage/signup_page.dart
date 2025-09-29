@@ -1,4 +1,6 @@
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
+import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
+
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -54,7 +56,6 @@ class _SignupPageState extends State<SignupPage> {
               ),
             ),
 
-         
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -169,11 +170,15 @@ class _SignupPageState extends State<SignupPage> {
                   height: 60,
                   buttonName: 'Register',
                   onPressed: () {
+                    context.read<LoginProvider>().saveSignupData(
+                      fullNameController.text,
+                      passController.text,
+                      phoneEmaiController.text,
+                    );
                     context.read<RouteProvider>().navigateTo(
                       '/otpPage',
                       context,
-                      arguments:'signup',
-                      
+                      arguments: 'signup',
                     );
                   },
                   fontWeight: FontWeight.w600,

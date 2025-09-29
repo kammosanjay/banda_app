@@ -1,5 +1,6 @@
 import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
 import 'package:baanda_mobile_app/Views/loginpage/loginmodal.dart';
+
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,6 +30,13 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
+    // passController.text = context.watch()<LoginProvider>().isRememberMeChecked
+    //     ? context.watch<LoginProvider>().storedPassword ?? ''
+    //     : passController.text;
+    // phoneEmaiController.text =
+    //     context.watch<LoginProvider>().isRememberMeChecked
+    //     ? context.watch<LoginProvider>().storedEmail ?? ''
+    //     : phoneEmaiController.text;
 
     return Scaffold(
       // backgroundColor: Colors.grey.shade100,
@@ -263,6 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                         buttonName: 'Login',
                         onPressed: () {
                           final loginProvider = context.read<LoginProvider>();
+
                           final email = phoneEmaiController.text.trim();
                           final password = passController.text.trim();
 

@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DataBaseHelper {
+  //
+
   final String TABLE_NAME = "notes";
   final String COLUMN_NOTE_SNO = "id";
   final String COLUMN_NOTE_TITLE = "title";
@@ -40,7 +42,8 @@ class DataBaseHelper {
           "CREATE TABLE $TABLE_NAME ("
           "$COLUMN_NOTE_SNO INTEGER PRIMARY KEY AUTOINCREMENT, "
           "$COLUMN_NOTE_TITLE TEXT, "
-          "$COLUMN_NOTE_DESC TEXT, ",
+          "$COLUMN_NOTE_DESC TEXT"
+          ")",
         );
       },
       version: 1,

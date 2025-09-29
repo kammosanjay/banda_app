@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
 import 'package:baanda_mobile_app/Views/ProfilePage/profilepage.dart';
 import 'package:baanda_mobile_app/Views/home/banda_home_page.dart';
+import 'package:baanda_mobile_app/Views/loginpage/login_provider.dart';
 import 'package:baanda_mobile_app/Views/todolist/inbox_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:getwidget/getwidget.dart';
@@ -152,7 +153,8 @@ class _MyHomeState extends State<MyHome> {
     VoidCallback? ontap,
   }) {
     return ListTile(
-      title: Row(spacing: 40,
+      title: Row(
+        spacing: 40,
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -416,6 +418,10 @@ class _MyHomeState extends State<MyHome> {
                                             onPressed: () {
                                               // perform logout logic here
                                               Navigator.pop(context);
+                                              context
+                                                  .read<LoginProvider>()
+                                                  .logout();
+
                                               context
                                                   .read<RouteProvider>()
                                                   .navigateReplace(

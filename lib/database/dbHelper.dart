@@ -38,6 +38,15 @@ class DBHelper {
         dbPath,
         version: 1,
         onCreate: (db, version) {
+          db.execute(
+            "CREATE TABLE $TABLE_NOTE ("
+            "$COLUMN_NOTE_SNO INTEGER PRIMARY KEY AUTOINCREMENT, "
+            "$COLUMN_NOTE_TITLE TEXT, "
+            "$COLUMN_NOTE_DESC TEXT, "
+            "$COLUMN_USER TEXT, "
+            "$COLUMN_PASS TEXT"
+            ")",
+          );
           
           
         },

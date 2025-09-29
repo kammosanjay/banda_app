@@ -35,6 +35,7 @@ import 'package:baanda_mobile_app/Views/screenListView/information.dart';
 import 'package:baanda_mobile_app/Views/screenListView/research.dart';
 import 'package:baanda_mobile_app/Views/screenListView/studentCareer.dart';
 import 'package:baanda_mobile_app/Views/screenListView/updatephone.dart';
+
 import 'package:baanda_mobile_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -83,6 +84,7 @@ void main() async {
         ChangeNotifierProvider<ProfileProvider>(
           create: (_) => ProfileProvider(),
         ),
+       
       ],
       child: MyApp(),
     ),

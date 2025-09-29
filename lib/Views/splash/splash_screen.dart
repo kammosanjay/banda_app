@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:getwidget/colors/gf_color.dart';
-import 'package:getwidget/components/image/gf_image_overlay.dart';
-import 'package:getwidget/components/intro_screen/gf_intro_screen.dart';
-import 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:baanda_mobile_app/Views/splash/splash_provider.dart';
-import 'package:baanda_mobile_app/constant/appColor.dart';
+
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -28,30 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     context.read<SplashProvider>().initializeApp(context);
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     backgroundColor: Colors.white,
-  //     body: Center(
-  //       child: Column(
-  //         mainAxisAlignment: MainAxisAlignment.center,
-  //         children: [
-
-  //           Image.asset(
-  //             'assets/images/student_as.png', // Replace with your splash image
-  //             width: 200,
-  //             height: 200,
-  //           ),
-  //           const SizedBox(height: 20),
-  //           const Text(
-  //             'Welcome to Multi Localization App',
-  //             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-  //           ),
-  //         ],
-  //       ),
-  //     ),
-  //   );
-  // }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
