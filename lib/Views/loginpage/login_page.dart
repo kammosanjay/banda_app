@@ -3,7 +3,7 @@ import 'package:baanda_mobile_app/Views/loginpage/loginmodal.dart';
 
 import 'package:baanda_mobile_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:flutter_toastr/flutter_toastr.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:baanda_mobile_app/MyPageRoute/route_provider.dart';
@@ -11,8 +11,7 @@ import 'package:baanda_mobile_app/Views/Forgot/forgot_page.dart';
 import 'package:baanda_mobile_app/Views/signUpPage/signup_page.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 import 'package:baanda_mobile_app/constant/constant_widget.dart';
-import 'package:baanda_mobile_app/utils/custom_widgets.dart';
-import 'package:path/path.dart';
+
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -26,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   bool isShown = true;
   TextEditingController passController = TextEditingController();
   TextEditingController phoneEmaiController = TextEditingController();
-
+ 
   @override
   Widget build(BuildContext context) {
     final appLoc = AppLocalizations.of(context)!;
@@ -310,6 +309,7 @@ class _LoginPageState extends State<LoginPage> {
                           } else {
                             // Returning login → validate
                             if (loginProvider.validateLogin(email, password)) {
+                            
                               FlutterToastr.show(
                                 "Login Successful",
                                 context,
@@ -394,5 +394,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+    
   }
+   @override
+  void dispose() {
+    
+    super.dispose();
+  }
+
 }

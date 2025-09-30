@@ -17,14 +17,24 @@ class LoginProvider extends ChangeNotifier {
     // Load from storage when provider starts
     storedEmail = box.read("email");
     storedPassword = box.read("password");
+    print("Loaded Email: $storedEmail, Password: $storedPassword");
     isRememberMeChecked = box.read("isRememberMe") ?? false;
     print("-->${isLoggedIn()}");
   }
 
   /// First-time login: save credentials
   void login(Loginmodal loginmodal) {
-    box.write("email", loginmodal.email);
-    box.write("password", loginmodal.password);
+    if (isRememberMeChecked) {
+      // Save permanently if Remember Me is checked
+      box.write("email", loginmodal.email);
+      box.write("password", loginmodal.password);
+      box.write("isRememberMe", true);
+    } else {
+      // Only keep in memory for this session
+      box.remove("email");
+      box.remove("password");
+      box.write("isRememberMe", false);
+    }
 
     storedEmail = loginmodal.email;
     storedPassword = loginmodal.password;
@@ -52,17 +62,17 @@ class LoginProvider extends ChangeNotifier {
     bool remember = box.read('isRememberMe') ?? false;
 
     if (remember) {
-      // keep email & password, just clear session-related stuff
-      // maybe only reset runtime variables
-      storedEmail = box.read("email");
-      storedPassword = box.read("password");
+      // Do NOT clear email & password, just leave them in storage
+      // Only clear runtime/session variables if you have any
+      storedEmail = box.read("email") ?? "";
+      storedPassword = box.read("password") ?? "";
     } else {
-      // clear everything if not remembered
+      // Clear everything if not remembered
       box.remove("email");
       box.remove("password");
       box.remove("isRememberMe");
-      storedEmail = null;
-      storedPassword = null;
+      storedEmail = "";
+      storedPassword = "";
     }
 
     notifyListeners();
@@ -126,14 +136,14 @@ class LoginProvider extends ChangeNotifier {
     }
   }
 
-  void saveSignupData(String email, String password, String name) {
+  void saveSignupData(String fullname, String email, String pass) {
     box.write("email", email);
-    box.write("password", password);
-    box.write("name", name);
+    box.write("password", pass);
+    box.write("name", fullname);
 
     storedEmail = email;
-    storedPassword = password;
-    storedName = name;
+    storedPassword = pass;
+    storedName = fullname;
 
     debugPrint(
       "Saved Email: $storedEmail, Password: $storedPassword, Name: $storedName",

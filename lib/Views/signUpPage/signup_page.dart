@@ -172,8 +172,9 @@ class _SignupPageState extends State<SignupPage> {
                   onPressed: () {
                     context.read<LoginProvider>().saveSignupData(
                       fullNameController.text,
-                      passController.text,
+                      
                       phoneEmaiController.text,
+                      passController.text,
                     );
                     context.read<RouteProvider>().navigateTo(
                       '/otpPage',
