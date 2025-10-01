@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:baanda_mobile_app/constant/appColor.dart';
 
@@ -63,19 +64,19 @@ class CustomWidgets {
               }) {
                 return null;
               },
-              
+
           focusNode: focusNode,
           readOnly: isReadyOnly,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           keyboardType: keyboardtype,
           validator: validate,
-        
+         
           maxLength: maxLength,
           maxLines: maxLines ?? 1,
           controller: controller ?? TextEditingController(),
           textAlignVertical: TextAlignVertical.center,
           textInputAction: action,
-        
+
           onTap: () {
             if (onTap != null) {
               onTap();
@@ -88,21 +89,20 @@ class CustomWidgets {
           },
           obscureText: isObstructed,
           decoration: InputDecoration(
-            
             contentPadding: EdgeInsets.symmetric(
               vertical: height ?? 19,
-        
-              horizontal: width??12,
+
+              horizontal: width ?? 12,
             ),
             suffixIcon: suffIcons,
             fillColor: isReadyOnly
                 ? Colors.grey.shade400
                 : fillcolor ?? Colors.white,
             filled: true,
-        
+
             prefixIcon: icon,
             prefixIconColor: iconColor,
-        
+
             hintText: hint,
             hintStyle: TextStyle(
               color: hintColor ?? Colors.white,
@@ -117,6 +117,14 @@ class CustomWidgets {
               borderSide: BorderSide(color: Colors.grey, width: 2),
               borderRadius: BorderRadius.all(Radius.circular(borderRad ?? 10)),
             ),
+            // errorBorder: OutlineInputBorder(
+            //   borderSide: BorderSide(color: Colors.red, width: 1),
+            //   borderRadius: BorderRadius.all(Radius.circular(borderRad ?? 10)),
+            // ),
+          ),
+          errorBuilder: (context, errorText) => Text(
+            errorText,
+            style: TextStyle(color: Colors.red, fontSize: 12),
           ),
         ),
       ],
